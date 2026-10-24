@@ -650,9 +650,9 @@ fun LanguageAssetManagerScreen(
     languageStateManager.refreshLanguageAvailability()
   }
 
-  val normalizedFilter = filterQuery.trim().lowercase()
-  val rows =
-    remember(catalog, normalizedFilter) {
+  // Build catalog rows once per catalog snapshot; search only filters the cache.
+  val catalogRows =
+    remember(catalog) {
       catalog.languageRows
         .sortedWith(compareBy(languageNameComparator()) { it.language.localizedName() })
         .mapNotNull { entry ->
@@ -676,18 +676,23 @@ fun LanguageAssetManagerScreen(
               ttsSizeBytes = catalog.sizeBytesForFeature(language.code, Feature.TTS),
             )
           }
-        }.filter { row ->
-          if (normalizedFilter.isBlank()) {
-            true
-          } else {
-            val language = row.language
-            val haystack =
-              listOf(language.localizedName(), language.displayName, language.shortDisplayName, language.code)
-                .joinToString(" ")
-                .lowercase()
-            normalizedFilter in haystack
-          }
         }
+    }
+  val normalizedFilter = filterQuery.trim().lowercase()
+  val rows =
+    remember(catalogRows, normalizedFilter) {
+      catalogRows.filter { row ->
+        if (normalizedFilter.isBlank()) {
+          true
+        } else {
+          val language = row.language
+          val haystack =
+            listOf(language.localizedName(), language.displayName, language.shortDisplayName, language.code)
+              .joinToString(" ")
+              .lowercase()
+          normalizedFilter in haystack
+        }
+      }
     }
   // Packs with files on disk but missing required ones (partial download, or a
   // catalog change that orphaned the installed variant): without a repair these
