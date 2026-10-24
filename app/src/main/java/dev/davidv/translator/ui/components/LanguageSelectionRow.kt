@@ -127,11 +127,12 @@ fun LanguageSelectionRow(
 fun LanguageSwapButton(
   onClick: () -> Unit,
   enabled: Boolean = true,
+  modifier: Modifier = Modifier,
 ) {
   IconButton(
     onClick = onClick,
     enabled = enabled,
-    modifier = Modifier.size(AppLayout.dimens.languageRowButtonSize),
+    modifier = modifier.size(AppLayout.dimens.languageRowButtonSize),
   ) {
     Icon(
       painterResource(id = R.drawable.compare),
