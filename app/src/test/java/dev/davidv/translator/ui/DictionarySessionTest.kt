@@ -17,10 +17,6 @@ import dev.davidv.translator.Language
 import dev.davidv.translator.Script
 import dev.davidv.translator.WordWithTaggedEntries
 import dev.davidv.translator.singleScript
-import java.util.concurrent.CountDownLatch
-import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
-import java.util.concurrent.atomic.AtomicReference
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExecutorCoroutineDispatcher
 import kotlinx.coroutines.SupervisorJob
@@ -37,6 +33,10 @@ import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicReference
 
 class DictionarySessionTest {
   private lateinit var ui: ExecutorCoroutineDispatcher
@@ -82,85 +82,89 @@ class DictionarySessionTest {
   }
 
   @Test
-  fun `blocking native work does not block UI or reopen a closed sheet`() = runBlocking {
-    val started = gate()
-    val release = gate()
-    val thread = AtomicReference<String>()
-    val session =
-      session { _, text ->
-        thread.set(Thread.currentThread().name)
-        started.countDown()
-        check(release.await(5, TimeUnit.SECONDS))
-        word(text)
-      }
-    withContext(ui) { session.lookup("slow", language) }
-    assertTrue(started.await(5, TimeUnit.SECONDS))
-    withTimeout(5_000) { withContext(ui) { session.clear() } }
-    assertNotEquals("dictionary-test-ui", thread.get())
-    release.countDown()
-    drain()
-    assertEquals(DictionaryState.Closed, session.state.value)
-  }
-
-  @Test
-  fun `a newer tap replaces a pending lookup without stacking its late result`() = runBlocking {
-    val started = gate()
-    val release = gate()
-    val session =
-      session { _, text ->
-        if (text == "slow") {
+  fun `blocking native work does not block UI or reopen a closed sheet`() =
+    runBlocking {
+      val started = gate()
+      val release = gate()
+      val thread = AtomicReference<String>()
+      val session =
+        session { _, text ->
+          thread.set(Thread.currentThread().name)
           started.countDown()
           check(release.await(5, TimeUnit.SECONDS))
+          word(text)
         }
-        word(text)
-      }
-    withContext(ui) { session.lookup("slow", language) }
-    assertTrue(started.await(5, TimeUnit.SECONDS))
-    withContext(ui) { session.lookup("new", language) }
-    release.countDown()
-    val result = opened(session, "new")
-    assertEquals(emptyList<WordWithTaggedEntries>(), result.previous)
-  }
+      withContext(ui) { session.lookup("slow", language) }
+      assertTrue(started.await(5, TimeUnit.SECONDS))
+      withTimeout(5_000) { withContext(ui) { session.clear() } }
+      assertNotEquals("dictionary-test-ui", thread.get())
+      release.countDown()
+      drain()
+      assertEquals(DictionaryState.Closed, session.state.value)
+    }
 
   @Test
-  fun `Back cancels pending work and returns to the previous completed word`() = runBlocking {
-    val started = gate()
-    val release = gate()
-    val session =
-      session { _, text ->
-        if (text == "slow") {
+  fun `a newer tap replaces a pending lookup without stacking its late result`() =
+    runBlocking {
+      val started = gate()
+      val release = gate()
+      val session =
+        session { _, text ->
+          if (text == "slow") {
+            started.countDown()
+            check(release.await(5, TimeUnit.SECONDS))
+          }
+          word(text)
+        }
+      withContext(ui) { session.lookup("slow", language) }
+      assertTrue(started.await(5, TimeUnit.SECONDS))
+      withContext(ui) { session.lookup("new", language) }
+      release.countDown()
+      val result = opened(session, "new")
+      assertEquals(emptyList<WordWithTaggedEntries>(), result.previous)
+    }
+
+  @Test
+  fun `Back cancels pending work and returns to the previous completed word`() =
+    runBlocking {
+      val started = gate()
+      val release = gate()
+      val session =
+        session { _, text ->
+          if (text == "slow") {
+            started.countDown()
+            check(release.await(5, TimeUnit.SECONDS))
+          }
+          word(text)
+        }
+      withContext(ui) { session.lookup("first", language) }
+      opened(session, "first")
+      withContext(ui) { session.lookup("second", language) }
+      assertEquals(listOf(word("first")), opened(session, "second").previous)
+      withContext(ui) { session.lookup("slow", language) }
+      assertTrue(started.await(5, TimeUnit.SECONDS))
+      withContext(ui) { session.pop() }
+      release.countDown()
+      drain()
+      assertEquals(DictionaryState.Open(language, word("first"), emptyList()), session.state.value)
+    }
+
+  @Test
+  fun `disposing the owner ignores an in-flight native result`() =
+    runBlocking {
+      val started = gate()
+      val release = gate()
+      val session =
+        session { _, text ->
           started.countDown()
           check(release.await(5, TimeUnit.SECONDS))
+          word(text)
         }
-        word(text)
-      }
-    withContext(ui) { session.lookup("first", language) }
-    opened(session, "first")
-    withContext(ui) { session.lookup("second", language) }
-    assertEquals(listOf(word("first")), opened(session, "second").previous)
-    withContext(ui) { session.lookup("slow", language) }
-    assertTrue(started.await(5, TimeUnit.SECONDS))
-    withContext(ui) { session.pop() }
-    release.countDown()
-    drain()
-    assertEquals(DictionaryState.Open(language, word("first"), emptyList()), session.state.value)
-  }
-
-  @Test
-  fun `disposing the owner ignores an in-flight native result`() = runBlocking {
-    val started = gate()
-    val release = gate()
-    val session =
-      session { _, text ->
-        started.countDown()
-        check(release.await(5, TimeUnit.SECONDS))
-        word(text)
-      }
-    withContext(ui) { session.lookup("slow", language) }
-    assertTrue(started.await(5, TimeUnit.SECONDS))
-    withContext(ui) { scope.cancel() }
-    release.countDown()
-    drain()
-    assertEquals(DictionaryState.Closed, session.state.value)
-  }
+      withContext(ui) { session.lookup("slow", language) }
+      assertTrue(started.await(5, TimeUnit.SECONDS))
+      withContext(ui) { scope.cancel() }
+      release.countDown()
+      drain()
+      assertEquals(DictionaryState.Closed, session.state.value)
+    }
 }
