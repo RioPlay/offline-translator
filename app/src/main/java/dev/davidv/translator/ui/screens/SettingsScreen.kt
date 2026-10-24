@@ -28,6 +28,7 @@ import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.StringRes
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
@@ -40,6 +41,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
@@ -70,6 +72,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -152,6 +155,13 @@ private fun LanguageDropdown(
   }
 }
 
+@StringRes
+private fun HttpServerBindMode.accessLabel(): Int =
+  when (this) {
+    HttpServerBindMode.LOCALHOST -> R.string.settings_network_api_device
+    HttpServerBindMode.ALL_INTERFACES -> R.string.settings_network_api_lan
+  }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun HttpServerCard(
@@ -166,7 +176,7 @@ private fun HttpServerCard(
       verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
       Text(
-        text = stringResource(R.string.settings_http_server_title),
+        text = stringResource(R.string.settings_network_api_title),
         style = MaterialTheme.typography.headlineSmall,
         color = MaterialTheme.colorScheme.primary,
         modifier = Modifier.padding(bottom = 8.dp),
@@ -196,9 +206,20 @@ private fun HttpServerCard(
       )
 
       Text(
-        text = stringResource(R.string.settings_http_server_bind),
+        text = stringResource(R.string.settings_network_api_access),
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurface,
+      )
+      Text(
+        text =
+          stringResource(
+            if (settings.httpServerBindMode == HttpServerBindMode.LOCALHOST) {
+              R.string.settings_network_api_device_body
+            } else {
+              R.string.settings_network_api_lan_body
+            },
+          ),
+        style = MaterialTheme.typography.bodyMedium,
       )
       var bindExpanded by remember { mutableStateOf(false) }
       ExposedDropdownMenuBox(
@@ -207,7 +228,7 @@ private fun HttpServerCard(
         modifier = Modifier.fillMaxWidth(),
       ) {
         OutlinedTextField(
-          value = stringResource(settings.httpServerBindMode.labelRes),
+          value = stringResource(settings.httpServerBindMode.accessLabel()),
           onValueChange = {},
           readOnly = true,
           trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = bindExpanded) },
@@ -223,7 +244,7 @@ private fun HttpServerCard(
         ) {
           HttpServerBindMode.entries.forEach { mode ->
             DropdownMenuItem(
-              text = { Text(stringResource(mode.labelRes)) },
+              text = { Text(stringResource(mode.accessLabel())) },
               onClick = {
                 onSettingsChange { it.copy(httpServerBindMode = mode) }
                 bindExpanded = false
@@ -233,6 +254,85 @@ private fun HttpServerCard(
         }
       }
     }
+  }
+}
+
+@Composable
+private fun ProcessingAndInternetCard(
+  settings: AppSettings,
+  onSettingsChange: ((AppSettings) -> AppSettings) -> Unit,
+) {
+  AppCard(modifier = Modifier.fillMaxWidth().testTag("settings-processing-and-internet")) {
+    Column(
+      modifier = Modifier.padding(16.dp),
+      verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+      Text(
+        text = stringResource(R.string.settings_network_title),
+        style = MaterialTheme.typography.headlineSmall,
+        color = MaterialTheme.colorScheme.primary,
+      )
+      ProcessingExplanation(R.string.settings_network_local_title, R.string.settings_network_local_body)
+      ProcessingExplanation(R.string.settings_network_internet_title, R.string.settings_network_internet_body)
+      ProcessingExplanation(R.string.settings_network_speech_title, R.string.settings_network_speech_body)
+      Row(
+        modifier =
+          Modifier
+            .fillMaxWidth()
+            .toggleable(
+              value = settings.httpServerEnabled,
+              role = Role.Switch,
+              onValueChange = { enabled -> onSettingsChange { it.copy(httpServerEnabled = enabled) } },
+            ),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+      ) {
+        Column(modifier = Modifier.weight(1f).padding(end = 8.dp)) {
+          Text(
+            text = stringResource(R.string.settings_network_api_enable),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurface,
+          )
+          Text(
+            text = stringResource(R.string.settings_network_api_description),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+          )
+        }
+        Switch(
+          checked = settings.httpServerEnabled,
+          onCheckedChange = null,
+        )
+      }
+      Text(
+        text =
+          stringResource(
+            if (settings.httpServerEnabled) R.string.settings_network_api_enabled else R.string.settings_network_api_disabled,
+          ),
+        style = MaterialTheme.typography.bodyMedium,
+      )
+      if (settings.httpServerEnabled) {
+        Text(
+          text = stringResource(R.string.settings_network_api_notification),
+          style = MaterialTheme.typography.bodySmall,
+        )
+      }
+    }
+  }
+}
+
+@Composable
+private fun ProcessingExplanation(
+  @StringRes title: Int,
+  @StringRes body: Int,
+) {
+  Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+    Text(text = stringResource(title), style = MaterialTheme.typography.titleSmall)
+    Text(
+      text = stringResource(body),
+      style = MaterialTheme.typography.bodyMedium,
+      color = MaterialTheme.colorScheme.onSurfaceVariant,
+    )
   }
 }
 
@@ -307,6 +407,11 @@ fun SettingsScreen(
           .verticalScroll(rememberScrollState()),
       verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
+      ProcessingAndInternetCard(settings = settings, onSettingsChange = onSettingsChange)
+      if (settings.httpServerEnabled) {
+        HttpServerCard(settings = settings, onSettingsChange = onSettingsChange)
+      }
+
       // Languages Section
       AppCard(
         modifier = Modifier.fillMaxWidth().testTag("export-section:Languages"),
@@ -319,6 +424,11 @@ fun SettingsScreen(
             text = stringResource(R.string.settings_languages),
             style = MaterialTheme.typography.headlineSmall,
             color = MaterialTheme.colorScheme.primary,
+          )
+          Text(
+            text = stringResource(R.string.settings_network_packs_body),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
           )
 
           // Manage Languages Button
@@ -470,6 +580,11 @@ fun SettingsScreen(
             color = MaterialTheme.colorScheme.primary,
           )
 
+          Text(
+            text = stringResource(R.string.settings_network_browser_body),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+          )
           WebTranslatorAssetRow(
             label = stringResource(R.string.settings_adblock_support),
             secondaryLabel = formatSize(catalog.supportSizeBytesByKind("adblock")),
@@ -492,7 +607,7 @@ fun SettingsScreen(
                 color = MaterialTheme.colorScheme.onSurface,
               )
               Text(
-                text = stringResource(R.string.settings_clear_browsing_desc),
+                text = stringResource(R.string.settings_network_browsing_cleanup_body),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
               )
@@ -519,6 +634,11 @@ fun SettingsScreen(
             text = stringResource(R.string.settings_tts_section),
             style = MaterialTheme.typography.headlineSmall,
             color = MaterialTheme.colorScheme.primary,
+          )
+          Text(
+            text = stringResource(R.string.settings_network_tts_body),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
           )
 
           Row(
@@ -901,11 +1021,15 @@ fun SettingsScreen(
           if (advancedExpanded) {
             // Catalog Index URL
             Text(
-              text = stringResource(R.string.settings_catalog_url),
+              text = stringResource(R.string.settings_network_catalog_title),
               style = MaterialTheme.typography.bodyMedium,
               color = MaterialTheme.colorScheme.onSurface,
             )
 
+            Text(
+              text = stringResource(R.string.settings_network_catalog_body),
+              style = MaterialTheme.typography.bodySmall,
+            )
             OutlinedTextField(
               value = settings.catalogIndexUrl,
               onValueChange = { url ->
@@ -1154,12 +1278,12 @@ fun SettingsScreen(
             ) {
               Column(modifier = Modifier.weight(1f).padding(end = 8.dp)) {
                 Text(
-                  text = stringResource(R.string.settings_register_browser),
+                  text = stringResource(R.string.settings_network_browser_registration_title),
                   style = MaterialTheme.typography.bodyMedium,
                   color = MaterialTheme.colorScheme.onSurface,
                 )
                 Text(
-                  text = stringResource(R.string.settings_register_browser_desc),
+                  text = stringResource(R.string.settings_network_browser_registration_body),
                   style = MaterialTheme.typography.bodySmall,
                   color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -1171,37 +1295,8 @@ fun SettingsScreen(
                 },
               )
             }
-
-            Row(
-              modifier = Modifier.fillMaxWidth(),
-              horizontalArrangement = Arrangement.SpaceBetween,
-              verticalAlignment = Alignment.CenterVertically,
-            ) {
-              Column(modifier = Modifier.weight(1f).padding(end = 8.dp)) {
-                Text(
-                  text = stringResource(R.string.settings_http_server),
-                  style = MaterialTheme.typography.bodyMedium,
-                  color = MaterialTheme.colorScheme.onSurface,
-                )
-                Text(
-                  text = stringResource(R.string.settings_http_server_desc),
-                  style = MaterialTheme.typography.bodySmall,
-                  color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-              }
-              Switch(
-                checked = settings.httpServerEnabled,
-                onCheckedChange = { checked ->
-                  onSettingsChange { it.copy(httpServerEnabled = checked) }
-                },
-              )
-            }
           }
         }
-      }
-
-      if (settings.httpServerEnabled) {
-        HttpServerCard(settings = settings, onSettingsChange = onSettingsChange)
       }
 
       AboutCard(
