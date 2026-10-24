@@ -163,7 +163,6 @@ class BrowserActivity : ComponentActivity() {
       val shared = intent.getStringExtra(Intent.EXTRA_TEXT)?.trim()
       if (!shared.isNullOrBlank()) {
         if (isWebUrl(shared)) return shared
-        Log.d(TAG, "ACTION_SEND had no URL; using full text as query target: $shared")
         return shared
       }
     }
@@ -411,10 +410,8 @@ private fun BrowserWebView(
           webView.webChromeClient =
             object : WebChromeClient() {
               override fun onConsoleMessage(message: ConsoleMessage): Boolean {
-                Log.i(
-                  "BrowserConsole",
-                  "[${message.messageLevel()}] ${message.message()} (${message.sourceId()}:${message.lineNumber()})",
-                )
+                // Page console messages can contain private page text or URLs.
+                // Consume them without copying their payloads into app diagnostics.
                 return true
               }
             }

@@ -94,7 +94,6 @@ class AidlTranslationService : Service() {
           when (val result = translationCoordinator.translateText(from, to, textToTranslate)) {
             is TranslationResult.Success -> {
               val translatedText = result.result.translated
-              Log.d(tag, "translated text: $translatedText")
               callback.onTranslationResult(translatedText)
             }
 
