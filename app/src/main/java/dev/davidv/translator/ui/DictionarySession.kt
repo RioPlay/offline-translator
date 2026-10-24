@@ -89,30 +89,31 @@ class DictionarySession internal constructor(
   ) {
     cancelLookup()
     val id = requestId
-    lookupJob = scope.launch {
-      val foundWord =
-        try {
-          // Native lookup is blocking. Serialize it away from the UI thread; cancelling
-          // a coroutine does not interrupt an already executing native call.
-          withContext(lookupDispatcher) { lookupLock.withLock { findWord(language, str) } }
-        } catch (e: uniffi.bindings.CatalogException.MissingAsset) {
-          if (!currentCoroutineContext().isActive || id != requestId) return@launch
-          Log.i("DictionaryLookup", "No dictionary for ${language.displayName}", e)
-          uiEvents.send(UiEvent.ShowToast("No ${language.localizedName()} dictionary installed"))
+    lookupJob =
+      scope.launch {
+        val foundWord =
+          try {
+            // Native lookup is blocking. Serialize it away from the UI thread; cancelling
+            // a coroutine does not interrupt an already executing native call.
+            withContext(lookupDispatcher) { lookupLock.withLock { findWord(language, str) } }
+          } catch (e: uniffi.bindings.CatalogException.MissingAsset) {
+            if (!currentCoroutineContext().isActive || id != requestId) return@launch
+            Log.i("DictionaryLookup", "No dictionary for ${language.displayName}", e)
+            uiEvents.send(UiEvent.ShowToast("No ${language.localizedName()} dictionary installed"))
+            return@launch
+          } catch (e: uniffi.bindings.CatalogException.Other) {
+            if (!currentCoroutineContext().isActive || id != requestId) return@launch
+            Log.w("DictionaryLookup", "Lookup failed for ${language.displayName}", e)
+            null
+          }
+        if (!currentCoroutineContext().isActive || id != requestId) return@launch
+        if (foundWord == null) {
+          uiEvents.send(UiEvent.ShowToast("'$str' not found in ${language.code} dictionary"))
+          Log.w("DictionaryLookup", "Lookup failed for ${language.displayName}")
           return@launch
-        } catch (e: uniffi.bindings.CatalogException.Other) {
-          if (!currentCoroutineContext().isActive || id != requestId) return@launch
-          Log.w("DictionaryLookup", "Lookup failed for ${language.displayName}", e)
-          null
         }
-      if (!currentCoroutineContext().isActive || id != requestId) return@launch
-      if (foundWord == null) {
-        uiEvents.send(UiEvent.ShowToast("'$str' not found in ${language.code} dictionary"))
-        Log.w("DictionaryLookup", "Lookup failed for ${language.displayName}")
-        return@launch
+        _state.update { it.pushed(language, foundWord) }
       }
-      _state.update { it.pushed(language, foundWord) }
-    }
   }
 
   // Called on the session's UI scope, including Back and sheet dismissal. A late
