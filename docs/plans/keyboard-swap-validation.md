@@ -4,6 +4,12 @@ While the software keyboard is visible on the normal text screen, expose the exi
 
 The footer uses the same SwapLanguages message and availability/auto-detection rules as the top button. It reuses the existing localized accessibility description. IME padding and Scaffold bottom padding reserve space for the control instead of placing it over text. Keyboard visibility is reduced to a derived Boolean so IME animation does not force composition for every inset pixel.
 
+## Completed local checks
+
+The combined `0.8.6-test2` candidate passed Android compilation, all 90 JVM tests, full app ktlint, release NewApi lint at minSdk 23, minified ARM64 packaging, and APK signature/identity verification. The app retains the Translator launcher name and isolated dev.davidv.translator.devicetest app ID. SHA-256: `aea7c59c8a6d76fe99eae5fe04554dc3d3e75bca4826c772db83ccf8fd11bc65`.
+
+These checks establish compilation and packaging, not keyboard placement, focus, accessibility or touch behavior on a device. The checks below remain open.
+
 ## Validation required on RioPlay's device
 
 - Open/close the keyboard and swap repeatedly. Confirm the button is reachable above the keyboard, works while typing and does not dismiss the keyboard or lose the draft.
