@@ -1,6 +1,8 @@
 # Performance and privacy delivery queue
 
-Base reviewed: DavidVentura/offline-translator `7a662629cb267483ddf3889c6fe42e8fb9462e0d`. Source and issue status checked 2026-10-24. Code changes are draft-only; Android compilation, device regressions, network captures and performance measurements have not run.
+Base reviewed: DavidVentura/offline-translator `7a662629cb267483ddf3889c6fe42e8fb9462e0d`. Source and issue status checked 2026-10-24. Code changes remain in draft. The combined fork-only device candidate `3424e6974174850deab4e193246699e7d7ecd129` passed Android assembly and APK packaging/signature checks in run 40110607784, with independent local APK verification. Individual code PR-head builds, device regressions, network captures and performance measurements remain pending.
+
+Dependency findings and bounded upgrade gates are in `../reviews/dependency-review-2026-10-24.md`. Measured CI timing and the proposed first cache experiment are in `ci-build-efficiency.md`. Neither a dependency upgrade nor a warm-cache speedup is claimed complete. RioPlay's device test comes before upstream submission, and every upstream mutation requires their explicit approval.
 
 ## Immediate reviewable changes
 

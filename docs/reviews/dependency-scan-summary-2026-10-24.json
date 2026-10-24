@@ -1,0 +1,2045 @@
+{
+  "source_commit": "3424e6974174850deab4e193246699e7d7ecd129",
+  "package_versions_scanned": 511,
+  "matches": [
+    {
+      "ecosystem": "crates.io",
+      "name": "anyhow",
+      "version": "1.0.102",
+      "paths": [
+        "app/bindings-bindgen/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "RUSTSEC-2026-0190",
+          "modified": "2026-06-29T14:15:03.650725Z"
+        }
+      ]
+    },
+    {
+      "ecosystem": "crates.io",
+      "name": "basic-toml",
+      "version": "0.1.10",
+      "paths": [
+        "app/bindings-bindgen/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "RUSTSEC-2026-0374",
+          "modified": "2026-10-20T11:15:37.076409Z"
+        }
+      ]
+    },
+    {
+      "ecosystem": "crates.io",
+      "name": "buf_redux",
+      "version": "0.8.4",
+      "paths": [
+        "app/src/main/bindings/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "RUSTSEC-2023-0028",
+          "modified": "2023-03-24T15:42:41Z"
+        }
+      ]
+    },
+    {
+      "ecosystem": "crates.io",
+      "name": "lopdf",
+      "version": "0.40.0",
+      "paths": [
+        "app/src/main/bindings/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "GHSA-6fj4-rcr3-r7rr",
+          "modified": "2026-10-17T15:26:01.305676Z"
+        },
+        {
+          "id": "RUSTSEC-2026-0187",
+          "modified": "2026-10-17T15:15:02.582897Z"
+        }
+      ]
+    },
+    {
+      "ecosystem": "crates.io",
+      "name": "multipart",
+      "version": "0.18.0",
+      "paths": [
+        "app/src/main/bindings/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "RUSTSEC-2023-0050",
+          "modified": "2023-08-18T20:38:40Z"
+        }
+      ]
+    },
+    {
+      "ecosystem": "crates.io",
+      "name": "paste",
+      "version": "1.0.15",
+      "paths": [
+        "app/src/main/bindings/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "RUSTSEC-2024-0436",
+          "modified": "2026-01-27T22:03:15.694766Z"
+        }
+      ]
+    },
+    {
+      "ecosystem": "crates.io",
+      "name": "regex",
+      "version": "0.1.80",
+      "paths": [
+        "app/src/main/bindings/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "GHSA-m5pq-gvj9-9vr8",
+          "modified": "2023-11-08T04:08:33.272453Z"
+        },
+        {
+          "id": "RUSTSEC-2022-0013",
+          "modified": "2023-11-08T04:08:33.272453Z"
+        }
+      ]
+    },
+    {
+      "ecosystem": "crates.io",
+      "name": "rustc-serialize",
+      "version": "0.3.25",
+      "paths": [
+        "app/src/main/bindings/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "RUSTSEC-2022-0004",
+          "modified": "2023-11-08T04:13:48.926151Z"
+        },
+        {
+          "id": "RUSTSEC-2025-0025",
+          "modified": "2025-04-28T13:38:14Z"
+        }
+      ]
+    },
+    {
+      "ecosystem": "crates.io",
+      "name": "rustybuzz",
+      "version": "0.20.1",
+      "paths": [
+        "app/src/main/bindings/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "RUSTSEC-2026-0206",
+          "modified": "2026-07-12T07:15:04.317501Z"
+        }
+      ]
+    },
+    {
+      "ecosystem": "crates.io",
+      "name": "safemem",
+      "version": "0.3.3",
+      "paths": [
+        "app/src/main/bindings/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "RUSTSEC-2023-0081",
+          "modified": "2024-03-04T18:47:07Z"
+        }
+      ]
+    },
+    {
+      "ecosystem": "crates.io",
+      "name": "thread_local",
+      "version": "0.2.7",
+      "paths": [
+        "app/src/main/bindings/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "GHSA-9hpw-r23r-xgm5",
+          "modified": "2023-11-08T04:17:57.540599Z"
+        },
+        {
+          "id": "RUSTSEC-2022-0006",
+          "modified": "2023-11-08T04:17:57.540599Z"
+        }
+      ]
+    },
+    {
+      "ecosystem": "crates.io",
+      "name": "ttf-parser",
+      "version": "0.25.1",
+      "paths": [
+        "app/src/main/bindings/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "RUSTSEC-2026-0192",
+          "modified": "2026-06-29T21:15:04.384453Z"
+        }
+      ]
+    },
+    {
+      "ecosystem": "crates.io",
+      "name": "twoway",
+      "version": "0.1.8",
+      "paths": [
+        "app/src/main/bindings/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "RUSTSEC-2021-0146",
+          "modified": "2023-02-09T03:11:29Z"
+        }
+      ]
+    },
+    {
+      "ecosystem": "crates.io",
+      "name": "zip",
+      "version": "2.4.2",
+      "paths": [
+        "app/src/main/bindings/Cargo.lock"
+      ],
+      "vulns": [
+        {
+          "id": "RUSTSEC-2026-0367",
+          "modified": "2026-10-16T23:30:02.392172Z"
+        },
+        {
+          "id": "RUSTSEC-2026-0368",
+          "modified": "2026-10-16T23:30:02.383750Z"
+        },
+        {
+          "id": "RUSTSEC-2026-0369",
+          "modified": "2026-10-16T23:30:02.387698Z"
+        }
+      ]
+    },
+    {
+      "ecosystem": "Maven",
+      "name": "org.jetbrains.kotlin:kotlin-gradle-plugin",
+      "version": "2.0.0",
+      "paths": [
+        "build declarations"
+      ],
+      "vulns": [
+        {
+          "id": "GHSA-r937-wjx7-w2jp",
+          "modified": "2026-08-12T19:40:59.256901Z"
+        }
+      ]
+    }
+  ],
+  "advisories": {
+    "GHSA-6fj4-rcr3-r7rr": {
+      "id": "GHSA-6fj4-rcr3-r7rr",
+      "aliases": [
+        "RUSTSEC-2026-0187"
+      ],
+      "summary": "lopdf has a stack overflow via deeply nested PDF objects",
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/J-F-Liu/lopdf/issues/502"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/J-F-Liu/lopdf/pull/503"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/J-F-Liu/lopdf/commit/c755394ad7dd651ccfe77c618f90ab779da1dfd9"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/J-F-Liu/lopdf"
+        },
+        {
+          "type": "WEB",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2026-0187.html"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "lopdf",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/lopdf"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "0.42.0"
+                }
+              ]
+            }
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/10/GHSA-6fj4-rcr3-r7rr/GHSA-6fj4-rcr3-r7rr.json"
+          }
+        }
+      ]
+    },
+    "GHSA-9hpw-r23r-xgm5": {
+      "id": "GHSA-9hpw-r23r-xgm5",
+      "aliases": [
+        "RUSTSEC-2022-0006"
+      ],
+      "summary": "Data race in `Iter` and `IterMut`",
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/Amanieu/thread_local-rs/issues/33"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/Amanieu/thread_local-rs"
+        },
+        {
+          "type": "WEB",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2022-0006.html"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "thread_local",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/thread_local"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "1.1.4"
+                }
+              ]
+            }
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/06/GHSA-9hpw-r23r-xgm5/GHSA-9hpw-r23r-xgm5.json"
+          }
+        }
+      ]
+    },
+    "GHSA-m5pq-gvj9-9vr8": {
+      "id": "GHSA-m5pq-gvj9-9vr8",
+      "aliases": [
+        "CVE-2022-24713",
+        "RUSTSEC-2022-0013"
+      ],
+      "summary": "Rust's regex crate vulnerable to regular expression denial of service",
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/rust-lang/regex/security/advisories/GHSA-m5pq-gvj9-9vr8"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-24713"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/rust-lang/regex/commit/ae70b41d4f46641dbc45c7a4f87954aea356283e"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/rust-lang/regex"
+        },
+        {
+          "type": "WEB",
+          "url": "https://groups.google.com/g/rustlang-security-announcements/c/NcNNL1Jq7Yw"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.debian.org/debian-lts-announce/2022/04/msg00003.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.debian.org/debian-lts-announce/2022/04/msg00009.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/JANLZ3JXWJR7FSHE57K66UIZUIJZI67T"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/O3YB7CURSG64CIPCDPNMGPE4UU24AB6H"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/PDOWTHNVGBOP2HN27PUFIGRYNSNDTYRJ"
+        },
+        {
+          "type": "WEB",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2022-0013.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://security.gentoo.org/glsa/202208-08"
+        },
+        {
+          "type": "WEB",
+          "url": "https://security.gentoo.org/glsa/202208-14"
+        },
+        {
+          "type": "WEB",
+          "url": "https://www.debian.org/security/2022/dsa-5113"
+        },
+        {
+          "type": "WEB",
+          "url": "https://www.debian.org/security/2022/dsa-5118"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "regex",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/regex"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "1.5.5"
+                }
+              ]
+            }
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/03/GHSA-m5pq-gvj9-9vr8/GHSA-m5pq-gvj9-9vr8.json"
+          }
+        }
+      ]
+    },
+    "GHSA-r937-wjx7-w2jp": {
+      "id": "GHSA-r937-wjx7-w2jp",
+      "aliases": [
+        "CVE-2026-53914"
+      ],
+      "summary": "JetBrains Kotlin: Unsafe Deserialization in Kotlin Build Cache Enables Code Execution",
+      "references": [
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-53914"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/JetBrains/kotlin/commit/bf51df665b458fda7c3eaf436c4d88dc119d7ec6"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/JetBrains/kotlin"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/JetBrains/kotlin/releases/tag/v2.4.20-Beta1"
+        },
+        {
+          "type": "WEB",
+          "url": "https://www.jetbrains.com/privacy-security/issues-fixed"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "org.jetbrains.kotlin:kotlin-gradle-plugin",
+            "ecosystem": "Maven",
+            "purl": "pkg:maven/org.jetbrains.kotlin/kotlin-gradle-plugin"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "2.4.20-Beta1"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "0.0.1-test-deploy",
+            "0.0.2-test-deploy",
+            "0.1.1.2-5-test-2",
+            "0.1.1.2-5-test-4",
+            "0.1.1.2-5-test-5",
+            "0.10.1316",
+            "0.10.195",
+            "0.10.4",
+            "0.10.709",
+            "0.10.770",
+            "0.11.91",
+            "0.11.91.1",
+            "0.11.91.2",
+            "0.11.91.4",
+            "0.12.1218",
+            "0.12.1230",
+            "0.12.200",
+            "0.12.213",
+            "0.12.412",
+            "0.12.613",
+            "0.13.1513",
+            "0.13.1514",
+            "0.13.1516",
+            "0.14.449",
+            "0.14.451",
+            "0.5.1131",
+            "0.5.998",
+            "0.6.1070",
+            "0.6.1315",
+            "0.6.1411",
+            "0.6.1507",
+            "0.6.1590",
+            "0.6.1603",
+            "0.6.1617",
+            "0.6.1658",
+            "0.6.1670",
+            "0.6.1673",
+            "0.6.179",
+            "0.6.1910",
+            "0.6.22",
+            "0.6.2451",
+            "0.6.2517",
+            "0.6.31",
+            "0.6.317",
+            "0.6.350",
+            "0.6.594",
+            "0.6.602",
+            "0.6.69",
+            "0.6.786",
+            "0.6.800",
+            "0.6.912",
+            "0.7.1090",
+            "0.7.115",
+            "0.7.1217",
+            "0.7.191",
+            "0.7.258",
+            "0.7.270",
+            "0.7.271",
+            "0.7.802",
+            "0.7.852",
+            "0.7.86",
+            "0.7.895",
+            "0.8.11",
+            "0.8.1527",
+            "0.8.484",
+            "0.8.679",
+            "0.9.0-native",
+            "0.9.1-native",
+            "0.9.206",
+            "0.9.66",
+            "0.9.976",
+            "1.0.0",
+            "1.0.0-beta-1038",
+            "1.0.0-beta-1103",
+            "1.0.0-beta-2417",
+            "1.0.0-beta-2422",
+            "1.0.0-beta-2423",
+            "1.0.0-beta-3593",
+            "1.0.0-beta-3594",
+            "1.0.0-beta-3595",
+            "1.0.0-beta-4583",
+            "1.0.0-beta-4584",
+            "1.0.0-beta-4589",
+            "1.0.0-rc-1036",
+            "1.0.1",
+            "1.0.1-1",
+            "1.0.1-2",
+            "1.0.2",
+            "1.0.2-1",
+            "1.0.3",
+            "1.0.4",
+            "1.0.5",
+            "1.0.5-2",
+            "1.0.5-3",
+            "1.0.6",
+            "1.0.7",
+            "1.1.0",
+            "1.1.1",
+            "1.1.2",
+            "1.1.2-2",
+            "1.1.2-3",
+            "1.1.2-4",
+            "1.1.2-5",
+            "1.1.3",
+            "1.1.3-2",
+            "1.1.4",
+            "1.1.4-2",
+            "1.1.4-3",
+            "1.1.50",
+            "1.1.51",
+            "1.1.60",
+            "1.1.61",
+            "1.2.0",
+            "1.2.10",
+            "1.2.20",
+            "1.2.21",
+            "1.2.30",
+            "1.2.31",
+            "1.2.40",
+            "1.2.41",
+            "1.2.50",
+            "1.2.51",
+            "1.2.60",
+            "1.2.61",
+            "1.2.70",
+            "1.2.71",
+            "1.3.0",
+            "1.3.0-rc-190",
+            "1.3.0-rc-198",
+            "1.3.10",
+            "1.3.11",
+            "1.3.20",
+            "1.3.21",
+            "1.3.30",
+            "1.3.31",
+            "1.3.40",
+            "1.3.41",
+            "1.3.50",
+            "1.3.60",
+            "1.3.61",
+            "1.3.70",
+            "1.3.71",
+            "1.3.72",
+            "1.4.0",
+            "1.4.0-rc",
+            "1.4.10",
+            "1.4.20",
+            "1.4.20-M1",
+            "1.4.20-M2",
+            "1.4.20-RC",
+            "1.4.21",
+            "1.4.21-2",
+            "1.4.30",
+            "1.4.30-M1",
+            "1.4.30-RC",
+            "1.4.31",
+            "1.4.32",
+            "1.5.0",
+            "1.5.0-M1",
+            "1.5.0-M2",
+            "1.5.0-RC",
+            "1.5.10",
+            "1.5.20",
+            "1.5.20-M1",
+            "1.5.20-RC",
+            "1.5.21",
+            "1.5.30",
+            "1.5.30-M1",
+            "1.5.30-RC",
+            "1.5.31",
+            "1.5.32",
+            "1.6.0",
+            "1.6.0-M1",
+            "1.6.0-RC",
+            "1.6.0-RC2",
+            "1.6.10",
+            "1.6.10-RC",
+            "1.6.20",
+            "1.6.20-M1",
+            "1.6.20-RC",
+            "1.6.20-RC2",
+            "1.6.21",
+            "1.7.0",
+            "1.7.0-Beta",
+            "1.7.0-RC",
+            "1.7.0-RC2",
+            "1.7.10",
+            "1.7.20",
+            "1.7.20-Beta",
+            "1.7.20-RC",
+            "1.7.21",
+            "1.7.22",
+            "1.8.0",
+            "1.8.0-343",
+            "1.8.0-Beta",
+            "1.8.0-RC",
+            "1.8.0-RC2",
+            "1.8.10",
+            "1.8.20",
+            "1.8.20-Beta",
+            "1.8.20-RC",
+            "1.8.20-RC2",
+            "1.8.21",
+            "1.8.22",
+            "1.9.0",
+            "1.9.0-Beta",
+            "1.9.0-RC",
+            "1.9.10",
+            "1.9.20",
+            "1.9.20-Beta",
+            "1.9.20-Beta2",
+            "1.9.20-RC",
+            "1.9.20-RC2",
+            "1.9.21",
+            "1.9.22",
+            "1.9.23",
+            "1.9.24",
+            "1.9.25",
+            "2.0.0",
+            "2.0.0-Beta1",
+            "2.0.0-Beta2",
+            "2.0.0-Beta3",
+            "2.0.0-Beta4",
+            "2.0.0-Beta5",
+            "2.0.0-RC1",
+            "2.0.0-RC2",
+            "2.0.0-RC3",
+            "2.0.10",
+            "2.0.10-RC",
+            "2.0.10-RC2",
+            "2.0.20",
+            "2.0.20-Beta1",
+            "2.0.20-Beta2",
+            "2.0.20-RC",
+            "2.0.20-RC2",
+            "2.0.21",
+            "2.0.21-RC",
+            "2.1.0",
+            "2.1.0-Beta1",
+            "2.1.0-Beta2",
+            "2.1.0-RC",
+            "2.1.0-RC2",
+            "2.1.10",
+            "2.1.10-RC",
+            "2.1.10-RC2",
+            "2.1.20",
+            "2.1.20-Beta1",
+            "2.1.20-Beta2",
+            "2.1.20-RC",
+            "2.1.20-RC2",
+            "2.1.20-RC3",
+            "2.1.21",
+            "2.1.21-RC",
+            "2.1.21-RC2",
+            "2.2.0",
+            "2.2.0-Beta1",
+            "2.2.0-Beta2",
+            "2.2.0-RC",
+            "2.2.0-RC2",
+            "2.2.0-RC3",
+            "2.2.10",
+            "2.2.10-RC",
+            "2.2.10-RC2",
+            "2.2.20",
+            "2.2.20-Beta1",
+            "2.2.20-Beta2",
+            "2.2.20-RC",
+            "2.2.20-RC2",
+            "2.2.21",
+            "2.2.21-RC",
+            "2.2.21-RC2",
+            "2.3.0",
+            "2.3.0-Beta1",
+            "2.3.0-Beta2",
+            "2.3.0-RC",
+            "2.3.0-RC2",
+            "2.3.0-RC3",
+            "2.3.10",
+            "2.3.10-RC",
+            "2.3.10-RC2",
+            "2.3.20",
+            "2.3.20-Beta1",
+            "2.3.20-Beta2",
+            "2.3.20-RC",
+            "2.3.20-RC2",
+            "2.3.20-RC3",
+            "2.3.21",
+            "2.3.21-RC",
+            "2.3.21-RC2",
+            "2.4.0",
+            "2.4.0-Beta1",
+            "2.4.0-Beta2",
+            "2.4.0-RC",
+            "2.4.0-RC2",
+            "2.4.10",
+            "2.4.10-RC",
+            "2.4.10-RC2"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/06/GHSA-r937-wjx7-w2jp/GHSA-r937-wjx7-w2jp.json"
+          }
+        }
+      ]
+    },
+    "RUSTSEC-2021-0146": {
+      "id": "RUSTSEC-2021-0146",
+      "summary": "Crate `twoway` deprecated by the author",
+      "references": [
+        {
+          "type": "PACKAGE",
+          "url": "https://crates.io/crates/twoway"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2021-0146.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/bluss/twoway"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/bluss/twoway/commit/e99b3c718df1117ad7f54c33f6540c8f46cc17dd"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "twoway",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/twoway"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0.0.0-0"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "affected_functions": null,
+            "affects": {
+              "arch": [],
+              "functions": [],
+              "os": []
+            }
+          },
+          "database_specific": {
+            "categories": [],
+            "cvss": null,
+            "informational": "unmaintained",
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2021-0146.json"
+          }
+        }
+      ]
+    },
+    "RUSTSEC-2022-0004": {
+      "id": "RUSTSEC-2022-0004",
+      "aliases": [
+        "GHSA-2226-4v3c-cff8"
+      ],
+      "summary": "Stack overflow in rustc_serialize when parsing deeply nested JSON",
+      "references": [
+        {
+          "type": "PACKAGE",
+          "url": "https://crates.io/crates/rustc-serialize"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2022-0004.html"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "rustc-serialize",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/rustc-serialize"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0.0.0-0"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "affected_functions": null,
+            "affects": {
+              "arch": [],
+              "functions": [
+                "rustc_serialize::json::Json::from_str"
+              ],
+              "os": []
+            }
+          },
+          "database_specific": {
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2022-0004.json",
+            "categories": [
+              "denial-of-service"
+            ],
+            "cvss": null,
+            "informational": null
+          }
+        }
+      ]
+    },
+    "RUSTSEC-2022-0006": {
+      "id": "RUSTSEC-2022-0006",
+      "aliases": [
+        "GHSA-9hpw-r23r-xgm5"
+      ],
+      "summary": "Data race in `Iter` and `IterMut`",
+      "references": [
+        {
+          "type": "PACKAGE",
+          "url": "https://crates.io/crates/thread_local"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2022-0006.html"
+        },
+        {
+          "type": "REPORT",
+          "url": "https://github.com/Amanieu/thread_local-rs/issues/33"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "thread_local",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/thread_local"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0.0.0-0"
+                },
+                {
+                  "fixed": "1.1.4"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "affected_functions": null,
+            "affects": {
+              "arch": [],
+              "functions": [],
+              "os": []
+            }
+          },
+          "database_specific": {
+            "categories": [
+              "memory-corruption"
+            ],
+            "cvss": null,
+            "informational": null,
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2022-0006.json"
+          }
+        }
+      ]
+    },
+    "RUSTSEC-2022-0013": {
+      "id": "RUSTSEC-2022-0013",
+      "aliases": [
+        "CVE-2022-24713",
+        "GHSA-m5pq-gvj9-9vr8"
+      ],
+      "summary": "Regexes with large repetitions on empty sub-expressions take a very long time to parse",
+      "references": [
+        {
+          "type": "PACKAGE",
+          "url": "https://crates.io/crates/regex"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2022-0013.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://groups.google.com/g/rustlang-security-announcements/c/NcNNL1Jq7Yw"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "regex",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/regex"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0.0.0-0"
+                },
+                {
+                  "fixed": "1.5.5"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "affected_functions": null,
+            "affects": {
+              "functions": [],
+              "os": [],
+              "arch": []
+            }
+          },
+          "database_specific": {
+            "categories": [
+              "denial-of-service"
+            ],
+            "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+            "informational": null,
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2022-0013.json"
+          }
+        }
+      ]
+    },
+    "RUSTSEC-2023-0028": {
+      "id": "RUSTSEC-2023-0028",
+      "summary": "buf_redux is Unmaintained",
+      "references": [
+        {
+          "type": "PACKAGE",
+          "url": "https://crates.io/crates/buf_redux"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2023-0028.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/abonander/buf_redux/issues"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "buf_redux",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/buf_redux"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0.0.0-0"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "affected_functions": null,
+            "affects": {
+              "arch": [],
+              "functions": [],
+              "os": []
+            }
+          },
+          "database_specific": {
+            "categories": [],
+            "cvss": null,
+            "informational": "unmaintained",
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2023-0028.json"
+          }
+        }
+      ]
+    },
+    "RUSTSEC-2023-0050": {
+      "id": "RUSTSEC-2023-0050",
+      "summary": "multipart is Unmaintained",
+      "references": [
+        {
+          "type": "PACKAGE",
+          "url": "https://crates.io/crates/multipart"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2023-0050.html"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "multipart",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/multipart"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0.0.0-0"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "affected_functions": null,
+            "affects": {
+              "arch": [],
+              "functions": [],
+              "os": []
+            }
+          },
+          "database_specific": {
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2023-0050.json",
+            "categories": [],
+            "cvss": null,
+            "informational": "unmaintained"
+          }
+        }
+      ]
+    },
+    "RUSTSEC-2023-0081": {
+      "id": "RUSTSEC-2023-0081",
+      "summary": "safemem is unmaintained",
+      "references": [
+        {
+          "type": "PACKAGE",
+          "url": "https://crates.io/crates/safemem"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2023-0081.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/abonander/safemem"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "safemem",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/safemem"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0.0.0-0"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "affected_functions": null,
+            "affects": {
+              "arch": [],
+              "functions": [],
+              "os": []
+            }
+          },
+          "database_specific": {
+            "cvss": null,
+            "informational": "unmaintained",
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2023-0081.json",
+            "categories": []
+          }
+        }
+      ]
+    },
+    "RUSTSEC-2024-0436": {
+      "id": "RUSTSEC-2024-0436",
+      "summary": "paste - no longer maintained",
+      "references": [
+        {
+          "type": "PACKAGE",
+          "url": "https://crates.io/crates/paste"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2024-0436.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/dtolnay/paste"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "paste",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/paste"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0.0.0-0"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "affected_functions": null,
+            "affects": {
+              "arch": [],
+              "functions": [],
+              "os": []
+            }
+          },
+          "database_specific": {
+            "categories": [],
+            "cvss": null,
+            "informational": "unmaintained",
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2024-0436.json"
+          }
+        }
+      ]
+    },
+    "RUSTSEC-2025-0025": {
+      "id": "RUSTSEC-2025-0025",
+      "summary": "rustc-serialize is unmaintained",
+      "references": [
+        {
+          "type": "PACKAGE",
+          "url": "https://crates.io/crates/rustc-serialize"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2025-0025.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/rust-lang-deprecated/rustc-serialize/issues"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "rustc-serialize",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/rustc-serialize"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0.0.0-0"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "affected_functions": null,
+            "affects": {
+              "arch": [],
+              "functions": [],
+              "os": []
+            }
+          },
+          "database_specific": {
+            "cvss": null,
+            "informational": "unmaintained",
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2025-0025.json",
+            "categories": []
+          }
+        }
+      ]
+    },
+    "RUSTSEC-2026-0187": {
+      "id": "RUSTSEC-2026-0187",
+      "aliases": [
+        "GHSA-6fj4-rcr3-r7rr"
+      ],
+      "summary": "Stack overflow in lopdf via deeply nested PDF objects",
+      "references": [
+        {
+          "type": "PACKAGE",
+          "url": "https://crates.io/crates/lopdf"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2026-0187.html"
+        },
+        {
+          "type": "REPORT",
+          "url": "https://github.com/J-F-Liu/lopdf/issues/502"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/J-F-Liu/lopdf/pull/503"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/J-F-Liu/lopdf/commit/c755394"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "lopdf",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/lopdf"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0.0.0-0"
+                },
+                {
+                  "fixed": "0.42.0"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "affected_functions": null,
+            "affects": {
+              "os": [],
+              "functions": [],
+              "arch": []
+            }
+          },
+          "database_specific": {
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2026-0187.json",
+            "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+            "informational": null,
+            "categories": [
+              "denial-of-service"
+            ]
+          }
+        }
+      ]
+    },
+    "RUSTSEC-2026-0190": {
+      "id": "RUSTSEC-2026-0190",
+      "summary": "Unsoundness in `Error::downcast_mut()`",
+      "references": [
+        {
+          "type": "PACKAGE",
+          "url": "https://crates.io/crates/anyhow"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2026-0190.html"
+        },
+        {
+          "type": "REPORT",
+          "url": "https://github.com/dtolnay/anyhow/issues/451"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "anyhow",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/anyhow"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0.0.0-0"
+                },
+                {
+                  "fixed": "1.0.103"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "affected_functions": null,
+            "affects": {
+              "arch": [],
+              "os": [],
+              "functions": [
+                "anyhow::Error::downcast_mut"
+              ]
+            }
+          },
+          "database_specific": {
+            "categories": [
+              "memory-corruption"
+            ],
+            "cvss": null,
+            "informational": "unsound",
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2026-0190.json"
+          }
+        }
+      ]
+    },
+    "RUSTSEC-2026-0192": {
+      "id": "RUSTSEC-2026-0192",
+      "summary": "`ttf-parser` is unmaintained",
+      "references": [
+        {
+          "type": "PACKAGE",
+          "url": "https://crates.io/crates/ttf-parser"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2026-0192.html"
+        },
+        {
+          "type": "REPORT",
+          "url": "https://github.com/harfbuzz/ttf-parser/issues/217"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "ttf-parser",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/ttf-parser"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0.0.0-0"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "affects": {
+              "os": [],
+              "functions": [],
+              "arch": []
+            },
+            "affected_functions": null
+          },
+          "database_specific": {
+            "categories": [],
+            "cvss": null,
+            "informational": "unmaintained",
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2026-0192.json"
+          }
+        }
+      ]
+    },
+    "RUSTSEC-2026-0206": {
+      "id": "RUSTSEC-2026-0206",
+      "summary": "`rustybuzz` is unmaintained",
+      "references": [
+        {
+          "type": "PACKAGE",
+          "url": "https://crates.io/crates/rustybuzz"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2026-0206.html"
+        },
+        {
+          "type": "REPORT",
+          "url": "https://github.com/harfbuzz/rustybuzz/issues/166"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "rustybuzz",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/rustybuzz"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0.0.0-0"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "affects": {
+              "arch": [],
+              "os": [],
+              "functions": []
+            },
+            "affected_functions": null
+          },
+          "database_specific": {
+            "informational": "unmaintained",
+            "categories": [],
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2026-0206.json",
+            "cvss": null
+          }
+        }
+      ]
+    },
+    "RUSTSEC-2026-0367": {
+      "id": "RUSTSEC-2026-0367",
+      "aliases": [
+        "GHSA-vv5m-jxxh-4627"
+      ],
+      "summary": " Insecure Preservation of SUID/SGID Bits during ZIP Extraction Leading to Potential Privilege Escalation",
+      "references": [
+        {
+          "type": "PACKAGE",
+          "url": "https://crates.io/crates/zip"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2026-0367.html"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "zip",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/zip"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0.0.0-0"
+                },
+                {
+                  "fixed": "9.0.0"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "affects": {
+              "functions": [],
+              "arch": [],
+              "os": []
+            },
+            "affected_functions": null
+          },
+          "database_specific": {
+            "categories": [
+              "privilege-escalation"
+            ],
+            "cvss": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:H/A:H",
+            "informational": null,
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2026-0367.json"
+          }
+        }
+      ]
+    },
+    "RUSTSEC-2026-0368": {
+      "id": "RUSTSEC-2026-0368",
+      "aliases": [
+        "GHSA-4v9h-p7m9-rh26"
+      ],
+      "summary": "zip: `ZipArchive::extract` creates symbolic links whose attacker-controlled targets are outside the destination directory",
+      "references": [
+        {
+          "type": "PACKAGE",
+          "url": "https://crates.io/crates/zip"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2026-0368.html"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "zip",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/zip"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0.0.0-0"
+                },
+                {
+                  "fixed": "9.0.0"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "affects": {
+              "functions": [],
+              "arch": [],
+              "os": []
+            },
+            "affected_functions": null
+          },
+          "database_specific": {
+            "categories": [
+              "privilege-escalation"
+            ],
+            "cvss": null,
+            "informational": null,
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2026-0368.json"
+          }
+        }
+      ]
+    },
+    "RUSTSEC-2026-0369": {
+      "id": "RUSTSEC-2026-0369",
+      "aliases": [
+        "GHSA-4684-h2q9-2vcp"
+      ],
+      "summary": "ZipStreamReader::extract() and ZipArchive::extract() apply Unix permissions through symlinks without confining the target",
+      "references": [
+        {
+          "type": "PACKAGE",
+          "url": "https://crates.io/crates/zip"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2026-0369.html"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "zip",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/zip"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0.0.0-0"
+                },
+                {
+                  "fixed": "9.0.0"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "affects": {
+              "functions": [],
+              "arch": [],
+              "os": []
+            },
+            "affected_functions": null
+          },
+          "database_specific": {
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2026-0369.json",
+            "categories": [
+              "privilege-escalation"
+            ],
+            "cvss": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H",
+            "informational": null
+          }
+        }
+      ]
+    },
+    "RUSTSEC-2026-0374": {
+      "id": "RUSTSEC-2026-0374",
+      "summary": "`basic-toml` is unmaintained",
+      "references": [
+        {
+          "type": "PACKAGE",
+          "url": "https://crates.io/crates/basic-toml"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2026-0374.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/dtolnay/basic-toml/commit/dd2ea1df197f255a402b8990cb852ade3e37ea34"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "basic-toml",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/basic-toml"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0.0.0-0"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "affects": {
+              "os": [],
+              "functions": [],
+              "arch": []
+            },
+            "affected_functions": null
+          },
+          "database_specific": {
+            "cvss": null,
+            "informational": "unmaintained",
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2026-0374.json",
+            "categories": []
+          }
+        }
+      ]
+    }
+  },
+  "observed_build_artifacts": {
+    "scope": "Downloaded JAR/AAR cache snapshot, configuration classification pending; not complete resolved runtime graph",
+    "count": 146,
+    "matches": [
+      {
+        "name": "org.bouncycastle:bcpkix-jdk18on",
+        "version": "1.77",
+        "vulns": [
+          {
+            "id": "GHSA-4cx2-fc23-5wg6",
+            "modified": "2026-09-10T03:50:26.717417Z"
+          },
+          {
+            "id": "GHSA-wg6q-6289-32hp",
+            "modified": "2026-09-10T03:50:45.075900Z"
+          }
+        ]
+      },
+      {
+        "name": "org.bouncycastle:bcprov-jdk18on",
+        "version": "1.77",
+        "vulns": [
+          {
+            "id": "GHSA-4h8f-2wvx-gg5w",
+            "modified": "2026-09-10T03:50:13.465694Z"
+          },
+          {
+            "id": "GHSA-574f-3g2m-x479",
+            "modified": "2026-09-24T15:30:06.452617Z"
+          },
+          {
+            "id": "GHSA-67mf-3cr5-8w23",
+            "modified": "2026-09-10T03:50:26.916223Z"
+          },
+          {
+            "id": "GHSA-8xfc-gm6g-vgpv",
+            "modified": "2026-09-10T03:49:19.252779Z"
+          },
+          {
+            "id": "GHSA-9pwp-9qqc-pr26",
+            "modified": "2026-09-18T17:45:06.105254Z"
+          },
+          {
+            "id": "GHSA-c3fc-8qff-9hwx",
+            "modified": "2026-09-10T03:51:01.534612Z"
+          },
+          {
+            "id": "GHSA-m44j-cfrm-g8qc",
+            "modified": "2026-09-10T03:50:14.435958Z"
+          },
+          {
+            "id": "GHSA-qp49-qgx5-5m26",
+            "modified": "2026-09-18T17:45:06.096277Z"
+          },
+          {
+            "id": "GHSA-v435-xc8x-wvr9",
+            "modified": "2026-09-10T03:50:14.807195Z"
+          }
+        ]
+      },
+      {
+        "name": "org.apache.commons:commons-compress",
+        "version": "1.21",
+        "vulns": [
+          {
+            "id": "GHSA-4265-ccf5-phj5",
+            "modified": "2026-09-10T03:50:05.280645Z"
+          },
+          {
+            "id": "GHSA-4g9r-vxhx-9pgx",
+            "modified": "2026-09-10T03:50:05.286961Z"
+          }
+        ]
+      },
+      {
+        "name": "org.jdom:jdom2",
+        "version": "2.0.6",
+        "vulns": [
+          {
+            "id": "GHSA-2363-cqg2-863c",
+            "modified": "2025-09-16T15:52:31.388959Z"
+          }
+        ]
+      },
+      {
+        "name": "io.netty:netty-codec-http2",
+        "version": "4.1.93.Final",
+        "vulns": [
+          {
+            "id": "GHSA-563q-j3cm-6jxm",
+            "modified": "2026-09-10T03:50:48.396944Z"
+          },
+          {
+            "id": "GHSA-5x3r-wrvg-rp6q",
+            "modified": "2026-09-10T03:50:48.488084Z"
+          },
+          {
+            "id": "GHSA-93wv-jw9v-4972",
+            "modified": "2026-09-10T03:51:11.318239Z"
+          },
+          {
+            "id": "GHSA-c2gf-v879-257j",
+            "modified": "2026-10-06T19:45:03.555042Z"
+          },
+          {
+            "id": "GHSA-c69g-56f8-xwqj",
+            "modified": "2026-09-10T03:51:11.564389Z"
+          },
+          {
+            "id": "GHSA-f6hv-jmp6-3vwv",
+            "modified": "2026-09-10T03:51:05.447415Z"
+          },
+          {
+            "id": "GHSA-prj3-ccx8-p6x4",
+            "modified": "2026-09-10T03:50:27.396257Z"
+          },
+          {
+            "id": "GHSA-w9fj-cfpg-grvv",
+            "modified": "2026-09-10T03:50:41.535305Z"
+          },
+          {
+            "id": "GHSA-xpw8-rcwv-8f8p",
+            "modified": "2026-09-10T03:49:58.760787Z"
+          }
+        ]
+      },
+      {
+        "name": "io.netty:netty-codec-http",
+        "version": "4.1.93.Final",
+        "vulns": [
+          {
+            "id": "GHSA-38f8-5428-x5cv",
+            "modified": "2026-09-10T03:51:04.415985Z"
+          },
+          {
+            "id": "GHSA-4mp9-239f-g9hg",
+            "modified": "2026-09-10T03:51:10.413004Z"
+          },
+          {
+            "id": "GHSA-57rv-r2g8-2cj3",
+            "modified": "2026-09-10T03:51:04.645242Z"
+          },
+          {
+            "id": "GHSA-5jpm-x58v-624v",
+            "modified": "2026-09-10T03:50:10.174704Z"
+          },
+          {
+            "id": "GHSA-6cqp-g7gg-8hr5",
+            "modified": "2026-09-10T03:51:10.615779Z"
+          },
+          {
+            "id": "GHSA-6jqx-86gh-f27w",
+            "modified": "2026-09-10T03:51:10.812069Z"
+          },
+          {
+            "id": "GHSA-84h7-rjj3-6jx4",
+            "modified": "2026-09-10T03:50:31.724062Z"
+          },
+          {
+            "id": "GHSA-8c42-7qj2-3j46",
+            "modified": "2026-09-10T03:51:13.389261Z"
+          },
+          {
+            "id": "GHSA-f6hv-jmp6-3vwv",
+            "modified": "2026-09-10T03:51:05.447415Z"
+          },
+          {
+            "id": "GHSA-fghv-69vj-qj49",
+            "modified": "2026-09-10T03:50:28.333050Z"
+          },
+          {
+            "id": "GHSA-gcjf-9mgh-3p7g",
+            "modified": "2026-09-10T03:50:52.172506Z"
+          },
+          {
+            "id": "GHSA-hvcg-qmg6-jm4c",
+            "modified": "2026-09-10T03:50:50.025404Z"
+          },
+          {
+            "id": "GHSA-jppx-w49h-x2qq",
+            "modified": "2026-09-10T03:50:12.368445Z"
+          },
+          {
+            "id": "GHSA-m4cv-j2px-7723",
+            "modified": "2026-09-10T03:51:06.379210Z"
+          },
+          {
+            "id": "GHSA-mvh2-crg5-v77c",
+            "modified": "2026-09-10T03:50:52.830435Z"
+          },
+          {
+            "id": "GHSA-pwqr-wmgm-9rr8",
+            "modified": "2026-09-10T03:50:40.493461Z"
+          },
+          {
+            "id": "GHSA-q4f6-jm68-57ww",
+            "modified": "2026-09-10T03:50:52.883743Z"
+          },
+          {
+            "id": "GHSA-v8h7-rr48-vmmv",
+            "modified": "2026-09-10T03:50:47.637727Z"
+          },
+          {
+            "id": "GHSA-xxqh-mfjm-7mv9",
+            "modified": "2026-09-10T03:51:07.381332Z"
+          }
+        ]
+      },
+      {
+        "name": "io.netty:netty-common",
+        "version": "4.1.93.Final",
+        "vulns": [
+          {
+            "id": "GHSA-389x-839f-4rhx",
+            "modified": "2026-09-10T03:50:22.454183Z"
+          },
+          {
+            "id": "GHSA-xq3w-v528-46rv",
+            "modified": "2026-09-10T03:50:56.073045Z"
+          }
+        ]
+      },
+      {
+        "name": "io.netty:netty-handler-proxy",
+        "version": "4.1.93.Final",
+        "vulns": [
+          {
+            "id": "GHSA-45q3-82m4-75jr",
+            "modified": "2026-09-10T03:51:04.662453Z"
+          }
+        ]
+      },
+      {
+        "name": "io.netty:netty-handler",
+        "version": "4.1.93.Final",
+        "vulns": [
+          {
+            "id": "GHSA-3qp7-7mw8-wx86",
+            "modified": "2026-09-10T03:50:55.436123Z"
+          },
+          {
+            "id": "GHSA-4g8c-wm8x-jfhw",
+            "modified": "2026-09-10T03:50:22.400091Z"
+          },
+          {
+            "id": "GHSA-6mjq-h674-j845",
+            "modified": "2026-09-10T03:50:02.086375Z"
+          },
+          {
+            "id": "GHSA-c4c3-7fpv-j4q5",
+            "modified": "2026-09-08T18:27:48.571082Z"
+          },
+          {
+            "id": "GHSA-c653-97m9-rcg9",
+            "modified": "2026-09-10T03:51:08.552933Z"
+          },
+          {
+            "id": "GHSA-fccg-mwvh-qqg4",
+            "modified": "2026-09-08T18:27:48.113951Z"
+          },
+          {
+            "id": "GHSA-x4gw-5cx5-pgmh",
+            "modified": "2026-09-10T03:50:12.401611Z"
+          }
+        ]
+      },
+      {
+        "name": "io.netty:netty-codec",
+        "version": "4.1.93.Final",
+        "vulns": [
+          {
+            "id": "GHSA-3p8m-j85q-pgmj",
+            "modified": "2026-09-10T03:50:27.942019Z"
+          },
+          {
+            "id": "GHSA-558v-64gr-wgg4",
+            "modified": "2026-09-10T03:50:12.358146Z"
+          },
+          {
+            "id": "GHSA-mj4r-2hfc-f8p6",
+            "modified": "2026-09-10T03:51:06.526589Z"
+          }
+        ]
+      },
+      {
+        "name": "org.jetbrains.kotlin:kotlin-gradle-plugin",
+        "version": "2.0.0",
+        "vulns": [
+          {
+            "id": "GHSA-r937-wjx7-w2jp",
+            "modified": "2026-08-12T19:40:59.256901Z"
+          }
+        ]
+      },
+      {
+        "name": "org.bitbucket.b_c:jose4j",
+        "version": "0.9.5",
+        "vulns": [
+          {
+            "id": "GHSA-3677-xxcr-wjqv",
+            "modified": "2026-09-10T03:50:31.318789Z"
+          }
+        ]
+      },
+      {
+        "name": "com.google.protobuf:protobuf-java",
+        "version": "3.22.3",
+        "vulns": [
+          {
+            "id": "GHSA-735f-pc8j-v9w8",
+            "modified": "2026-09-10T03:50:19.212518Z"
+          }
+        ]
+      },
+      {
+        "name": "commons-io:commons-io",
+        "version": "2.13.0",
+        "vulns": [
+          {
+            "id": "GHSA-78wr-2p64-hpwj",
+            "modified": "2026-09-10T03:50:19.619589Z"
+          }
+        ]
+      }
+    ]
+  },
+  "limitations": [
+    "No APK exploit reproduction",
+    "Declared Maven versions are not a complete selected runtime graph",
+    "Downloaded Maven snapshot is not an APK runtime inventory",
+    "Vendored native C/C++ and container OS not scanned",
+    "Advisory aliases and maintenance notices must not be counted as separate demonstrated vulnerabilities"
+  ]
+}
