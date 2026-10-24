@@ -1,0 +1,64 @@
+{
+  "nativeBase": "94f47bff9d80bcd4e2779bceb037a5ed2c330fab",
+  "localPreparedCommit": "4391b6c85bbfc021ff54c459e239394803c13eda",
+  "patchSha256": "4d66b830f2709ff4e31a6b412a51f64218fbc3b5517bacfe00279c2b9e25fb63",
+  "patchAppliesToExactBase": true,
+  "lopdfBefore": "0.40.0",
+  "lopdfAfter": "0.42.0",
+  "parserProbe": [
+    {
+      "version": "0.40.0",
+      "input": "valid.pdf",
+      "returncode": 0,
+      "stdout": "accepted",
+      "stderr": ""
+    },
+    {
+      "version": "0.40.0",
+      "input": "nested.pdf",
+      "returncode": -6,
+      "stdout": "",
+      "stderr": "thread 'main' has overflowed its stack\nfatal runtime error: stack overflow, aborting"
+    },
+    {
+      "version": "0.42.0",
+      "input": "valid.pdf",
+      "returncode": 0,
+      "stdout": "accepted",
+      "stderr": ""
+    },
+    {
+      "version": "0.42.0",
+      "input": "nested.pdf",
+      "returncode": 0,
+      "stdout": "accepted",
+      "stderr": ""
+    }
+  ],
+  "exactPreparedRegression": {
+    "test": "Exact prepared native nested-PDF regression function, standalone host Rust test harness against lopdf 0.42.0",
+    "returncode": 0,
+    "stdout": "\nrunning 1 test\ntest deeply_nested_catalog_does_not_overflow_the_parser_stack ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+    "stderr": "",
+    "addressSpaceLimitBytes": 536870912,
+    "cpuLimitSeconds": 10,
+    "wallTimeoutSeconds": 15
+  },
+  "nativeIntegration": {
+    "result": "passed",
+    "target": "aarch64-linux-android",
+    "androidApi": 23,
+    "profile": "release",
+    "features": "all default app bindings features",
+    "command": "cargo ndk --target arm64-v8a --platform 23 --link-libcxx-shared build --lib --release --locked",
+    "dependencyOverride": "isolated local Cargo patch to the prepared native workspace",
+    "linkedLibraryMachine": "AArch64",
+    "linkedLibrarySha256": "b4f0f05e99d169e114d7b4e620a0f2e82fc9b01540cf020ece073a444862666f",
+    "includedInDistributedApk": false
+  },
+  "limitations": [
+    "No full Android PDF normalization/translation exploit or device test was performed.",
+    "This is not the full native workspace test suite.",
+    "Native fork publication, canonical app dependency repinning and a final APK/device pass are still required."
+  ]
+}

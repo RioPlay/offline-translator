@@ -44,9 +44,13 @@ Publication/integration requires a writable `RioPlay/translator-rs` fork, a comm
 
 ## Validation status
 
-Wrapper generation, publisher checksum verification, Gradle configuration and selected dependency resolution passed. Both Android Kotlin compilation and all 90 JVM tests pass under the updated toolchain, including the API backport configuration. The full app ktlint check passes. Keep release NewApi lint enabled with minSdk 23: final release lint and minified APK packaging remain pending at this checkpoint. Device keyboard placement/focus, translation, dictionary history, pack installation/removal, TTS and document handling still need testing; no battery or frame-time measurement is claimed.
+The combined device-test candidate `0.8.6-test2` passed wrapper checksum verification, Gradle configuration, selected dependency resolution, Android compilation, all 90 JVM tests, full app ktlint, release NewApi lint with minSdk 23, and minified ARM64 APK assembly. APK signature and packaging verification confirm version code 322, launcher name Translator, isolated app ID dev.davidv.translator.devicetest, ARM64-only native libraries and a non-debuggable build. SHA-256: `aea7c59c8a6d76fe99eae5fe04554dc3d3e75bca4826c772db83ccf8fd11bc65`.
 
-The bounded old/fixed native parser probe passed. The exact prepared native patch applies cleanly to the pinned native revision, and formatting of translator-pdf passes. Full native ARM64 compatibility remains a separate validation gate before app repinning; the standalone regression case also needs execution under the normal Rust test harness.
+The old/fixed parser probe passed, and the exact prepared nested-PDF regression function passed under the standalone host Rust test harness with bounded time/memory. The native patch applies cleanly to the pinned revision; translator-pdf formatting passes. Using an isolated local Cargo patch, the full app bindings and all default features compiled and linked for ARM64 / Android API 23 in release mode with lopdf 0.42.0. This is not the full native workspace test suite or a full PDF pipeline/device test. The resulting library was not copied into the candidate APK. `pdf-security-validation-2026-10-24.json` records these checks and limits.
+
+Native publication, canonical app manifest/lockfile repinning, and a new APK/device pass remain required for the PDF fix. The connector cannot create the missing native fork. Device keyboard placement/focus, translation, dictionary history, pack installation/removal, TTS and document handling still need testing. No battery or frame-time measurement is claimed.
+
+The local candidate uses a different test-signing certificate from the previous CI candidate, so Android requires uninstalling the old test copy before installation. Uninstallation removes that copy's private app data. Keep the regular app installed; its ID/storage remains separate.
 
 All changes are drafts in RioPlay's fork. Nothing may be submitted to an upstream-maintained repository without RioPlay's explicit approval.
 
