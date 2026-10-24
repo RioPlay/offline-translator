@@ -73,8 +73,8 @@ android {
     }
     create("deviceTest") {
       initWith(getByName("release"))
-      applicationIdSuffix = ".rioplaytest"
-      versionNameSuffix = "-rioplay-test1"
+      applicationIdSuffix = ".devicetest"
+      versionNameSuffix = "-test1"
       signingConfig = signingConfigs.getByName("debug")
       matchingFallbacks += listOf("release")
     }

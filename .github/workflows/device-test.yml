@@ -1,4 +1,4 @@
-name: RioPlay device test
+name: Android device test
 
 on:
   push:
@@ -24,13 +24,13 @@ jobs:
           persist-credentials: false
 
       - name: Build existing Android toolchain image locally
-        run: docker build -t rioplay-translator-test .
+        run: docker build -t offline-translator-test .
 
       - name: Assemble signed ARM64 test APK
         run: |
           docker run --rm \
             -v "$GITHUB_WORKSPACE:/build/build/dev.davidv.translator" \
-            rioplay-translator-test \
+            offline-translator-test \
             ./gradlew --no-daemon assembleDeviceTest -PtargetAbi=arm64-v8a
 
       - name: Verify packaging and record provenance
@@ -38,17 +38,18 @@ jobs:
           mkdir -p device-test-output
           docker run --rm \
             -v "$GITHUB_WORKSPACE:/build/build/dev.davidv.translator" \
-            rioplay-translator-test sh -eu -c '
+            offline-translator-test sh -eu -c '
               apk=app/build/outputs/apk/deviceTest/app-arm64-v8a-deviceTest.apk
               tools="$ANDROID_SDK_ROOT/build-tools/34.0.0"
               "$tools/apksigner" verify --verbose --print-certs "$apk" > device-test-output/signature.txt
               "$tools/aapt" dump badging "$apk" > device-test-output/badging.txt
-              cp "$apk" device-test-output/Translator-RioPlay-Test-arm64.apk
+              cp "$apk" device-test-output/offline-translator-arm64-test.apk
             '
           python3 - <<'PY'
           from pathlib import Path
           info = Path('device-test-output/badging.txt').read_text()
-          assert "package: name='dev.davidv.translator.rioplaytest'" in info, 'Wrong application ID'
+          assert "package: name='dev.davidv.translator.devicetest'" in info, 'Wrong application ID'
+          assert "application-label:'Translator'" in info, 'Unexpected launcher name'
           assert "native-code: 'arm64-v8a'" in info, 'Wrong ABI'
           assert 'application-debuggable' not in info, 'Test build must retain non-debuggable release behavior'
           PY
@@ -60,12 +61,12 @@ jobs:
             echo "Test-only signing key; not an official release."
             sha256sum Dockerfile app/build.gradle.kts
           } > device-test-output/BUILD.txt
-          (cd device-test-output && sha256sum Translator-RioPlay-Test-arm64.apk > SHA256SUMS)
+          (cd device-test-output && sha256sum offline-translator-arm64-test.apk > SHA256SUMS)
 
       - name: Upload installable APK and build details
         uses: actions/upload-artifact@v4
         with:
-          name: Translator-RioPlay-Test-arm64-${{ github.sha }}
+          name: offline-translator-arm64-test-${{ github.sha }}
           path: device-test-output/
           if-no-files-found: error
           retention-days: 7
