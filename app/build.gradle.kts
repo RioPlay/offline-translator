@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.android)
@@ -14,7 +16,7 @@ android {
   namespace = "dev.davidv.translator"
   compileSdk = 34
   ndkVersion = "28.0.13004108"
-  buildToolsVersion = "34.0.0"
+  buildToolsVersion = "35.0.0"
 
   sourceSets {
     getByName("main") {
@@ -74,7 +76,7 @@ android {
     create("deviceTest") {
       initWith(getByName("release"))
       applicationIdSuffix = ".devicetest"
-      versionNameSuffix = "-test1"
+      versionNameSuffix = "-test2"
       signingConfig = signingConfigs.getByName("debug")
       matchingFallbacks += listOf("release")
     }
@@ -82,9 +84,6 @@ android {
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
-  }
-  kotlinOptions {
-    jvmTarget = "11"
   }
   buildFeatures {
     aidl = true
@@ -115,9 +114,16 @@ android {
       val output = this as com.android.build.gradle.internal.api.ApkVariantOutputImpl
       val abi = output.getFilter(com.android.build.OutputFile.ABI)
       if (abi != null) {
-        output.versionCodeOverride = defaultConfig.versionCode!! * 10 + (abiCodes[abi] ?: 0)
+        val baseVersionCode = defaultConfig.versionCode!! + if (buildType.name == "deviceTest") 1 else 0
+        output.versionCodeOverride = baseVersionCode * 10 + (abiCodes[abi] ?: 0)
       }
     }
+  }
+}
+
+kotlin {
+  compilerOptions {
+    jvmTarget.set(JvmTarget.JVM_11)
   }
 }
 
@@ -290,6 +296,7 @@ val abiToConverterTask =
       group = "build"
       description = "Build the ONNX->MNN converter library for $abi"
       inputs.file(converterRootDir.resolve("Cargo.toml"))
+      inputs.file(converterRootDir.resolve("Cargo.lock"))
       inputs.file(converterRootDir.resolve(".cargo/config.toml"))
       inputs.dir(converterRootDir.resolve("src"))
 
@@ -379,6 +386,7 @@ val buildUniffiBindgen =
     description = "Build the host uniffi-bindgen binary"
     workingDir = bindingsBindgenRootDir
     inputs.file(bindingsBindgenRootDir.resolve("Cargo.toml"))
+    inputs.file(bindingsBindgenRootDir.resolve("Cargo.lock"))
     inputs.dir(bindingsBindgenRootDir.resolve("src"))
     outputs.file(bindgenHostBinary)
     commandLine("cargo", "build", "--release")
@@ -422,6 +430,12 @@ tasks.named("preBuild") {
   dependsOn(bindingsTasks)
   dependsOn(converterTasks)
   dependsOn(generateUniffiBindings)
+}
+
+// Generated sources are excluded from style checks. If a check is requested in
+// the same invocation as compilation, still declare the shared directory order.
+tasks.matching { it.name.startsWith("runKtlint") }.configureEach {
+  mustRunAfter(generateUniffiBindings)
 }
 
 dependencies {

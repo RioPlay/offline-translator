@@ -80,6 +80,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -88,6 +89,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.os.ConfigurationCompat
 import dev.davidv.translator.DictionaryInfo
 import dev.davidv.translator.DownloadId
 import dev.davidv.translator.DownloadManager
@@ -112,6 +114,7 @@ import dev.davidv.translator.ui.components.SamplePlayer
 import dev.davidv.translator.ui.theme.AppLayout
 import dev.davidv.translator.ui.theme.LayoutDensity
 import java.io.File
+import java.util.Locale
 import kotlin.math.roundToInt
 
 private const val ROW_EXPAND_ANIMATION_MS = 140
@@ -185,8 +188,8 @@ private fun VoicePickerDialog(
   onDownloadVoice: (String) -> Unit,
   onDismiss: () -> Unit,
 ) {
-  val regions = catalog.ttsVoicePickerRegions(language.code)
-  val installedRegions = catalog.installedTtsVoicePickerRegions(language.code)
+  val regions = remember(catalog, language.code) { catalog.ttsVoicePickerRegions(language.code) }
+  val installedRegions = remember(catalog, language.code) { catalog.installedTtsVoicePickerRegions(language.code) }
   val installedPackIds =
     remember(installedRegions) {
       installedRegions.flatMap { region -> region.voices.map { it.packId } }.toSet()
@@ -198,8 +201,10 @@ private fun VoicePickerDialog(
         region.voices.map { pack -> VoiceWithRegion(pack, region.displayName.takeIf { showRegions }) }
       }
     }
-  val downloaded = voicesWithRegion.filter { it.pack.packId in installedPackIds }
-  val available = voicesWithRegion.filterNot { it.pack.packId in installedPackIds }
+  val (downloaded, available) =
+    remember(voicesWithRegion, installedPackIds) {
+      voicesWithRegion.partition { it.pack.packId in installedPackIds }
+    }
 
   val settings by settingsManager.settings.collectAsState()
   val override = parseVoiceOverride(settings.ttsVoiceOverrides[language.code])
@@ -220,16 +225,20 @@ private fun VoicePickerDialog(
     }
 
   val orderedDownloaded =
-    downloaded.sortedWith(
-      compareByDescending<VoiceWithRegion> { it.pack.displayName == initialDefaultVoiceName }
-        .thenBy { it.regionName ?: "" }
-        .thenBy { it.pack.displayName },
-    )
+    remember(downloaded, initialDefaultVoiceName) {
+      downloaded.sortedWith(
+        compareByDescending<VoiceWithRegion> { it.pack.displayName == initialDefaultVoiceName }
+          .thenBy { it.regionName ?: "" }
+          .thenBy { it.pack.displayName },
+      )
+    }
   val orderedAvailable =
-    available.sortedWith(
-      compareBy<VoiceWithRegion> { it.regionName ?: "" }
-        .thenBy { it.pack.displayName },
-    )
+    remember(available) {
+      available.sortedWith(
+        compareBy<VoiceWithRegion> { it.regionName ?: "" }
+          .thenBy { it.pack.displayName },
+      )
+    }
 
   val playerScope = rememberCoroutineScope()
   val samplePlayer =
@@ -637,6 +646,7 @@ fun LanguageAssetManagerScreen(
   val catalog by languageStateManager.catalog.collectAsState()
   val languageMetadata by languageMetadataManager.metadata.collectAsState()
   val downloads by downloadManager.state.collectAsState()
+  val locale = ConfigurationCompat.getLocales(LocalConfiguration.current)[0] ?: Locale.getDefault()
   val expandedLanguages = remember { mutableStateMapOf<String, Boolean>() }
   var filterQuery by remember { mutableStateOf("") }
   var pendingSharedDictionaryDelete by remember { mutableStateOf<PendingSharedDictionaryDelete?>(null) }
@@ -652,9 +662,9 @@ fun LanguageAssetManagerScreen(
 
   // Build catalog rows once per catalog snapshot; search only filters the cache.
   val catalogRows =
-    remember(catalog) {
+    remember(catalog, locale) {
       catalog.languageRows
-        .sortedWith(compareBy(languageNameComparator()) { it.language.localizedName() })
+        .sortedWith(compareBy(languageNameComparator(locale)) { it.language.localizedName(locale) })
         .mapNotNull { entry ->
           val language = entry.language
           val availability = entry.availability
@@ -678,19 +688,24 @@ fun LanguageAssetManagerScreen(
           }
         }
     }
-  val normalizedFilter = filterQuery.trim().lowercase()
+  val searchKeys =
+    remember(catalogRows, locale) {
+      catalogRows.associate { row ->
+        val language = row.language
+        language.code to
+          listOf(language.localizedName(locale), language.displayName, language.shortDisplayName, language.code)
+            .joinToString(" ")
+            .lowercase(locale)
+      }
+    }
+  val normalizedFilter = filterQuery.trim().lowercase(locale)
   val rows =
-    remember(catalogRows, normalizedFilter) {
+    remember(catalogRows, searchKeys, normalizedFilter) {
       catalogRows.filter { row ->
         if (normalizedFilter.isBlank()) {
           true
         } else {
-          val language = row.language
-          val haystack =
-            listOf(language.localizedName(), language.displayName, language.shortDisplayName, language.code)
-              .joinToString(" ")
-              .lowercase()
-          normalizedFilter in haystack
+          normalizedFilter in searchKeys.getValue(row.language.code)
         }
       }
     }
