@@ -1,0 +1,20 @@
+{
+  "apk": "offline-translator-arm64-test3.apk",
+  "bytes": 45018325,
+  "sha256": "d6f755762ebef2fa01fb4473be79482b2e243020f23ddc2e3046acacc52429c7",
+  "sourceCommit": "ff7ef7a5a6edd9c6f49515ca49225e9f44e97c8e",
+  "sourceTree": "13515e19c89c310207a9bca9dfbb98ee873ed7ab",
+  "version": "0.8.6-test3",
+  "versionCode": 332,
+  "label": "Translator",
+  "appId": "dev.davidv.translator.devicetest",
+  "sameSigningCertificateAsTest2": true,
+  "checks": [
+    "90 JVM tests",
+    "App ktlint",
+    "Fresh release NewApi lint",
+    "Minified ARM64 assembly",
+    "APK signature and identity"
+  ],
+  "deviceVisualAndTalkBackCheck": "pending"
+}
