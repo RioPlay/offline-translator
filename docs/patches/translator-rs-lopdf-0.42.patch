@@ -1,0 +1,60 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index 468c03c..c23b85b 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -132,7 +132,7 @@ translator-mucab = { path = "crates/translator-mucab", optional = true }
+ translator-transliterate = { path = "crates/translator-transliterate", optional = true }
+ translator-tts = { path = "crates/translator-tts", optional = true }
+ piper-rs = { git = "https://github.com/DavidVentura/piper-rs", optional = true, features = ["japanese", "fst-normalization", "mnn"] }
+-lopdf = { version = "0.40", optional = true, default-features = false }
++lopdf = { version = "0.42", optional = true, default-features = false }
+ ttf-parser = { version = "0.25", optional = true, default-features = false, features = ["std", "opentype-layout", "variable-fonts"] }
+ subsetter = { version = "0.2", optional = true, default-features = false }
+ rustybuzz = { version = "0.20", optional = true, default-features = false, features = ["std"] }
+diff --git a/crates/translator-pdf/Cargo.toml b/crates/translator-pdf/Cargo.toml
+index 942d634..97bddf9 100644
+--- a/crates/translator-pdf/Cargo.toml
++++ b/crates/translator-pdf/Cargo.toml
+@@ -19,7 +19,7 @@ image-translate = ["dep:image", "dep:fax"]
+ translator-core = { path = "../translator-core", features = ["script-from-unicode"] }
+ translator-render = { path = "../translator-render" }
+ translator-translate = { path = "../translator-translate" }
+-lopdf = { version = "0.40", default-features = false }
++lopdf = { version = "0.42", default-features = false }
+ subsetter = { version = "0.2", default-features = false }
+ rustybuzz = { version = "0.20", default-features = false, features = ["std"] }
+ log = "0.4"
+diff --git a/crates/translator-pdf/src/pdf.rs b/crates/translator-pdf/src/pdf.rs
+index aa41738..2342084 100644
+--- a/crates/translator-pdf/src/pdf.rs
++++ b/crates/translator-pdf/src/pdf.rs
+@@ -209,6 +209,29 @@ mod tests {
+         assert!(t.pad_y > 0.0);
+     }
+ 
++    #[test]
++    fn deeply_nested_catalog_does_not_overflow_the_parser_stack() {
++        // RUSTSEC-2026-0187: lopdf 0.40 aborts while parsing this small,
++        // deeply nested array. Keep it in memory; no untrusted file is opened.
++        let mut bytes = b"%PDF-1.4\n".to_vec();
++        let catalog_offset = bytes.len();
++        bytes.extend_from_slice(b"1 0 obj\n<< /Type /Catalog /Pages 2 0 R /X ");
++        bytes.extend(std::iter::repeat_n(b'[', 10_380));
++        bytes.push(b'0');
++        bytes.extend(std::iter::repeat_n(b']', 10_380));
++        bytes.extend_from_slice(b" >>\nendobj\n");
++        let pages_offset = bytes.len();
++        bytes.extend_from_slice(b"2 0 obj\n<< /Type /Pages /Kids [] /Count 0 >>\nendobj\n");
++        let xref_offset = bytes.len();
++        bytes.extend_from_slice(
++            format!(
++                "xref\n0 3\n0000000000 65535 f \n{catalog_offset:010} 00000 n \n{pages_offset:010} 00000 n \ntrailer\n<< /Size 3 /Root 1 0 R >>\nstartxref\n{xref_offset}\n%%EOF\n"
++            )
++            .as_bytes(),
++        );
++        assert!(lopdf::Document::load_mem(&bytes).is_ok());
++    }
++
+     fn one_page_pdf(text: &str) -> Vec<u8> {
+         use lopdf::content::{Content, Operation};
+         use lopdf::{Object, Stream, dictionary};

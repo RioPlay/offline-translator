@@ -40,7 +40,7 @@ jobs:
             -v "$GITHUB_WORKSPACE:/build/build/dev.davidv.translator" \
             offline-translator-test sh -eu -c '
               apk=app/build/outputs/apk/deviceTest/app-arm64-v8a-deviceTest.apk
-              tools="$ANDROID_SDK_ROOT/build-tools/34.0.0"
+              tools="$ANDROID_SDK_ROOT/build-tools/35.0.0"
               "$tools/apksigner" verify --verbose --print-certs "$apk" > device-test-output/signature.txt
               "$tools/aapt" dump badging "$apk" > device-test-output/badging.txt
               cp "$apk" device-test-output/offline-translator-arm64-test.apk
