@@ -22,10 +22,20 @@ import dev.davidv.translator.Language
 import dev.davidv.translator.LanguageCatalog
 import dev.davidv.translator.WordWithTaggedEntries
 import dev.davidv.translator.localizedName
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
+import kotlinx.coroutines.withContext
 
 sealed interface DictionaryState {
   data object Closed : DictionaryState
@@ -55,43 +65,71 @@ sealed interface DictionaryState {
     }
 }
 
-class DictionarySession(
-  private val catalog: StateFlow<LanguageCatalog>,
+class DictionarySession internal constructor(
+  private val scope: CoroutineScope,
   private val uiEvents: UiEvents,
+  private val lookupDispatcher: CoroutineDispatcher,
+  private val findWord: (Language, String) -> WordWithTaggedEntries?,
 ) {
+  constructor(
+    catalog: StateFlow<LanguageCatalog>,
+    uiEvents: UiEvents,
+    scope: CoroutineScope,
+  ) : this(scope, uiEvents, Dispatchers.IO, { language, word -> catalog.value.lookupDictionary(language, word) })
+
   private val _state = MutableStateFlow<DictionaryState>(DictionaryState.Closed)
   val state: StateFlow<DictionaryState> = _state.asStateFlow()
+  private val lookupLock = Mutex()
+  private var lookupJob: Job? = null
+  private var requestId = 0L
 
   fun lookup(
     str: String,
     language: Language,
   ) {
-    val foundWord =
-      try {
-        catalog.value.lookupDictionary(language, str)
-      } catch (e: uniffi.bindings.CatalogException.MissingAsset) {
-        Log.i("DictionaryLookup", "No dictionary for ${language.displayName}", e)
-        uiEvents.send(UiEvent.ShowToast("No ${language.localizedName()} dictionary installed"))
-        return
-      } catch (e: uniffi.bindings.CatalogException.Other) {
-        Log.w("DictionaryLookup", "Lookup failed for ${language.displayName}", e)
-        null
+    cancelLookup()
+    val id = requestId
+    lookupJob = scope.launch {
+      val foundWord =
+        try {
+          // Native lookup is blocking. Serialize it away from the UI thread; cancelling
+          // a coroutine does not interrupt an already executing native call.
+          withContext(lookupDispatcher) { lookupLock.withLock { findWord(language, str) } }
+        } catch (e: uniffi.bindings.CatalogException.MissingAsset) {
+          if (!currentCoroutineContext().isActive || id != requestId) return@launch
+          Log.i("DictionaryLookup", "No dictionary for ${language.displayName}", e)
+          uiEvents.send(UiEvent.ShowToast("No ${language.localizedName()} dictionary installed"))
+          return@launch
+        } catch (e: uniffi.bindings.CatalogException.Other) {
+          if (!currentCoroutineContext().isActive || id != requestId) return@launch
+          Log.w("DictionaryLookup", "Lookup failed for ${language.displayName}", e)
+          null
+        }
+      if (!currentCoroutineContext().isActive || id != requestId) return@launch
+      if (foundWord == null) {
+        uiEvents.send(UiEvent.ShowToast("'$str' not found in ${language.code} dictionary"))
+        Log.w("DictionaryLookup", "Lookup failed for ${language.displayName}")
+        return@launch
       }
-    if (foundWord == null) {
-      uiEvents.send(UiEvent.ShowToast("'$str' not found in ${language.code} dictionary"))
-      Log.w("DictionaryLookup", "Lookup failed for ${language.displayName}")
-      return
+      _state.update { it.pushed(language, foundWord) }
     }
-    _state.update { it.pushed(language, foundWord) }
+  }
+
+  // Called on the session's UI scope, including Back and sheet dismissal. A late
+  // native result must never reopen the sheet or overwrite a newer word.
+  private fun cancelLookup() {
+    requestId++
+    lookupJob?.cancel()
+    lookupJob = null
   }
 
   fun pop() {
+    cancelLookup()
     _state.update { it.popped() }
-    Log.d("PopDictionary", "Popped dictionary")
   }
 
   fun clear() {
+    cancelLookup()
     _state.value = DictionaryState.Closed
-    Log.d("ClearDictionaryStack", "Cleared dictionary stack")
   }
 }

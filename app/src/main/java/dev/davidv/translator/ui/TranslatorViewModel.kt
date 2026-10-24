@@ -70,7 +70,7 @@ class TranslatorViewModel(
       initialText = initialText,
     )
 
-  val dictionary = DictionarySession(languageStateManager.catalog, eventSink)
+  val dictionary = DictionarySession(languageStateManager.catalog, eventSink, viewModelScope)
 
   val documents =
     DocumentSession(
