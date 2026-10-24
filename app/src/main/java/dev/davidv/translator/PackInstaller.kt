@@ -80,16 +80,22 @@ class StagedInstall(
 
   // Markers go last: an archive only reads as installed once every extracted file is in place.
   fun moveIntoPlace() {
-    replacedPaths.forEach { filePathManager.resolveInstallPath(it).deleteRecursively() }
-    directories.forEach { ensureDirectory(filePathManager.resolveInstallPath(it)) }
-    files.forEach { path ->
+    for (path in replacedPaths) {
+      filePathManager.resolveInstallPath(path).deleteRecursively()
+    }
+    for (path in directories) {
+      ensureDirectory(filePathManager.resolveInstallPath(path))
+    }
+    for (path in files) {
       val target = filePathManager.resolveInstallPath(path)
       target.parentFile?.let(::ensureDirectory)
       if (!stagedFile(path).renameTo(target)) {
         throw IOException("Failed to move staged $path to $target")
       }
     }
-    markers.forEach { filePathManager.writeInstallMarker(it.path, it.version) }
+    for (marker in markers) {
+      filePathManager.writeInstallMarker(marker.path, marker.version)
+    }
   }
 
   fun discard() {

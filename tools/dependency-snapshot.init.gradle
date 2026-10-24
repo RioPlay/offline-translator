@@ -26,6 +26,7 @@ gradle.projectsEvaluated {
                 gradle: gradle.gradleVersion,
                 effectiveR8: r8,
                 appRuntime: selectedModules(app.configurations.getByName('deviceTestRuntimeClasspath')),
+                apiDesugaring: selectedModules(app.configurations.getByName('coreLibraryDesugaring')),
                 buildPlugins: selectedModules(gradle.rootProject.buildscript.configurations.getByName('classpath'))
             ]
             def destination = app.layout.buildDirectory.file('reports/security/selected-dependencies.json').get().asFile

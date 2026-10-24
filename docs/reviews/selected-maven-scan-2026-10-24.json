@@ -1,6 +1,6 @@
 {
-  "retrievedAt": "2026-10-24T17:51:16.579413+00:00",
-  "scope": "Selected Android deviceTestRuntimeClasspath, root build plugin classpath, effective R8 and Kotlin plugin; not native Cargo dependencies",
+  "retrievedAt": "2026-10-24T18:07:32.357488+00:00",
+  "scope": "Selected Android deviceTestRuntimeClasspath, API desugaring configuration, root build plugin classpath, effective R8 and Kotlin plugin; not native Cargo dependencies",
   "gradle": "8.14.6",
   "effectiveR8": "9.1.57 (build 9416449cdbda959bc856a13a2a29eac6ba970ff7 from go/r8bot (luci-r8-custom-ci-jammy-c3d-us-central1-a-0-46x8))",
   "results": [
@@ -1266,6 +1266,22 @@
         "name": "com.android.tools:common"
       },
       "version": "31.13.2",
+      "advisories": []
+    },
+    {
+      "package": {
+        "ecosystem": "Maven",
+        "name": "com.android.tools:desugar_jdk_libs"
+      },
+      "version": "2.1.5",
+      "advisories": []
+    },
+    {
+      "package": {
+        "ecosystem": "Maven",
+        "name": "com.android.tools:desugar_jdk_libs_configuration"
+      },
+      "version": "2.1.5",
       "advisories": []
     },
     {

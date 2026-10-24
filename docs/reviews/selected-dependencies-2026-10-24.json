@@ -575,6 +575,16 @@
             "version": "1.0.0"
         }
     ],
+    "apiDesugaring": [
+        {
+            "name": "com.android.tools:desugar_jdk_libs",
+            "version": "2.1.5"
+        },
+        {
+            "name": "com.android.tools:desugar_jdk_libs_configuration",
+            "version": "2.1.5"
+        }
+    ],
     "buildPlugins": [
         {
             "name": "androidx.databinding:databinding-common",
