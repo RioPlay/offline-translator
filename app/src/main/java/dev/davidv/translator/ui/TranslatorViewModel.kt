@@ -120,7 +120,7 @@ class TranslatorViewModel(
 
   fun handleMessage(message: TranslatorMessage) {
     if (message !is TranslatorMessage.TextInput) {
-      Log.d("HandleMessage", "Handle: $message")
+      Log.d("HandleMessage", "Handling ${message.javaClass.simpleName}")
     }
 
     when (message) {

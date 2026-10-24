@@ -66,7 +66,6 @@ class DictionarySession(
     str: String,
     language: Language,
   ) {
-    Log.i("DictionaryLookup", "Looking up $str for $language")
     val foundWord =
       try {
         catalog.value.lookupDictionary(language, str)
@@ -84,7 +83,6 @@ class DictionarySession(
       return
     }
     _state.update { it.pushed(language, foundWord) }
-    Log.d("DictionaryLookup", "From lookup got $foundWord")
   }
 
   fun pop() {

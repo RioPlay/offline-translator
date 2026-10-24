@@ -71,6 +71,13 @@ android {
         "proguard-rules.pro",
       )
     }
+    create("deviceTest") {
+      initWith(getByName("release"))
+      applicationIdSuffix = ".rioplaytest"
+      versionNameSuffix = "-rioplay-test1"
+      signingConfig = signingConfigs.getByName("debug")
+      matchingFallbacks += listOf("release")
+    }
   }
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_11
