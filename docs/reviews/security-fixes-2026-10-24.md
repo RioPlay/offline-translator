@@ -11,15 +11,16 @@ This candidate updates affected build tooling and the host binding generator. It
 | Android Gradle Plugin | 8.7.3 | 8.13.2 | Keep the Kotlin upgrade on a supported AGP 8.x combination. |
 | R8 | AGP bundled | 9.1.57 | Kotlin 2.4 requires at least R8 9.1.29. Use Google's documented buildscript override and an actually published 9.1 patch. This is a compatibility prerequisite, not a separately asserted CVE fix. |
 | Android build tools | 34.0.0 | 35.0.0 | AGP 8.13.2's minimum; align the app, Docker SDK setup and test verification. The platform/target SDK remains 34. |
+| Android API backports | disabled | desugar_jdk_libs 2.1.5 | Preserve API 23 support when the upgraded compiler selects Java collection methods; use iterator loops for ConcurrentLinkedQueue, whose forEach is not covered by the default backport. |
 | Host bindgen `anyhow` | 1.0.102 | 1.0.104 | RUSTSEC-2026-0190 is fixed in 1.0.103. The app's runtime lock already selected 1.0.104. No affected `Error::downcast_mut` use was found in reviewed application source. |
 
 Regenerate the wrapper scripts and JAR, and pin the official distribution SHA-256. The generated wrapper JAR matches the publisher's checksum `ad16bca46cb71bb5887c546860d93992aeee35c1fdaf4a242b0a612375d937e0`. Track the converter and host bindgen Cargo.lock files as Gradle inputs so a security lockfile edit cannot silently reuse an old output. Declare ordering between generated bindings and style checks when compilation and lint run together.
 
 ## Resolved dependency evidence and remaining work
 
-`tools/dependency-snapshot.init.gradle` records selected `deviceTestRuntimeClasspath` modules and the root build plugin classpath, plus the R8 class actually loaded by AGP. This avoids treating old downloaded JARs as current dependencies. The report resolves Gradle 8.14.6, Kotlin 2.4.21, AGP 8.13.2 and effective R8 9.1.57. The selected Maven inventory and OSV query results accompany this review.
+`tools/dependency-snapshot.init.gradle` records selected `deviceTestRuntimeClasspath` modules, the API desugaring configuration and the root build plugin classpath, plus the R8 class actually loaded by AGP. This avoids treating old downloaded JARs as current dependencies. The report resolves Gradle 8.14.6, Kotlin 2.4.21, AGP 8.13.2 and effective R8 9.1.57. The selected Maven inventory and OSV query results accompany this review.
 
-The 298 selected/explicit Maven package-version queries produced no advisory matches in the selected app runtime modules, but did produce these build-classpath matches. This statement excludes native Cargo dependencies and is not a general security guarantee.
+The 300 selected/explicit Maven package-version queries produced no advisory matches in the selected app runtime modules or API backport configuration, but did produce these build-classpath matches. This statement excludes native Cargo dependencies and is not a general security guarantee.
 
 | Remaining build dependency | Selected version | Handling |
 | --- | --- | --- |
@@ -43,7 +44,9 @@ Publication/integration requires a writable `RioPlay/translator-rs` fork, a comm
 
 ## Validation status
 
-Wrapper generation, publisher checksum verification, Gradle configuration and selected dependency resolution passed. Baseline-toolchain compilation and all 90 JVM tests passed on the performance/keyboard candidate. Updated-toolchain compilation, minification/packaging and final device behavior are still pending at this checkpoint; record the final result before distributing the candidate. The full lint run also needs review for baseline violations. Native PDF parser probe passed; the Android dependency integration is a separate gate.
+Wrapper generation, publisher checksum verification, Gradle configuration and selected dependency resolution passed. Both Android Kotlin compilation and all 90 JVM tests pass under the updated toolchain, including the API backport configuration. The full app ktlint check passes. Keep release NewApi lint enabled with minSdk 23: final release lint and minified APK packaging remain pending at this checkpoint. Device keyboard placement/focus, translation, dictionary history, pack installation/removal, TTS and document handling still need testing; no battery or frame-time measurement is claimed.
+
+The bounded old/fixed native parser probe passed. The exact prepared native patch applies cleanly to the pinned native revision, and formatting of translator-pdf passes. Full native ARM64 compatibility remains a separate validation gate before app repinning; the standalone regression case also needs execution under the normal Rust test harness.
 
 All changes are drafts in RioPlay's fork. Nothing may be submitted to an upstream-maintained repository without RioPlay's explicit approval.
 
@@ -58,3 +61,7 @@ All changes are drafts in RioPlay's fork. Nothing may be submitted to an upstrea
 - https://r8.googlesource.com/r8/+/refs/heads/main/README.md
 - https://rustsec.org/advisories/RUSTSEC-2026-0187.html
 - https://rustsec.org/advisories/RUSTSEC-2026-0190.html
+
+- https://developer.android.com/studio/write/java8-support
+- https://developer.android.com/studio/write/java11-default-support-table
+- https://github.com/google/desugar_jdk_libs/blob/master/CHANGELOG.md

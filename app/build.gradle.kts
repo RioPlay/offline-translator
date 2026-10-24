@@ -82,6 +82,7 @@ android {
     }
   }
   compileOptions {
+    isCoreLibraryDesugaringEnabled = true
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
   }
@@ -438,6 +439,8 @@ tasks.matching { it.name.startsWith("runKtlint") }.configureEach {
 }
 
 dependencies {
+
+  coreLibraryDesugaring(libs.desugar.jdk.libs)
 
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.appcompat)
