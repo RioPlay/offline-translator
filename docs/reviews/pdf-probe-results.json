@@ -1,0 +1,30 @@
+[
+  {
+    "version": "old",
+    "depth": 1,
+    "exit": 0,
+    "stdout": "parsed depth=1, bytes=240\n",
+    "stderr": ""
+  },
+  {
+    "version": "new",
+    "depth": 1,
+    "exit": 0,
+    "stdout": "parsed depth=1, bytes=240\n",
+    "stderr": ""
+  },
+  {
+    "version": "old",
+    "depth": 10380,
+    "exit": -6,
+    "stdout": "",
+    "stderr": "\nthread 'main' has overflowed its stack\nfatal runtime error: stack overflow, aborting\n"
+  },
+  {
+    "version": "new",
+    "depth": 10380,
+    "exit": 0,
+    "stdout": "parsed depth=10380, bytes=21000\n",
+    "stderr": ""
+  }
+]
