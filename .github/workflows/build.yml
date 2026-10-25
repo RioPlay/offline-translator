@@ -59,11 +59,13 @@ jobs:
 
     - name: Build ${{ matrix.label }}
       run: |
+        df -h .
+        trap 'df -h .' EXIT
         docker run --rm \
           -v ${{ github.workspace }}:/build/build/dev.davidv.translator/ \
           --user $(id -u):$(id -g) \
           ${{ steps.img.outputs.tag }} \
-          ./gradlew :app:testDebugUnitTest :app:ktlintCheck :app:assembleRelease -PtargetAbi=${{ matrix.abi }}
+          ./gradlew --stacktrace :app:testDebugUnitTest :app:ktlintCheck :app:assembleRelease -PtargetAbi=${{ matrix.abi }}
 
     - name: Check packaged native compatibility
       run: python3 tools/check_apk_native.py app/build/outputs/apk/release/app-${{ matrix.abi }}-release-unsigned.apk --abi ${{ matrix.abi }}
