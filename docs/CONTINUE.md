@@ -1,6 +1,6 @@
 # Continue Offline Translator work
 
-The latest combined source is on `integration/upstream-sync` in RioPlay/offline-translator. It incorporates the prior combined candidate and upstream master `bd675fecea875d4e5b3c0f62e24b2a9c3c84f6da`. Start with `docs/reviews/upstream-sync.md` for overlap resolutions, validation provenance and remaining checks. Earlier validation records describe their recorded revisions, not this combined build.
+The latest combined source is on `privacy/redact-content-diagnostics` in RioPlay/offline-translator, based on `integration/upstream-sync`. It incorporates the prior combined candidate and upstream master `bd675fecea875d4e5b3c0f62e24b2a9c3c84f6da`. Start with `docs/reviews/private-diagnostics.md` for the latest privacy change and checks, and `docs/reviews/upstream-sync.md` for the upstream overlap resolutions. Earlier validation records describe their recorded revisions, not this combined build.
 
 ## Boundaries
 
@@ -17,11 +17,13 @@ The minimal `upstream/fix-pack-downloads` branch remains a separate contribution
 
 ## Verified baseline
 
-The synchronized app compiles in debug and deviceTest modes. All 103 JVM tests and app-wide formatting pass. Fresh minSdk 23 NewApi lint, R8 minification, ARM64 assembly, package identity/ABI checks, native library contents and catalog asset checks pass. Native outputs come from the verified upstream build rather than a fresh local native build; the review record explains that boundary. The validation APK has not been published as a new device candidate.
+The current app compiles in debug and deviceTest modes. All 107 JVM tests and app-wide formatting pass. Fresh minSdk 23 NewApi lint, R8 minification and APK-content checks pass. The latest patch redacts exception payloads and content paths from reviewed Kotlin diagnostics, retaining failure types and code locations while leaving original UI/callback errors intact. It also avoids formatting complete voice/rule-name lists solely for logs; no runtime speedup has been measured.
+
+The synchronized baseline at `8f879f99f604e73bfc3f3faa44642b7cec1ed2fa` separately passed fresh ARM64 and ARMv7 native CI in run `40162357887`. Local privacy validation reuses matching verified native outputs, uses a single compiler worker, and isolates APK output from workspace synchronization. The review record explains the omitted IDE metadata task and remaining boundaries. The validation APK has not been published as a new device candidate.
 
 ## Remaining work
 
-Complete phone checks for translation, pack downloads and cancellation/retry, catalog refresh, voice upgrades/default selection, dictionary lookup, keyboard swap, and Settings accessibility/layout. Host compilation and tests do not establish device behavior.
+Complete phone Logcat canary checks for private diagnostics, plus checks for translation, pack downloads and cancellation/retry, catalog refresh, voice upgrades/default selection, dictionary lookup, keyboard swap, and Settings accessibility/layout. Host compilation and tests do not establish device behavior.
 
 There is still no enforced app-local networking policy. External speech recognition belongs to the chosen Android provider; the app cannot promise control over keyboard dictation. Distinct pane movement and explicit reverse translation remain proposed rather than implemented.
 
