@@ -1,0 +1,328 @@
+ Downloading crates ...
+  Downloaded idna_adapter v1.2.1
+  Downloaded bimap v0.6.3
+  Downloaded icu_list v2.1.1
+  Downloaded icu_decimal_data v2.1.1
+  Downloaded icu_decimal v2.1.1
+  Downloaded icu_casemap v2.1.1
+  Downloaded fast_image_resize v5.5.0
+  Downloaded chacha20 v0.10.2
+  Downloaded cesu8 v1.1.0
+  Downloaded bytemuck v1.25.2
+  Downloaded icu_casemap_data v2.1.1
+  Downloaded getrandom v0.2.17
+  Downloaded httparse v1.10.1
+  Downloaded base64 v0.13.1
+  Downloaded crc32fast v1.5.1
+  Downloaded camino v1.2.5
+  Downloaded icu_locale v2.1.1
+  Downloaded jni-sys-macros v0.4.1
+  Downloaded icu_pattern v0.4.2
+  Downloaded iana-time-zone v0.1.65
+  Downloaded half v2.7.1
+  Downloaded filetime v0.2.29
+  Downloaded getrandom v0.4.3
+  Downloaded jni-sys v0.4.1
+  Downloaded icu_provider v2.3.1
+  Downloaded icu_collections v2.1.1
+  Downloaded flatbuffers v25.12.19
+  Downloaded combine v4.6.8
+  Downloaded ab_glyph v0.2.32
+  Downloaded fs-err v2.11.0
+  Downloaded fixed_decimal v0.7.2
+  Downloaded document-features v0.2.12
+  Downloaded either v1.18.0
+  Downloaded cpufeatures v0.3.1
+  Downloaded clang-sys v1.9.1
+  Downloaded jobserver v0.1.35
+  Downloaded icu_list_data v2.1.1
+  Downloaded icu_properties v2.1.2
+  Downloaded form_urlencoded v1.2.2
+  Downloaded icu_plurals v2.1.1
+  Downloaded chrono v0.4.45
+  Downloaded icu_plurals_data v2.1.1
+  Downloaded icu_normalizer_data v2.1.1
+  Downloaded icu_normalizer v2.1.1
+  Downloaded icu_locale_data v2.1.2
+  Downloaded linux-raw-sys v0.4.15
+  Downloaded jni-sys v0.3.1
+  Downloaded litemap v0.8.3
+  Downloaded httpdate v1.0.3
+  Downloaded itertools v0.14.0
+  Downloaded markup5ever v0.38.0
+  Downloaded serde_spanned v1.1.1
+  Downloaded rawpointer v0.2.1
+  Downloaded thiserror-impl v1.0.69
+  Downloaded serde_json v1.0.151
+  Downloaded syn v2.0.119
+  Downloaded ppv-lite86 v0.2.21
+  Downloaded tinyvec v1.12.0
+  Downloaded prettyplease v0.2.37
+  Downloaded num_cpus v1.17.0
+  Downloaded rand_core v0.6.4
+  Downloaded utf8_iter v1.0.4
+  Downloaded seahash v4.1.0
+  Downloaded safe_arch v0.7.4
+  Downloaded rand_distr v0.4.3
+  Downloaded rand_core v0.9.5
+  Downloaded num-integer v0.1.47
+  Downloaded web_atoms v0.2.6
+  Downloaded simba v0.8.1
+  Downloaded ordered-float v5.4.0
+  Downloaded zip v2.4.2
+  Downloaded serde v1.0.229
+  Downloaded rustfst v1.3.1
+  Downloaded zerovec-derive v0.11.6
+  Downloaded regex-automata v0.4.18
+  Downloaded rangemap v1.8.0
+  Downloaded wide v0.7.33
+  Downloaded zeekstd v0.6.2
+  Downloaded rouille v3.6.2
+  Downloaded zerovec v0.11.8
+  Downloaded zerocopy v0.8.56
+  Downloaded ndarray v0.16.1
+  Downloaded regex v1.13.1
+  Downloaded yoke-derive v0.8.2
+  Downloaded which v4.4.2
+  Downloaded uniffi_pipeline v0.31.2
+  Downloaded uniffi_meta v0.31.2
+  Downloaded rand_chacha v0.9.0
+  Downloaded num-rational v0.4.2
+  Downloaded mime_guess v2.0.5
+  Downloaded tiny_http v0.12.0
+  Downloaded rustix v1.1.4
+  Downloaded num_threads v0.1.7
+  Downloaded url v2.5.8
+  Downloaded toml_parser v1.1.3+spec-1.1.0
+  Downloaded nalgebra v0.32.6
+  Downloaded toml_writer v1.1.2+spec-1.1.0
+  Downloaded rustversion v1.0.23
+  Downloaded regex-syntax v0.8.11
+  Downloaded miniz_oxide v0.9.1
+  Downloaded time v0.3.55
+  Downloaded psl v2.1.226
+  Downloaded simd-adler32 v0.3.10
+  Downloaded rustc-hash v2.1.3
+  Downloaded rustc-hash v1.1.0
+  Downloaded num-iter v0.1.46
+  Downloaded multipart v0.18.0
+  Downloaded yoke v0.8.3
+  Downloaded xml5ever v0.38.0
+  Downloaded writeable v0.6.4
+  Downloaded time-core v0.1.9
+  Downloaded threadpool v1.8.1
+  Downloaded thiserror-impl v2.0.20
+  Downloaded siphasher v1.0.3
+  Downloaded proc-macro2 v1.0.107
+  Downloaded precomputed-hash v0.1.1
+  Downloaded phf v0.13.1
+  Downloaded pest_meta v2.9.0
+  Downloaded owned_ttf_parser v0.25.1
+  Downloaded mime v0.3.17
+  Downloaded log v0.4.34
+  Downloaded zstd-safe v7.2.4
+  Downloaded zopfli v0.8.3
+  Downloaded zmij v1.0.23
+  Downloaded zerotrie v0.2.5
+  Downloaded rustix v0.38.44
+  Downloaded powerfmt v0.2.0
+  Downloaded rayon-core v1.13.0
+  Downloaded rayon v1.12.0
+  Downloaded zstd-sys v2.0.16+zstd.1.5.7
+  Downloaded zerocopy-derive v0.8.56
+  Downloaded syn v3.0.4
+  Downloaded rand v0.9.5
+  Downloaded pxfm v0.1.30
+  Downloaded pest v2.9.0
+  Downloaded num-bigint v0.4.8
+  Downloaded rand v0.10.2
+  Downloaded rand v0.8.8
+  Downloaded memchr v2.8.3
+  Downloaded zlib-rs v0.6.7
+  Downloaded typenum v1.20.1
+  Downloaded icu_experimental_data v0.4.1
+  Downloaded thiserror v2.0.20
+  Downloaded thiserror v1.0.69
+  Downloaded subsetter v0.2.6
+  Downloaded string_cache_codegen v0.6.1
+  Downloaded string_cache v0.9.0
+  Downloaded static_assertions v1.1.0
+  Downloaded stable_deref_trait v1.2.1
+  Downloaded smallvec v1.15.2
+  Downloaded scopeguard v1.2.0
+  Downloaded safemem v0.3.3
+  Downloaded potential_utf v0.1.6
+  Downloaded pkg-config v0.3.34
+  Downloaded phf_shared v0.13.1
+  Downloaded phf_generator v0.13.1
+  Downloaded phf_codegen v0.13.1
+  Downloaded num-conv v0.2.2
+  Downloaded num v0.4.3
+  Downloaded new_debug_unreachable v1.0.6
+  Downloaded ndarray-npy v0.9.1
+  Downloaded linux-raw-sys v0.12.1
+  Downloaded lock_api v0.4.14
+  Downloaded zune-core v0.5.3
+  Downloaded zerofrom-derive v0.1.7
+  Downloaded zerofrom v0.1.8
+  Downloaded tendril v0.5.1
+  Downloaded tempfile v3.27.0
+  Downloaded synstructure v0.13.2
+  Downloaded superslice v1.0.0
+  Downloaded sha1_smol v1.0.1
+  Downloaded quick-error v1.2.3
+  Downloaded pest_generator v2.9.0
+  Downloaded paste v1.0.15
+  Downloaded parking_lot v0.12.5
+  Downloaded matrixmultiply v0.3.11
+  Downloaded ucd-trie v0.1.7
+  Downloaded serde_derive v1.0.229
+  Downloaded rand_chacha v0.3.1
+  Downloaded quote v1.0.47
+  Downloaded py_literal v0.4.0
+  Downloaded psl-types v2.0.11
+  Downloaded pest_derive v2.9.0
+  Downloaded parking_lot_core v0.9.12
+  Downloaded num-complex v0.4.6
+  Downloaded markup5ever_rcdom v0.38.0+unofficial
+  Downloaded uniffi_internal_macros v0.31.2
+  Downloaded uniffi v0.31.2
+  Downloaded libc v0.2.189
+  Downloaded jni v0.21.1
+  Downloaded imageproc v0.25.1
+  Downloaded html5ever v0.38.0
+  Downloaded uniffi_macros v0.31.2
+  Downloaded uniffi_core v0.31.2
+  Downloaded unicase v2.9.0
+  Downloaded twoway v0.1.8
+  Downloaded tinystr v0.8.4
+  Downloaded icu_locale_core v2.3.0
+  Downloaded fst v0.4.7
+  Downloaded flate2 v1.1.10
+  Downloaded fastrand v2.5.0
+  Downloaded approx v0.5.1
+  Downloaded addr v0.15.6
+  Downloaded lazycell v1.3.0
+  Downloaded indexmap v2.14.1
+  Downloaded home v0.5.12
+  Downloaded find-msvc-tools v0.1.11
+  Downloaded env_filter v0.1.4
+  Downloaded bytes v1.12.1
+  Downloaded aho-corasick v1.1.5
+  Downloaded ab_glyph_rasterizer v0.1.10
+  Downloaded itertools v0.13.0
+  Downloaded idna v1.1.0
+  Downloaded icu_properties_data v2.1.2
+  Downloaded icu_experimental v0.4.0
+  Downloaded glow v0.17.0
+  Downloaded getrandom v0.3.4
+  Downloaded bumpalo v3.20.3
+  Downloaded bindgen v0.69.5
+  Downloaded base64 v0.22.1
+  Downloaded adblock v0.12.6
+  Downloaded heck v0.5.0
+  Downloaded cc v1.4.4
+  Downloaded anyhow v1.0.104
+  Downloaded crossbeam-utils v0.8.22
+  Downloaded autocfg v1.5.1
+  Downloaded android_logger v0.14.1
+  Downloaded android_log-sys v0.3.2
+  Downloaded errno v0.3.14
+  Downloaded chunked_transfer v1.5.0
+  Downloaded buf_redux v0.8.4
+  Downloaded glob v0.3.4
+  Downloaded crossbeam-deque v0.8.7
+  Downloaded bitflags v2.13.1
+  Downloaded ascii v1.1.0
+  Downloaded arrayvec v0.7.8
+  Downloaded generic-array v1.4.5
+  Downloaded displaydoc v0.2.7
+  Downloaded deranged v0.5.8
+  Downloaded crossbeam-epoch v0.9.20
+  Downloaded android_system_properties v0.1.6
+  Downloaded litrs v1.0.0
+mupdf v0.6.0 (https://github.com/RioPlay/mupdf-rs?rev=285b012811563c412052df685d2b872c9a95c82c#285b0128)
+├── translator v0.1.0 (https://github.com/RioPlay/translator-rs.git?rev=904c8661f1bb9ffa4a5ef93623aa20707af4f50e#904c8661)
+│   ├── translator feature "dictionary"
+│   │   └── bindings feature "dictionary"
+│   │       └── bindings feature "default" (command-line)
+│   ├── translator feature "doc-align"
+│   │   └── bindings feature "doc-align"
+│   │       └── bindings feature "default" (command-line)
+│   ├── translator feature "dom-translate"
+│   │   └── translator feature "html"
+│   │       └── bindings v0.1.0 (<workspace>/offline-translator-repair/app/src/main/bindings)
+│   │           ├── bindings feature "default" (command-line)
+│   │           ├── bindings feature "dictionary" (*)
+│   │           ├── bindings feature "doc-align" (*)
+│   │           ├── bindings feature "epub"
+│   │           │   └── bindings feature "default" (command-line)
+│   │           ├── bindings feature "gpu"
+│   │           │   └── bindings feature "default" (command-line)
+│   │           ├── bindings feature "http"
+│   │           │   └── bindings feature "default" (command-line)
+│   │           ├── bindings feature "image-render"
+│   │           │   └── bindings feature "default" (command-line)
+│   │           ├── bindings feature "mucab"
+│   │           │   └── bindings feature "default" (command-line)
+│   │           ├── bindings feature "odt"
+│   │           │   └── bindings feature "default" (command-line)
+│   │           ├── bindings feature "pdf"
+│   │           │   └── bindings feature "default" (command-line)
+│   │           ├── bindings feature "pdf-image-translate"
+│   │           │   └── bindings feature "default" (command-line)
+│   │           ├── bindings feature "planar-tracker"
+│   │           │   └── bindings feature "default" (command-line)
+│   │           ├── bindings feature "ppocr"
+│   │           │   └── bindings feature "default" (command-line)
+│   │           ├── bindings feature "transliterate"
+│   │           │   └── bindings feature "default" (command-line)
+│   │           └── bindings feature "tts"
+│   │               └── bindings feature "default" (command-line)
+│   │       └── translator feature "http"
+│   │           └── bindings feature "http" (*)
+│   ├── translator feature "epub"
+│   │   └── bindings feature "epub" (*)
+│   ├── translator feature "gpu"
+│   │   └── bindings feature "gpu" (*)
+│   ├── translator feature "html" (*)
+│   ├── translator feature "http" (*)
+│   ├── translator feature "image-render"
+│   │   ├── bindings feature "image-render" (*)
+│   │   ├── translator feature "http" (*)
+│   │   ├── translator feature "pdf-image-translate"
+│   │   │   └── bindings feature "pdf-image-translate" (*)
+│   │   └── translator feature "planar-tracker"
+│   │       ├── bindings feature "planar-tracker" (*)
+│   │       └── translator feature "gpu" (*)
+│   ├── translator feature "mucab"
+│   │   └── bindings feature "mucab" (*)
+│   ├── translator feature "odt"
+│   │   └── bindings feature "odt" (*)
+│   ├── translator feature "pdf"
+│   │   ├── bindings feature "pdf" (*)
+│   │   └── translator feature "pdf-image-translate" (*)
+│   ├── translator feature "pdf-image-translate" (*)
+│   ├── translator feature "planar-tracker" (*)
+│   ├── translator feature "ppocr"
+│   │   ├── bindings feature "ppocr" (*)
+│   │   ├── translator feature "pdf-image-translate" (*)
+│   │   └── translator feature "planar-tracker" (*)
+│   ├── translator feature "raster"
+│   │   ├── translator feature "planar-tracker" (*)
+│   │   └── translator feature "ppocr" (*)
+│   ├── translator feature "translator-pdf"
+│   │   └── translator feature "pdf-image-translate" (*)
+│   ├── translator feature "translator-tracker"
+│   │   └── translator feature "planar-tracker" (*)
+│   ├── translator feature "transliterate"
+│   │   └── bindings feature "transliterate" (*)
+│   ├── translator feature "tts"
+│   │   └── bindings feature "tts" (*)
+│   └── translator feature "uniffi"
+│       └── bindings v0.1.0 (<workspace>/offline-translator-repair/app/src/main/bindings) (*)
+└── translator-pdf v0.1.0 (https://github.com/RioPlay/translator-rs.git?rev=904c8661f1bb9ffa4a5ef93623aa20707af4f50e#904c8661)
+    ├── translator-pdf feature "default"
+    │   └── translator v0.1.0 (https://github.com/RioPlay/translator-rs.git?rev=904c8661f1bb9ffa4a5ef93623aa20707af4f50e#904c8661) (*)
+    └── translator-pdf feature "image-translate"
+        └── translator feature "pdf-image-translate" (*)

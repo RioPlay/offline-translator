@@ -1,0 +1,41 @@
+{
+  "app_commit": "fdd72fd0b955a212edb7a7654f1949411d10ddef",
+  "pins": {
+    "engine": {
+      "repository": "RioPlay/translator-rs",
+      "revision": "904c8661f1bb9ffa4a5ef93623aa20707af4f50e"
+    },
+    "mupdf_wrapper": {
+      "repository": "RioPlay/mupdf-rs",
+      "revision": "285b012811563c412052df685d2b872c9a95c82c"
+    },
+    "cld2": {
+      "repository": "RioPlay/rust-cld2",
+      "revision": "7c9be0fcd97a77d65a47a14894078a6110b115ad"
+    },
+    "mupdf": {
+      "repository": "RioPlay/mupdf",
+      "revision": "ba2c748657a4a4c5bd418b684b077b142a61d433",
+      "source_sha256": {
+        "source/fitz/subset-cff.c": "5180092ccbe0b6b421d2f1a7cd4dcd53795bc37a6ae2d0eb549cc56fe8dd7474",
+        "source/fitz/draw-unpack.c": "a1f28592ce0415a882401bbd7cb6d18589badb2721057e859bb9da6dd0a35dbe",
+        "source/pdf/pdf-image.c": "b08dbd9bb645bea54c17a71e6d21ae0df82a7cc6a24b908698a6f8999bc9c75f"
+      }
+    }
+  },
+  "host_pdf_tests": {
+    "passed": 72,
+    "failed": 0,
+    "command": "cargo test --locked -p translator-pdf --lib --features image-translate",
+    "local_path_overrides": false
+  },
+  "python_guard_tests": 18,
+  "ci_run": "https://github.com/RioPlay/offline-translator/actions/runs/40237898969",
+  "osv_queries": 480,
+  "remaining_matching_packages": 9,
+  "limitations": [
+    "Android CI and device testing are separate gates; consult the linked run for current status.",
+    "ZIP remains flagged, alongside maintenance warnings.",
+    "This is not a complete native submodule or APK vulnerability audit."
+  ]
+}
