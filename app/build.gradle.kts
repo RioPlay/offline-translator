@@ -76,7 +76,7 @@ android {
     create("deviceTest") {
       initWith(getByName("release"))
       applicationIdSuffix = ".devicetest"
-      versionNameSuffix = "-test3"
+      versionNameSuffix = "-test4"
       signingConfig = signingConfigs.getByName("debug")
       matchingFallbacks += listOf("release")
     }
@@ -115,7 +115,7 @@ android {
       val output = this as com.android.build.gradle.internal.api.ApkVariantOutputImpl
       val abi = output.getFilter(com.android.build.OutputFile.ABI)
       if (abi != null) {
-        val baseVersionCode = defaultConfig.versionCode!! + if (buildType.name == "deviceTest") 2 else 0
+        val baseVersionCode = defaultConfig.versionCode!! + if (buildType.name == "deviceTest") 3 else 0
         output.versionCodeOverride = baseVersionCode * 10 + (abiCodes[abi] ?: 0)
       }
     }
@@ -427,10 +427,41 @@ val generateUniffiBindings =
     )
   }
 
+val validateNativeBindings =
+  tasks.register("validateNativeBindings") {
+    group = "verification"
+    description = "Check that generated UniFFI loaders reference packaged native libraries"
+    dependsOn(generateUniffiBindings)
+    inputs.dir(generatedBindingsDir)
+    doLast {
+      val generatedFiles = generatedBindingsDir.get().asFile.walkTopDown().filter { it.extension == "kt" }.toList()
+      check(generatedFiles.isNotEmpty()) { "No generated UniFFI bindings found" }
+      val loader = Regex("""(?s)private fun findLibraryName\([^)]*\): String \{(.*?)\n}""")
+      val fallback = Regex("""return "([^"]+)"""")
+      var checked = 0
+      generatedFiles.forEach { source ->
+        loader.findAll(source.readText()).forEach { function ->
+          val names = fallback.findAll(function.groupValues[1]).map { it.groupValues[1] }.toList()
+          check(names.size == 1) { "Cannot identify native loader fallback in ${source.name}" }
+          val name = names.single()
+          selectedAbis.forEach { abi ->
+            check(File(jniLibAbiDir(abi), "lib$name.so").isFile) {
+              "${source.name} loads '$name', but lib$name.so is missing for $abi"
+            }
+          }
+          checked++
+        }
+      }
+      check(checked == generatedFiles.size) { "Not every generated UniFFI file has a checked native loader" }
+      logger.lifecycle("Validated $checked UniFFI loaders for ${selectedAbis.joinToString()}")
+    }
+  }
+
 tasks.named("preBuild") {
   dependsOn(bindingsTasks)
   dependsOn(converterTasks)
   dependsOn(generateUniffiBindings)
+  dependsOn(validateNativeBindings)
 }
 
 // Generated sources are excluded from style checks. If a check is requested in
