@@ -131,7 +131,7 @@ class MainActivity : ComponentActivity() {
   }
 
   private fun handleIntent(intent: Intent?) {
-    Log.d("MainActivity", "Got intent $intent")
+    Log.d("MainActivity", "Intent received")
     openLanguageManager = intent?.getBooleanExtra(EXTRA_OPEN_LANGUAGE_MANAGER, false) == true
     when (intent?.action) {
       Intent.ACTION_SEND -> {

@@ -111,7 +111,7 @@ class TranslatorViewModel(
         when (event) {
           is FileEvent.Error -> {
             eventSink.send(UiEvent.ShowToast(event.message))
-            Log.w("TranslatorViewModel", "Error event: ${event.message}")
+            Log.w("TranslatorViewModel", "File operation failed")
           }
         }
       }

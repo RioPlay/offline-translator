@@ -22,6 +22,7 @@ import dev.davidv.translator.Language
 import dev.davidv.translator.LanguageCatalog
 import dev.davidv.translator.WordWithTaggedEntries
 import dev.davidv.translator.localizedName
+import dev.davidv.translator.redactedException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -98,18 +99,18 @@ class DictionarySession internal constructor(
             withContext(lookupDispatcher) { lookupLock.withLock { findWord(language, str) } }
           } catch (e: uniffi.bindings.CatalogException.MissingAsset) {
             if (!currentCoroutineContext().isActive || id != requestId) return@launch
-            Log.i("DictionaryLookup", "No dictionary for ${language.displayName}", e)
+            Log.i("DictionaryLookup", "Dictionary asset unavailable", redactedException(e))
             uiEvents.send(UiEvent.ShowToast("No ${language.localizedName()} dictionary installed"))
             return@launch
           } catch (e: uniffi.bindings.CatalogException.Other) {
             if (!currentCoroutineContext().isActive || id != requestId) return@launch
-            Log.w("DictionaryLookup", "Lookup failed for ${language.displayName}", e)
+            Log.w("DictionaryLookup", "Dictionary lookup failed", redactedException(e))
             null
           }
         if (!currentCoroutineContext().isActive || id != requestId) return@launch
         if (foundWord == null) {
           uiEvents.send(UiEvent.ShowToast("'$str' not found in ${language.code} dictionary"))
-          Log.w("DictionaryLookup", "Lookup failed for ${language.displayName}")
+          Log.w("DictionaryLookup", "Dictionary lookup failed")
           return@launch
         }
         _state.update { it.pushed(language, foundWord) }

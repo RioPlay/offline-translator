@@ -219,7 +219,7 @@ class ScreenTranslateService : Service() {
     }
     val source = sourceCode?.let { catalog.languageByCode(it) }
     if (source == null) {
-      Log.e(TAG, "fixed source requested with unknown language '$sourceCode'; stopping")
+      Log.e(TAG, "Unknown fixed source language; stopping")
       return null
     }
     return defaults.withTarget(target).withSource(source)

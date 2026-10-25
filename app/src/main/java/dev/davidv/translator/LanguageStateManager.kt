@@ -108,7 +108,7 @@ class LanguageStateManager(
     downloadErrorsJob =
       scope.launch {
         downloadErrors.collect { message ->
-          Log.w("LanguageStateManager", "Download error: $message")
+          Log.w("LanguageStateManager", "Download failed")
           _fileEvents.emit(FileEvent.Error(message))
         }
       }

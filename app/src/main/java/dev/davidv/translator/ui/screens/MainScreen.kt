@@ -368,7 +368,7 @@ fun MainScreen(
                         when (event) {
                           is LanguageEvent.Download -> onDownload(DownloadRequest.Core(event.language))
                           is LanguageEvent.Cancel -> onCancelDownload(DownloadId.Core(event.language))
-                          else -> Log.e("MainScreen", "Got unexpected event: $event")
+                          else -> Log.e("MainScreen", "Unexpected language event")
                         }
                       },
                     )

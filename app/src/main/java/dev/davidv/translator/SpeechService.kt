@@ -57,7 +57,7 @@ class SpeechService(
       val boundedSpeechSpeed = speechSpeed.coerceIn(0.5f, 2.0f)
       Log.d(
         "SpeechService",
-        "Using TTS pack=$selectedPackId voice=$selectedVoiceName speed=$boundedSpeechSpeed lang=${language.code}",
+        "Speech synthesis configured",
       )
       val chunkRequests =
         try {
@@ -68,7 +68,7 @@ class SpeechService(
             readUrlsAndHashtags = settings.ttsReadUrlsAndHashtags,
           )
         } catch (e: uniffi.bindings.CatalogException) {
-          Log.e("SpeechService", "planSpeechChunks failed lang=${language.code} pack=$selectedPackId", e)
+          Log.e("SpeechService", "Speech planning failed", redactedException(e))
           return@withContext SpeechSynthesisResult.Error(
             SpeechError.SynthesisError(language, e.message ?: e.toString()),
           )
@@ -83,7 +83,7 @@ class SpeechService(
             currentCoroutineContext().ensureActive()
             Log.d(
               "SpeechService",
-              "Speech chunk ${index + 1}/${chunkRequests.size}: synth start isPhonemes=${chunkRequest.isPhonemes} textLen=${chunkRequest.content.length} pauseAfterMs=${chunkRequest.pauseAfterMs}",
+              "Speech chunk ${index + 1}/${chunkRequests.size}: synth start isPhonemes=${chunkRequest.isPhonemes} pauseAfterMs=${chunkRequest.pauseAfterMs}",
             )
             val pcmAudio =
               try {
@@ -96,7 +96,7 @@ class SpeechService(
                   packId = selectedPackId,
                 )
               } catch (e: uniffi.bindings.CatalogException) {
-                Log.e("SpeechService", "synthesizeSpeechPcm failed lang=${language.code} pack=$selectedPackId", e)
+                Log.e("SpeechService", "Speech synthesis failed", redactedException(e))
                 throw IllegalStateException(
                   "Speech synthesis failed for ${language.displayName}: ${e.message ?: e.toString()}",
                   e,

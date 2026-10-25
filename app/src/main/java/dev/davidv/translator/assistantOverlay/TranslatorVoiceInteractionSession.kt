@@ -34,6 +34,7 @@ import dev.davidv.translator.overlayChrome.OverlayMenuHost
 import dev.davidv.translator.overlayChrome.OverlayMenuManager
 import dev.davidv.translator.overlayChrome.spanFullDisplay
 import dev.davidv.translator.overlayPickerLanguages
+import dev.davidv.translator.redactedException
 import dev.davidv.translator.screenTranslate.ScreenCaptureRequestActivity
 import dev.davidv.translator.ui.components.DetectedRegions
 import dev.davidv.translator.ui.components.ImageWordSelection
@@ -592,7 +593,7 @@ class TranslatorVoiceInteractionSession(
       context.startActivity(
         ScreenCaptureRequestActivity.intent(context, sourceCode, settings.defaultTargetLanguageCode, isAutoSource = false),
       )
-    }.onFailure { Log.w(tag, "failed to launch live screen translate", it) }
+    }.onFailure { Log.w(tag, "failed to launch live screen translate", redactedException(it)) }
     hide()
   }
 

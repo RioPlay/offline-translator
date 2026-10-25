@@ -19,6 +19,7 @@ package dev.davidv.translator.adblock
 
 import android.util.Log
 import dev.davidv.translator.FilePathManager
+import dev.davidv.translator.redactedException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -72,7 +73,7 @@ class AdblockManager(
       val ruleFiles = listRuleFiles(dir)
       Log.i(
         TAG,
-        "adblock dir=${dir.absolutePath} engine.exists=${cacheFile.exists()} rules=${ruleFiles.map { it.name }}",
+        "Adblock cache exists=${cacheFile.exists()}; rule files=${ruleFiles.size}",
       )
 
       val loaded =
@@ -86,7 +87,7 @@ class AdblockManager(
       } else {
         engine = null
         _ready.value = false
-        Log.i(TAG, "no adblock rules in ${dir.absolutePath}; pass-through")
+        Log.i(TAG, "No adblock rules; pass-through")
       }
     }
 
@@ -105,7 +106,7 @@ class AdblockManager(
       Log.i(TAG, "cache load: ${bytes.size} bytes read ${readMs}ms, deserialize ${deserMs}ms")
       eng
     } catch (t: Throwable) {
-      Log.w(TAG, "cache load failed; will re-parse rules", t)
+      Log.w(TAG, "cache load failed; will re-parse rules", redactedException(t))
       cacheFile.delete()
       null
     }
@@ -137,7 +138,7 @@ class AdblockManager(
           cacheFile.parentFile?.mkdirs()
           cacheFile.writeBytes(bytes)
           bytes.size
-        }.onFailure { Log.w(TAG, "engine cache write failed", it) }
+        }.onFailure { Log.w(TAG, "engine cache write failed", redactedException(it)) }
           .getOrDefault(-1)
       val serMs = System.currentTimeMillis() - tSer
       Log.i(
@@ -147,7 +148,7 @@ class AdblockManager(
       )
       eng
     } catch (t: Throwable) {
-      Log.w(TAG, "rule parse failed", t)
+      Log.w(TAG, "rule parse failed", redactedException(t))
       null
     }
   }

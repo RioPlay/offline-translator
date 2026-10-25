@@ -52,7 +52,7 @@ class TranslationCoordinator(
       measureTimeMillis {
         result = translationService.translate(from, to, text)
       }
-    Log.d("TranslationCoordinator", "Translating ${text.length} chars from ${from.displayName} to ${to.displayName} took ${elapsed}ms")
+    Log.d("TranslationCoordinator", "Translation took ${elapsed}ms")
     return result
   }
 
@@ -92,8 +92,8 @@ class TranslationCoordinator(
         onProgress = onProgress,
         isCancelled = isCancelled,
       )
-    result.onSuccess { path ->
-      Log.d("TranslationCoordinator", "Translated document to $path")
+    result.onSuccess {
+      Log.d("TranslationCoordinator", "Document translation completed")
     }
     return result
   }
@@ -167,7 +167,7 @@ class TranslationCoordinator(
           try {
             catalog.ocrImageDetect(ocrImage, maxImageSize)
           } catch (e: uniffi.bindings.CatalogException) {
-            Log.d("OCR", "detect failed: ${e.message}")
+            Log.d("OCR", "Detection failed", redactedException(e))
             null
           }
         detection?.let { boxes ->
@@ -187,7 +187,7 @@ class TranslationCoordinator(
               detection,
             )
           } catch (e: uniffi.bindings.CatalogException.MissingAsset) {
-            Log.d("OCR", "ocr failed: ${e.message}")
+            Log.d("OCR", "OCR failed", redactedException(e))
             val missingDetected =
               if (source is OverlaySource.Auto) {
                 detectedLanguageCodeFromMissingAsset(e.message)?.let(catalog::languageByCode)
@@ -204,7 +204,7 @@ class TranslationCoordinator(
             ocrImage.close()
             return@withContext null
           } catch (e: uniffi.bindings.CatalogException) {
-            Log.d("OCR", "ocr failed: ${e.message}")
+            Log.d("OCR", "OCR failed", redactedException(e))
             ocrImage.close()
             return@withContext null
           }
@@ -246,7 +246,7 @@ class TranslationCoordinator(
           ocrImage = ocrImage,
         )
       } catch (e: Exception) {
-        Log.e("TranslationCoordinator", "Exception ${e.stackTrace}")
+        Log.e("TranslationCoordinator", "Image translation failed", redactedException(e))
         null
       }
     }
@@ -286,7 +286,7 @@ class TranslationCoordinator(
                 dstAddr,
               )
             } catch (e: uniffi.bindings.CatalogException) {
-              Log.d("OCR", "retranslateInto failed: ${e.message}")
+              Log.d("OCR", "Image retranslation rendering failed", redactedException(e))
               NativeBitmap.unlockPixels(output)
               return@withContext null
             } finally {
@@ -307,7 +307,7 @@ class TranslationCoordinator(
           try {
             catalog.retranslateImagePlan(cachedPlan, from, to)
           } catch (e: uniffi.bindings.CatalogException) {
-            Log.d("OCR", "retranslateImagePlan failed: ${e.message}")
+            Log.d("OCR", "Image retranslation planning failed", redactedException(e))
             return@withContext null
           }
 
@@ -331,7 +331,7 @@ class TranslationCoordinator(
           translatedWords = translatedWords,
         )
       } catch (e: Exception) {
-        Log.e("TranslationCoordinator", "Exception ${e.stackTrace}")
+        Log.e("TranslationCoordinator", "Image translation failed", redactedException(e))
         null
       }
     }
@@ -369,7 +369,7 @@ class TranslationCoordinator(
         copyPixelsFromBuffer(ByteBuffer.wrap(bytes))
       }
     } catch (e: Exception) {
-      Log.e("TranslationCoordinator", "Failed to decode rendered overlay bitmap", e)
+      Log.e("TranslationCoordinator", "Failed to decode rendered overlay bitmap", redactedException(e))
       null
     }
   }

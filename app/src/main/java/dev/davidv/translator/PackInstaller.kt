@@ -159,7 +159,7 @@ class PackInstaller(
   ) {
     val expected = task.sizeBytes.toLong()
     if (catalogRepository.catalog.value.downloadTaskInstalled(task)) {
-      Log.i(TAG, "Reusing installed ${task.packId}:${task.installPath}")
+      Log.i(TAG, "Reusing installed download task")
       onProgress(expected)
       return
     }
@@ -179,7 +179,7 @@ class PackInstaller(
       staging.keepFile(task.installPath)
     }
     onProgress(max(0L, expected - reported))
-    Log.i(TAG, "Staged ${task.packId}:${task.installPath} from ${task.url}")
+    Log.i(TAG, "Download task staged")
   }
 
   suspend fun downloadFile(

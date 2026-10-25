@@ -78,6 +78,7 @@ import androidx.exifinterface.media.ExifInterface
 import androidx.lifecycle.lifecycleScope
 import dev.davidv.translator.R
 import dev.davidv.translator.TranslatorApplication
+import dev.davidv.translator.redactedException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -142,13 +143,13 @@ class DocAlignActivity : ComponentActivity() {
       contentResolver.openOutputStream(outputUri)?.use { stream ->
         out.compress(Bitmap.CompressFormat.JPEG, 92, stream)
       } ?: run {
-        Log.e(TAG, "openOutputStream returned null for $outputUri")
+        Log.e(TAG, "Output stream unavailable")
         return false
       }
       out.recycle()
       true
     } catch (e: Exception) {
-      Log.e(TAG, "warp/write failed", e)
+      Log.e(TAG, "warp/write failed", redactedException(e))
       false
     }
   }
@@ -212,7 +213,7 @@ private fun DocAlignScreen(
       { bmp ->
         withContext(Dispatchers.Default) {
           runCatching { catalog.detectDocumentQuad(bmp) }
-            .onFailure { Log.e(TAG, "detect failed", it) }
+            .onFailure { Log.e(TAG, "detect failed", redactedException(it)) }
             .getOrNull()
         }
       }

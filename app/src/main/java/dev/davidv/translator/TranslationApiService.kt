@@ -139,7 +139,7 @@ class TranslationApiService : Service() {
       currentConfig = config
       Log.i(TAG, "Translation API server listening on $host:$port")
     } catch (e: HttpServerException) {
-      Log.e(TAG, "Failed to bind translation API server on $host:$port", e)
+      Log.e(TAG, "Failed to bind translation API server on $host:$port", redactedException(e))
       server = null
       NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, errorNotification(port))
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
