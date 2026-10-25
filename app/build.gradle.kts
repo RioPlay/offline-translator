@@ -432,12 +432,13 @@ val validateNativeBindings =
     group = "verification"
     description = "Check that generated UniFFI loaders reference packaged native libraries"
     dependsOn(generateUniffiBindings)
+    dependsOn(bindingsTasks)
     inputs.dir(generatedBindingsDir)
     doLast {
       val generatedFiles = generatedBindingsDir.get().asFile.walkTopDown().filter { it.extension == "kt" }.toList()
       check(generatedFiles.isNotEmpty()) { "No generated UniFFI bindings found" }
       val loader = Regex("""(?s)private fun findLibraryName\([^)]*\): String \{(.*?)\n}""")
-      val fallback = Regex("""return "([^"]+)"""")
+      val fallback = Regex("""(?m)^\s*return "([^"]+)"\s*$""")
       var checked = 0
       generatedFiles.forEach { source ->
         loader.findAll(source.readText()).forEach { function ->
