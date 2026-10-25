@@ -63,6 +63,10 @@ KOKORO_SHARED_PACK_ID = "tts-kokoro-v1.0-core"
 KOKORO_MNN_SHARED_PACK_ID = "tts-kokoro-mnn-v1.0-core"
 KOKORO_VOICES_PACK_ID = "tts-kokoro-voices-v1.0"
 
+# The previous catalog installed every Kokoro voice into this one shared file; a
+# voice pack that existed then lists it as replaced so those installs keep working.
+KOKORO_LEGACY_VOICES_INSTALL_PATH = "bin/kokoro/voices-v1.0.bin"
+
 COTOVIA_LEXICON_PACK_IDS = {"gl": "tts-cotovia-lexicon-gl"}
 COTOVIA_LEXICON_FILES = {
     "gl": {
@@ -615,25 +619,6 @@ EXTRA_TTS_VOICES = {
         "files": {},
         "aliases": [],
     },
-    "ja_JP-jf_alpha-kokoro-mnn-v1.0": {
-        "engine": "kokoro_mnn",
-        "shared_pack": KOKORO_MNN_SHARED_PACK_ID,
-        "key": "ja_JP-jf_alpha-kokoro-mnn-v1.0",
-        "name": "jf_alpha",
-        "language": {
-            "code": "ja_JP",
-            "family": "ja",
-            "region": "JP",
-            "name_native": "日本語",
-            "name_english": "Japanese",
-            "country_english": "Japan",
-        },
-        "quality": "high",
-        "num_speakers": 1,
-        "speaker_id_map": {},
-        "files": {},
-        "aliases": [],
-    },
     # External Kokoro model metadata source:
     # https://github.com/thewh1teagle/kokoro-onnx/releases/tag/model-files-v1.0
     "ko_KR-jf_alpha-kokoro-v1.0": {
@@ -641,25 +626,6 @@ EXTRA_TTS_VOICES = {
         "shared_pack": KOKORO_SHARED_PACK_ID,
         "key": "ko_KR-jf_alpha-kokoro-v1.0",
         "name": "jf_alpha (deprecated)",
-        "language": {
-            "code": "ko_KR",
-            "family": "ko",
-            "region": "KR",
-            "name_native": "한국어",
-            "name_english": "Korean",
-            "country_english": "South Korea",
-        },
-        "quality": "high",
-        "num_speakers": 1,
-        "speaker_id_map": {},
-        "files": {},
-        "aliases": [],
-    },
-    "ko_KR-jf_alpha-kokoro-mnn-v1.0": {
-        "engine": "kokoro_mnn",
-        "shared_pack": KOKORO_MNN_SHARED_PACK_ID,
-        "key": "ko_KR-jf_alpha-kokoro-mnn-v1.0",
-        "name": "jf_alpha",
         "language": {
             "code": "ko_KR",
             "family": "ko",
@@ -1045,16 +1011,38 @@ KOKORO_SHARED_FILES = {
     },
 }
 
-KOKORO_MNN_SHARED_FILES = {
-    "kokoro.mnn": {
+# The previous model stays listed at lower priority so installs that already have
+# it keep working; fresh installs and the TTS upgrade fetch the current one.
+KOKORO_MNN_SHARED_FILES = [
+    {
+        "name": "kokoro.mnn",
+        "install_path": "bin/kokoro_mnn/v2/kokoro.mnn",
+        "size_bytes": 967400,
+        "url": f"{TTS_BASE_URL}/{TTS_VERSION}/kokoro_mnn/v2/kokoro.mnn",
+        "priority": 1,
+    },
+    {
+        "name": "kokoro.mnn.weight",
+        "install_path": "bin/kokoro_mnn/v2/kokoro.mnn.weight",
+        "size_bytes": 70179368,
+        "url": f"{TTS_BASE_URL}/{TTS_VERSION}/kokoro_mnn/v2/kokoro.mnn.weight",
+        "priority": 1,
+    },
+    {
+        "name": "kokoro.mnn",
+        "install_path": "bin/kokoro_mnn/kokoro.mnn",
         "size_bytes": 1028464,
         "url": f"{TTS_BASE_URL}/{TTS_VERSION}/kokoro_mnn/kokoro.mnn",
+        "priority": 0,
     },
-    "kokoro.mnn.weight": {
+    {
+        "name": "kokoro.mnn.weight",
+        "install_path": "bin/kokoro_mnn/kokoro.mnn.weight",
         "size_bytes": 86949555,
         "url": f"{TTS_BASE_URL}/{TTS_VERSION}/kokoro_mnn/kokoro.mnn.weight",
+        "priority": 0,
     },
-}
+]
 
 KOKORO_VOICES_FILES = {
     "voices-v1.0.bin": {
@@ -1062,6 +1050,81 @@ KOKORO_VOICES_FILES = {
         "url": f"{KOKORO_BASE_URL}/voices-v1.0.bin",
     },
 }
+
+# Each language pack ships every voice trained on its language that upstream
+# grades C- or better, bundled into one fp16 file. Korean has no Kokoro voices of
+# its own and reads with the Japanese ones, so ja and ko share that file.
+KOKORO_MNN_VOICE_SETS = {
+    "en_US": {
+        "size_bytes": 3136436,
+        "voices": [
+            "af_heart", "af_bella", "af_nicole", "af_aoede", "af_kore", "af_sarah",
+            "af_alloy", "af_nova", "af_sky", "am_fenrir", "am_michael", "am_puck",
+        ],
+    },
+    "en_GB": {"size_bytes": 1045500, "voices": ["bf_emma", "bf_isabella", "bm_fable", "bm_george"]},
+    "es_ES": {"size_bytes": 784122, "voices": ["ef_dora", "em_alex", "em_santa"]},
+    "fr_FR": {"size_bytes": 261390, "voices": ["ff_siwis"]},
+    "hi_IN": {"size_bytes": 1045488, "voices": ["hf_alpha", "hf_beta", "hm_omega", "hm_psi"]},
+    "it_IT": {"size_bytes": 522758, "voices": ["if_sara", "im_nicola"]},
+    "ja_JP": {"size_bytes": 1306878, "voices": ["jf_alpha", "jf_gongitsune", "jf_nezumi", "jf_tebukuro", "jm_kumo"]},
+    "pt_BR": {"size_bytes": 784122, "voices": ["pf_dora", "pm_alex", "pm_santa"]},
+}
+
+KOKORO_MNN_LANGUAGES = [
+    # (locale, family, region, native name, English name, country, default voice, voice set)
+    ("ja_JP", "ja", "JP", "日本語", "Japanese", "Japan", "jf_alpha", "ja_JP"),
+    ("ko_KR", "ko", "KR", "한국어", "Korean", "South Korea", "jf_alpha", "ja_JP"),
+    ("en_US", "en", "US", "English", "English", "United States", "af_heart", "en_US"),
+    ("en_GB", "en", "GB", "English", "English", "Great Britain", "bf_emma", "en_GB"),
+    ("es_ES", "es", "ES", "Español", "Spanish", "Spain", "ef_dora", "es_ES"),
+    ("fr_FR", "fr", "FR", "Français", "French", "France", "ff_siwis", "fr_FR"),
+    ("hi_IN", "hi", "IN", "हिन्दी", "Hindi", "India", "hf_alpha", "hi_IN"),
+    ("it_IT", "it", "IT", "Italiano", "Italian", "Italy", "if_sara", "it_IT"),
+    ("pt_BR", "pt", "BR", "Português", "Portuguese", "Brazil", "pf_dora", "pt_BR"),
+]
+
+# The previous catalog's ja and ko installs read their voice from the all-voices file.
+KOKORO_MNN_LEGACY_LOCALES = {"ja_JP", "ko_KR"}
+
+
+def kokoro_mnn_voices() -> dict:
+    voices = {}
+    for locale, family, region, native, english, country, default_voice, voice_set in KOKORO_MNN_LANGUAGES:
+        names = KOKORO_MNN_VOICE_SETS[voice_set]["voices"]
+        if default_voice not in names:
+            raise ValueError(f"Kokoro default voice {default_voice} is not in voice set {voice_set}")
+        # Kokoro numbers voices by their sorted name, as piper-rs reads the npz.
+        speaker_id_map = {name: index for index, name in enumerate(sorted(names))}
+        key = f"{locale}-{default_voice}-kokoro-mnn-v1.0"
+        set_path = f"{voice_set.split('_')[0]}/{voice_set}/kokoro_voices.bin"
+        file_info = {
+            "install_path": f"bin/kokoro_mnn/{set_path}",
+            "size_bytes": KOKORO_MNN_VOICE_SETS[voice_set]["size_bytes"],
+            "url": f"{TTS_BASE_URL}/{TTS_VERSION}/{set_path}",
+        }
+        if locale in KOKORO_MNN_LEGACY_LOCALES:
+            file_info["replaces"] = [KOKORO_LEGACY_VOICES_INSTALL_PATH]
+        voices[key] = {
+            "engine": "kokoro_mnn",
+            "shared_pack": KOKORO_MNN_SHARED_PACK_ID,
+            "key": key,
+            "name": default_voice,
+            "language": {
+                "code": locale,
+                "family": family,
+                "region": region,
+                "name_native": native,
+                "name_english": english,
+                "country_english": country,
+            },
+            "quality": "high",
+            "num_speakers": len(names),
+            "speaker_id_map": speaker_id_map,
+            "files": {"kokoro_voices.bin": file_info},
+            "aliases": [],
+        }
+    return voices
 def load_json(path: str) -> dict:
     with Path(path).open("r", encoding="utf-8") as handle:
         return json.load(handle)
@@ -1070,6 +1133,7 @@ def load_json(path: str) -> dict:
 def merge_voice_catalogs(voices: dict) -> dict:
     merged = deepcopy(voices)
     merged.update(EXTRA_TTS_VOICES)
+    merged.update(kokoro_mnn_voices())
     for key in BANNED_TTS_VOICES:
         merged.pop(key, None)
     return merged
@@ -1220,7 +1284,9 @@ def build_shared_tts_support_packs(catalog: dict, voices: dict) -> None:
     needs_kokoro = any(voice.get("shared_pack") == KOKORO_SHARED_PACK_ID for voice in voices.values())
     needs_kokoro_mnn = any(voice.get("shared_pack") == KOKORO_MNN_SHARED_PACK_ID for voice in voices.values())
 
-    if needs_kokoro or needs_kokoro_mnn:
+    # kokoro_mnn voice packs carry their own voice file; only the deprecated ONNX
+    # engine still reads every voice from the shared file.
+    if needs_kokoro:
         catalog["packs"][KOKORO_VOICES_PACK_ID] = {
             "feature": "support",
             "kind": "tts-kokoro-voices",
@@ -1262,16 +1328,16 @@ def build_shared_tts_support_packs(catalog: dict, voices: dict) -> None:
             "kind": "tts-kokoro-mnn-core",
             "files": [
                 {
-                    "name": filename,
+                    "name": file_info["name"],
                     "sizeBytes": file_info["size_bytes"],
-                    "installPath": f"bin/kokoro_mnn/{filename}",
+                    "installPath": file_info["install_path"],
                     "url": file_info["url"],
-                    "role": tts_file_role(filename),
-                    "priority": 0,
+                    "role": tts_file_role(file_info["name"]),
+                    "priority": file_info["priority"],
                 }
-                for filename, file_info in KOKORO_MNN_SHARED_FILES.items()
+                for file_info in KOKORO_MNN_SHARED_FILES
             ],
-            "dependsOn": [KOKORO_VOICES_PACK_ID],
+            "dependsOn": [],
         }
 
 
@@ -1299,6 +1365,17 @@ def build_cotovia_lexicon_packs(catalog: dict, voices: dict) -> None:
 
 def engine_supports_espeak(engine: str) -> bool:
     return engine in {"piper", "mimic3", "kokoro", "kokoro_mnn"}
+
+
+def speaker_names(speaker_id_map: dict[str, int]) -> list[str]:
+    """Speaker names in model speaker-id order, so the app can request a speaker
+    by the name the model knows it by. A single speaker needs no list."""
+    if len(speaker_id_map) < 2:
+        return []
+    by_id = sorted(speaker_id_map.items(), key=lambda item: item[1])
+    if [speaker_id for _, speaker_id in by_id] != list(range(len(by_id))):
+        raise ValueError(f"speaker ids are not contiguous from 0: {speaker_id_map}")
+    return [name for name, _ in by_id]
 
 
 def merge_tts(
@@ -1342,7 +1419,12 @@ def merge_tts(
     regions_by_language: dict[str, dict[str, dict]] = defaultdict(dict)
     for (app_language, region), region_voices in sorted(grouped.items()):
         limit = PER_LANGUAGE_VOICES_PER_REGION.get(app_language, DEFAULT_VOICES_PER_REGION)
-        ranked = sorted(region_voices, key=voice_sort_key)[:limit]
+        # Kokoro voices share one model across languages, so they are listed on
+        # top of the per-region cap instead of displacing a standalone voice, and
+        # after the standalone voices so they never become the default download.
+        standalone = [item for item in region_voices if item[1].get("shared_pack") != KOKORO_MNN_SHARED_PACK_ID]
+        shared = [item for item in region_voices if item[1].get("shared_pack") == KOKORO_MNN_SHARED_PACK_ID]
+        ranked = sorted(standalone, key=voice_sort_key)[:limit] + sorted(shared, key=voice_sort_key)
         voice_ids: list[str] = []
 
         for key, voice in ranked:
@@ -1361,7 +1443,8 @@ def merge_tts(
                     {
                         "name": filename,
                         "sizeBytes": file_info.get("size_bytes", 0),
-                        "installPath": tts_install_path(
+                        "installPath": file_info.get("install_path")
+                        or tts_install_path(
                             install_root=install_root,
                             app_language=app_language,
                             locale_code=locale_code,
@@ -1372,13 +1455,15 @@ def merge_tts(
                         "url": file_info.get("url") or f"{piper_base_url.rstrip('/')}/{source_path}",
                         "role": tts_file_role(filename),
                         "priority": 0,
+                        **({"replaces": file_info["replaces"]} if "replaces" in file_info else {}),
                     }
                 )
 
             default_speaker_id = None
             speaker_id_map = voice.get("speaker_id_map") or {}
             if speaker_id_map:
-                default_speaker_id = sorted(speaker_id_map.values())[0]
+                default_speaker_id = speaker_id_map.get(voice["name"], min(speaker_id_map.values()))
+            speakers = speaker_names(speaker_id_map)
 
             depends_on = []
             if engine_supports_espeak(engine):
@@ -1398,7 +1483,7 @@ def merge_tts(
                 "region": region,
                 "voice": voice["name"],
                 "quality": quality,
-                "numSpeakers": voice.get("num_speakers", 1),
+                "speakers": speakers,
                 "defaultSpeakerId": default_speaker_id,
                 "aliases": voice.get("aliases", []),
                 "files": files,
@@ -1406,6 +1491,8 @@ def merge_tts(
             }
             if default_speaker_id is None:
                 pack.pop("defaultSpeakerId")
+            if not speakers:
+                pack.pop("speakers")
             catalog["packs"][pack_id] = pack
             voice_ids.append(pack_id)
 

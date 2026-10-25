@@ -83,6 +83,7 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.VisualTransformation
@@ -176,6 +177,15 @@ private data class TranslationUpgrade(
   }
 }
 
+private data class TtsUpgrade(
+  val languages: List<Language>,
+  val totalBytes: Long,
+) {
+  companion object {
+    val EMPTY = TtsUpgrade(emptyList(), 0L)
+  }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun VoicePickerDialog(
@@ -208,10 +218,10 @@ private fun VoicePickerDialog(
 
   val settings by settingsManager.settings.collectAsState()
   val override = parseVoiceOverride(settings.ttsVoiceOverrides[language.code])
-  val installedDisplayNames = downloaded.map { it.pack.displayName }
+  val installedVoiceNames = downloaded.map { it.pack.voiceName }
   val effectiveDefaultVoiceName =
-    override?.voiceName?.takeIf { it in installedDisplayNames }
-      ?: installedDisplayNames.minOrNull()
+    override?.voiceName?.takeIf { it in installedVoiceNames }
+      ?: installedVoiceNames.minOrNull()
 
   val initialDefaultVoiceName =
     remember(language.code) {
@@ -220,14 +230,14 @@ private fun VoicePickerDialog(
       val initialNames =
         catalog
           .installedTtsVoicePickerRegions(language.code)
-          .flatMap { region -> region.voices.map { it.displayName } }
+          .flatMap { region -> region.voices.map { it.voiceName } }
       initialOverride?.voiceName?.takeIf { it in initialNames } ?: initialNames.minOrNull()
     }
 
   val orderedDownloaded =
     remember(downloaded, initialDefaultVoiceName) {
       downloaded.sortedWith(
-        compareByDescending<VoiceWithRegion> { it.pack.displayName == initialDefaultVoiceName }
+        compareByDescending<VoiceWithRegion> { it.pack.voiceName == initialDefaultVoiceName }
           .thenBy { it.regionName ?: "" }
           .thenBy { it.pack.displayName },
       )
@@ -315,20 +325,20 @@ private fun VoicePickerDialog(
               VoiceRow(
                 voice = entry,
                 isInstalled = true,
-                isDefault = entry.pack.displayName == effectiveDefaultVoiceName,
+                isDefault = entry.pack.voiceName == effectiveDefaultVoiceName,
                 dimmed = false,
                 player = samplePlayer,
-                onTap = { setDefault(entry.pack.packId, entry.pack.displayName) },
+                onTap = { setDefault(entry.pack.packId, entry.pack.voiceName) },
                 downloadStatus = VoiceRowStatus.Idle,
                 onAction = {
-                  if (entry.pack.displayName == effectiveDefaultVoiceName) {
+                  if (entry.pack.voiceName == effectiveDefaultVoiceName) {
                     val nextPack =
                       downloaded.firstOrNull { it.pack.packId != entry.pack.packId }?.pack
                     settingsManager.update { current ->
                       val newOverrides =
                         if (nextPack != null) {
                           current.ttsVoiceOverrides +
-                            (language.code to encodeVoiceOverride(nextPack.packId, nextPack.displayName))
+                            (language.code to encodeVoiceOverride(nextPack.packId, nextPack.voiceName))
                         } else {
                           current.ttsVoiceOverrides - language.code
                         }
@@ -459,17 +469,22 @@ private fun VoiceRow(
         )
       }
       Text(
-        text = formatVoiceName(pack.displayName),
+        text = pack.displayName,
         style = MaterialTheme.typography.bodyLarge,
         fontWeight = nameWeight,
         color = nameColor,
         maxLines = 1,
         overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
       )
+      val speakerCount = pack.speakerCount.toInt()
+      val speakerCountLabel = pluralStringResource(R.plurals.langmgr_voice_speaker_count, speakerCount, speakerCount)
       val parts =
         buildList {
           add(formatQualityLabel(pack.quality).replaceFirstChar { it.uppercase() })
-          add(formatSize(pack.sizeBytes.toLong()))
+          add(formatSize((if (isInstalled) pack.sizeBytes else pack.downloadSizeBytes).toLong()))
+          if (speakerCount > 1) {
+            add(speakerCountLabel)
+          }
           voice.regionName?.let { add(it) }
         }
       Text(
@@ -743,6 +758,18 @@ fun LanguageAssetManagerScreen(
       }
     }
 
+  val ttsUpgrade =
+    remember(catalog, rows) {
+      val codes = catalog.ttsUpgradeLanguageCodes().toSet()
+      val languages = rows.map { it.language }.filter { it.code in codes }
+      val plan = catalog.planTtsUpgrades(languages.map { it.code })
+      if (plan.tasks.isEmpty()) {
+        TtsUpgrade.EMPTY
+      } else {
+        TtsUpgrade(languages = languages, totalBytes = plan.totalSize.toLong())
+      }
+    }
+
   val sharedDictionaryUsersByLanguageCode =
     remember(rows) {
       rows
@@ -809,6 +836,21 @@ fun LanguageAssetManagerScreen(
           isDownloading = downloads[DownloadId.TranslationUpgrade].inFlightProgress != null,
           onDownload = {
             downloadManager.enqueue(DownloadRequest.TranslationUpgrade(translationUpgrade.languages))
+          },
+        )
+      }
+
+      if (ttsUpgrade.languages.isNotEmpty()) {
+        UpgradeCard(
+          text =
+            stringResource(
+              R.string.langmgr_tts_upgrade_available,
+              ttsUpgrade.languages.joinToString(", ") { it.displayName },
+            ),
+          totalBytes = ttsUpgrade.totalBytes,
+          isDownloading = downloads[DownloadId.TtsUpgrade].inFlightProgress != null,
+          onDownload = {
+            downloadManager.enqueue(DownloadRequest.TtsUpgrade(ttsUpgrade.languages))
           },
         )
       }
@@ -1586,13 +1628,3 @@ private fun formatQualityLabel(quality: String?): String =
     null, "" -> "Unknown"
     else -> quality.replace('_', '-').replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
   }
-
-private fun formatVoiceName(voice: String): String =
-  voice
-    .replace('_', ' ')
-    .replace('-', ' ')
-    .split(' ')
-    .filter { it.isNotBlank() }
-    .joinToString(" ") { token ->
-      token.replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
-    }
