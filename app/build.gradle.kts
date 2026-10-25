@@ -86,7 +86,7 @@ android {
     create("deviceTest") {
       initWith(getByName("release"))
       applicationIdSuffix = ".devicetest"
-      versionNameSuffix = "-test5"
+      versionNameSuffix = "-test6"
       signingConfig = signingConfigs.getByName("deviceTest")
       matchingFallbacks += listOf("release")
     }
@@ -125,7 +125,7 @@ android {
       val output = this as com.android.build.gradle.internal.api.ApkVariantOutputImpl
       val abi = output.getFilter(com.android.build.OutputFile.ABI)
       if (abi != null) {
-        val baseVersionCode = defaultConfig.versionCode!! + if (buildType.name == "deviceTest") 4 else 0
+        val baseVersionCode = defaultConfig.versionCode!! + if (buildType.name == "deviceTest") 5 else 0
         output.versionCodeOverride = baseVersionCode * 10 + (abiCodes[abi] ?: 0)
       }
     }

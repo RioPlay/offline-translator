@@ -350,6 +350,8 @@
     <string name="http_server_notif_disable">Disable</string>
 
     <!-- Processing routes: new keys deliberately fall back to English until translated. -->
+    <string name="settings_backup_title">Backups and device transfers</string>
+    <string name="settings_backup_body">This app excludes its data from Android cloud backup. Android 12 or later can still transfer app data when you move to another device; older Android backup and restore are disabled. Ordinary app updates keep your data. Exported files and shared storage follow their own backup settings. Existing remote backups are not deleted by this change.</string>
     <string name="settings_network_title">Processing and internet use</string>
     <string name="settings_network_local_title">Translation: on this device</string>
     <string name="settings_network_local_body">Text, images and documents use downloaded models on this device. Dictionary lookup and downloaded voices are local too.</string>

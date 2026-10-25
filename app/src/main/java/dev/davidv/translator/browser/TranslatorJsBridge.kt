@@ -154,7 +154,6 @@ class TranslatorJsBridge(
     nonce: String,
   ) {
     if (token != bridgeToken) return
-    Log.d("TranslatorJsBridge", "translateImage requestId=$requestId payload=${dataUri.length}B")
     scope.launch {
       val output =
         if (dataUri.isEmpty()) {
@@ -167,7 +166,6 @@ class TranslatorJsBridge(
             ""
           }
         }
-      Log.d("TranslatorJsBridge", "translateImage requestId=$requestId result=${output.length}B")
       resolveRawOnJs(requestId, output, nonce)
     }
   }

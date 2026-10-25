@@ -275,6 +275,7 @@ private fun ProcessingAndInternetCard(
       ProcessingExplanation(R.string.settings_network_local_title, R.string.settings_network_local_body)
       ProcessingExplanation(R.string.settings_network_internet_title, R.string.settings_network_internet_body)
       ProcessingExplanation(R.string.settings_network_speech_title, R.string.settings_network_speech_body)
+      ProcessingExplanation(R.string.settings_backup_title, R.string.settings_backup_body)
       Row(
         modifier =
           Modifier
