@@ -1,0 +1,175 @@
+{
+  "date": "2026-10-25",
+  "source_commit": "fbcc831a1be18c6716d82e17af8af5862d02610d",
+  "source_tree": "d0fe882019a6471d17c8b9b9c44b92ef8acf755e",
+  "withdrawn_apk_sha256": "434cc7caa33763cfdc7affc0e28bfc2d6360f46c38c4a369e22c1d590e6f31b9",
+  "corrected_test_apk_sha256": "afee9ad9420e5ab9213919f8a077b6d8f13609cf46a049fa2591bbb8ffbf7ea0",
+  "corrected_test_package": "dev.davidv.translator.devicetest",
+  "corrected_test_version": "0.8.6-test4",
+  "corrected_test_version_code": 342,
+  "jvm": {
+    "tests": 103,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "native_loaders": [
+    {
+      "artifact": "withdrawn",
+      "sha256": "434cc7caa33763cfdc7affc0e28bfc2d6360f46c38c4a369e22c1d590e6f31b9",
+      "loader_count": 6,
+      "loaders": [
+        {
+          "class": "Luniffi/bindings/BindingsKt;",
+          "method": "findLibraryName",
+          "fallbacks": [
+            "bindings-metadata"
+          ]
+        },
+        {
+          "class": "Luniffi/translator/TranslatorKt;",
+          "method": "findLibraryName",
+          "fallbacks": [
+            "bindings-metadata"
+          ]
+        },
+        {
+          "class": "Luniffi/translator_align/Translator_alignKt;",
+          "method": "access$findLibraryName",
+          "fallbacks": [
+            "bindings-metadata"
+          ]
+        },
+        {
+          "class": "Luniffi/translator_core/Translator_coreKt;",
+          "method": "access$findLibraryName",
+          "fallbacks": [
+            "bindings-metadata"
+          ]
+        },
+        {
+          "class": "Luniffi/translator_render/Translator_renderKt;",
+          "method": "access$findLibraryName",
+          "fallbacks": [
+            "bindings-metadata"
+          ]
+        },
+        {
+          "class": "Luniffi/translator_translate/Translator_translateKt;",
+          "method": "access$findLibraryName",
+          "fallbacks": [
+            "bindings-metadata"
+          ]
+        }
+      ],
+      "native_files": [
+        "libandroidx.graphics.path.so",
+        "libbindings.so",
+        "libc++_shared.so",
+        "libimage_processing_util_jni.so",
+        "libjnidispatch.so",
+        "libmodel_converter.so"
+      ]
+    },
+    {
+      "artifact": "corrected",
+      "sha256": "afee9ad9420e5ab9213919f8a077b6d8f13609cf46a049fa2591bbb8ffbf7ea0",
+      "loader_count": 6,
+      "loaders": [
+        {
+          "class": "Luniffi/bindings/BindingsKt;",
+          "method": "findLibraryName",
+          "fallbacks": [
+            "bindings"
+          ]
+        },
+        {
+          "class": "Luniffi/translator/TranslatorKt;",
+          "method": "findLibraryName",
+          "fallbacks": [
+            "bindings"
+          ]
+        },
+        {
+          "class": "Luniffi/translator_align/Translator_alignKt;",
+          "method": "access$findLibraryName",
+          "fallbacks": [
+            "bindings"
+          ]
+        },
+        {
+          "class": "Luniffi/translator_core/Translator_coreKt;",
+          "method": "access$findLibraryName",
+          "fallbacks": [
+            "bindings"
+          ]
+        },
+        {
+          "class": "Luniffi/translator_render/Translator_renderKt;",
+          "method": "access$findLibraryName",
+          "fallbacks": [
+            "bindings"
+          ]
+        },
+        {
+          "class": "Luniffi/translator_translate/Translator_translateKt;",
+          "method": "access$findLibraryName",
+          "fallbacks": [
+            "bindings"
+          ]
+        }
+      ],
+      "native_files": [
+        "libandroidx.graphics.path.so",
+        "libbindings.so",
+        "libc++_shared.so",
+        "libimage_processing_util_jni.so",
+        "libjnidispatch.so",
+        "libmodel_converter.so"
+      ]
+    }
+  ],
+  "negative_guard": "Rejected staged generated loaders targeting absent libbindings-metadata.so",
+  "positive_guard": "Validated six generated loaders against native files for arm64-v8a",
+  "multi_abi_graph": "Dry-run orders both buildBindingsAarch64 and buildBindingsX86_64 before validation",
+  "native_fresh_build": false,
+  "native_bytes_unchanged_from_verified_upstream": true,
+  "pixel_launch_verified": false,
+  "runtime_upgrade_retention_verified": false,
+  "android_runtime_status": "Blocked: software-emulated Android framework restarted; even the genuine official APK failed installation inside StorageManagerService with a null PackageManagerInternal. No application runtime pass is claimed.",
+  "emulator_attempts": [
+    {
+      "api": 30,
+      "google_apis": true,
+      "arm64_translation": true,
+      "hardware_acceleration": false,
+      "ram_mb": 1536,
+      "cores": 2
+    },
+    {
+      "api": 30,
+      "google_apis": true,
+      "arm64_translation": true,
+      "hardware_acceleration": false,
+      "ram_mb": 3072,
+      "cores": 4
+    }
+  ],
+  "upgrade_preflight": {
+    "package": "dev.davidv.translator",
+    "baseline_version_code": 312,
+    "validation_version_code": 322,
+    "official_certificate_sha256": "2b3806e745d809018a51be58d0635ffc74cc9733439407ab1ed0424a4db3e1fb",
+    "test_certificate_sha256": "62e4f22147f5974875903ad2e34282d67abd667d1d7151de88ea1271e3b66dbb",
+    "official_inplace_install_compatible": false,
+    "reason": "Signing certificates differ and no authorized rotation is available",
+    "runtime_upgrade_retention_verified": false,
+    "artifact_scope": "Local validation only; release signing and version override were supplied through an uncommitted test init script"
+  },
+  "normal_release_app_id_changed": false,
+  "settings_or_model_storage_code_changed": false,
+  "official_app_or_phone_data_modified": false,
+  "upstream_writes": false,
+  "withdrawn_test_certificate_sha256": "62b6342f7528a42e8db321c8ee5c3339d944dea50bf2b739f20736bbdb0f52d7",
+  "corrected_test_certificate_sha256": "62e4f22147f5974875903ad2e34282d67abd667d1d7151de88ea1271e3b66dbb"
+}

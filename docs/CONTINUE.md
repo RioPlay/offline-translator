@@ -1,6 +1,8 @@
 # Continue Offline Translator work
 
-The latest combined source is on `integration/upstream-sync` in RioPlay/offline-translator. It incorporates the prior combined candidate and upstream master `bd675fecea875d4e5b3c0f62e24b2a9c3c84f6da`. Start with `docs/reviews/upstream-sync.md` for overlap resolutions, validation provenance and remaining checks. Earlier validation records describe their recorded revisions, not this combined build.
+**Startup repair, 2026-10-25:** Continue from `fix/native-library-startup-contract`. Read `docs/reviews/startup-repair-2026-10-25.md` first. The upstream-sync APK with hash 434cc7caa33763cfdc7affc0e28bfc2d6360f46c38c4a369e22c1d590e6f31b9 is withdrawn: renamed metadata produced native loader names that did not match the packaged library. Source fbcc831a1be18c6716d82e17af8af5862d02610d pins and checks all six loaders. Test4/342 is built and checked at APK level, but Pixel launch and same-signer upgrade retention remain unverified; the local software emulator could not reliably install even the official baseline. Our test signer cannot replace the official signer. Do not clear the official app or claim a working official in-place update.
+
+The combined baseline before this repair is on `integration/upstream-sync` in RioPlay/offline-translator. It incorporates the prior combined candidate and upstream master `bd675fecea875d4e5b3c0f62e24b2a9c3c84f6da`. Start with `docs/reviews/upstream-sync.md` for overlap resolutions, validation provenance and remaining checks. Earlier validation records describe their recorded revisions, not this combined build.
 
 ## Boundaries
 
