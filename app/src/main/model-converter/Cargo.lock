@@ -494,7 +494,7 @@ dependencies = [
 [[package]]
 name = "translator-convert"
 version = "0.1.0"
-source = "git+https://github.com/DavidVentura/translator-rs.git#27f5d691d5e5ed158227d8e1deeec271c70c5f3d"
+source = "git+https://github.com/RioPlay/translator-rs.git?rev=904c8661f1bb9ffa4a5ef93623aa20707af4f50e#904c8661f1bb9ffa4a5ef93623aa20707af4f50e"
 dependencies = [
  "mnn-sys",
 ]

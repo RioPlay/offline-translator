@@ -32,6 +32,9 @@ jobs:
     - name: Test upgrade, backup and native compatibility guards
       run: python3 -m unittest discover -s tools -p 'test_*.py'
 
+    - name: Check reviewed native security pins
+      run: python3 tools/check_native_security.py
+
     - name: Compute image tag
       id: img
       run: |
@@ -65,9 +68,14 @@ jobs:
     - name: Check packaged native compatibility
       run: python3 tools/check_apk_native.py app/build/outputs/apk/release/app-${{ matrix.abi }}-release-unsigned.apk --abi ${{ matrix.abi }}
 
+    - name: Verify native PDF sources and record build evidence
+      run: python3 tools/check_native_security.py --abi ${{ matrix.abi }} --apk app/build/outputs/apk/release/app-${{ matrix.abi }}-release-unsigned.apk --report app/build/reports/security/native-${{ matrix.abi }}.json
+
     - name: Upload APK artifacts
       uses: actions/upload-artifact@v4
       with:
         name: apk-${{ matrix.label }}
-        path: app/build/outputs/apk/**/*.apk
+        path: |
+          app/build/outputs/apk/**/*.apk
+          app/build/reports/security/native-*.json
         retention-days: 30

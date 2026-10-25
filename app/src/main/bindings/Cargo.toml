@@ -45,7 +45,8 @@ jni = { version = "0.21", default-features = false }
 
 [dependencies.translator]
 default-features = false
-git = "https://github.com/DavidVentura/translator-rs.git"
+git = "https://github.com/RioPlay/translator-rs.git"
+rev = "904c8661f1bb9ffa4a5ef93623aa20707af4f50e"
 # path = "/home/david/git/translator-rs"
 features = ["uniffi", "html"]
 

@@ -223,7 +223,7 @@ val abiToCargoTarget =
     "x86" to "x86",
   )
 
-val cargoProfileArgs = listOf("--release")
+val cargoProfileArgs = listOf("--release", "--locked")
 
 val abiToBindingsTask =
   abiToCargoTarget.mapValues { (abi, cargoTarget) ->
@@ -419,7 +419,7 @@ val buildUniffiBindgen =
     inputs.file(bindingsBindgenRootDir.resolve("Cargo.lock"))
     inputs.dir(bindingsBindgenRootDir.resolve("src"))
     outputs.file(bindgenHostBinary)
-    commandLine("cargo", "build", "--release")
+    commandLine("cargo", "build", "--release", "--locked")
   }
 
 val generatedBindingsDir = layout.buildDirectory.dir("generated/source/uniffi/kotlin")
