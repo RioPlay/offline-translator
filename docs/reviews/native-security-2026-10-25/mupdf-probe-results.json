@@ -1,0 +1,58 @@
+[
+  {
+    "source": "baseline",
+    "case": "valid",
+    "exit_code": 0,
+    "stdout": "accepted end=26\n",
+    "stderr": ""
+  },
+  {
+    "source": "baseline",
+    "case": "extent",
+    "exit_code": 3,
+    "stdout": "accepted end=29\n",
+    "stderr": ""
+  },
+  {
+    "source": "baseline",
+    "case": "offsets",
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "=================================================================\n==13==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x50300000005c at pc 0x00000040162d bp 0x7ffd12b87b60 sp 0x7ffd12b87b50\nREAD of size 1 at 0x50300000005c thread T0\n    #0 0x40162c in get_offset <workspace>/pdf-security-pass/cargo/git/checkouts/mupdf-rs-452aca021f5bf0bc/6f695fa/mupdf-sys/mupdf/source/fitz/subset-cff.c:211\n    #1 0x401a54 in index_load <workspace>/pdf-security-pass/cargo/git/checkouts/mupdf-rs-452aca021f5bf0bc/6f695fa/mupdf-sys/mupdf/source/fitz/subset-cff.c:309\n    #2 0x4023d9 in main <workspace>/pdf-security-pass/cff_bounds_probe.c:39\n    #3 0x7f4e364cc1c9  (/lib/x86_64-linux-gnu/libc.so.6+0x2a1c9) (BuildId: 274eec488d230825a136fa9c4d85370fed7a0a5e)\n    #4 0x7f4e364cc28a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2a28a) (BuildId: 274eec488d230825a136fa9c4d85370fed7a0a5e)\n    #5 0x4013f4 in _start (<workspace>/pdf-security-pass/cff-baseline+0x4013f4) (BuildId: 8af02e73124115d673ed60a986c5ed3585718a2e)\n\n0x50300000005c is located 0 bytes after 28-byte region [0x503000000040,0x50300000005c)\nallocated by thread T0 here:\n    #0 0x7f4e36eb0340 in calloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:77\n    #1 0x401fa4 in main <workspace>/pdf-security-pass/cff_bounds_probe.c:21\n\nSUMMARY: AddressSanitizer: heap-buffer-overflow <workspace>/pdf-security-pass/cargo/git/checkouts/mupdf-rs-452aca021f5bf0bc/6f695fa/mupdf-sys/mupdf/source/fitz/subset-cff.c:211 in get_offset\nShadow bytes around the buggy address:\n  0x502ffffffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x502ffffffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x502ffffffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x502fffffff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x502fffffff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x503000000000: fa fa 00 00 00 fa fa fa 00 00 00[04]fa fa fa fa\n  0x503000000080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x503000000100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x503000000180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x503000000200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x503000000280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==13==ABORTING\n"
+  },
+  {
+    "source": "patched",
+    "case": "valid",
+    "exit_code": 0,
+    "stdout": "accepted end=26\n",
+    "stderr": ""
+  },
+  {
+    "source": "patched",
+    "case": "extent",
+    "exit_code": 0,
+    "stdout": "rejected\n",
+    "stderr": ""
+  },
+  {
+    "source": "patched",
+    "case": "offsets",
+    "exit_code": 0,
+    "stdout": "rejected\n",
+    "stderr": ""
+  },
+  {
+    "source": "patched",
+    "file": "source/fitz/draw-unpack.c",
+    "check": "syntax",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "source": "patched",
+    "file": "source/pdf/pdf-image.c",
+    "check": "syntax",
+    "exit_code": 0,
+    "stderr": ""
+  }
+]

@@ -1,0 +1,45 @@
+{
+  "checked_at": "2026-10-25",
+  "engine": "bd32a4f272e239efb6867795c8b7d0c47c619b49",
+  "wrapper": "6f695fae38dcd1d4ed8f39f56b177042f3ff11a5",
+  "mupdf": "ef017f6ad65ea02efd006f387131bfeed1b18886",
+  "vendor_source": "https://mupdf.com/releases/cve",
+  "fixes": [
+    {
+      "fix": "611f75f0c8657b92460554009196c5ac4b68d909",
+      "status": "diverged",
+      "ahead": 2,
+      "behind": 29,
+      "merge_base": "3bf7ac2d3643e44c4213d0e2ecd75a1b0d25d0f5"
+    },
+    {
+      "fix": "0f17d789fe8c29b41e47663be82514aaca3a4dfb",
+      "status": "ahead",
+      "ahead": 196,
+      "behind": 0,
+      "merge_base": "0f17d789fe8c29b41e47663be82514aaca3a4dfb"
+    },
+    {
+      "fix": "a26f0142e7d390d4a82c6e5ae0e312e07cc4ec85",
+      "status": "ahead",
+      "ahead": 265,
+      "behind": 0,
+      "merge_base": "a26f0142e7d390d4a82c6e5ae0e312e07cc4ec85"
+    },
+    {
+      "fix": "a08c5ee1637580658184ab8b1860779ed2e9f73e",
+      "status": "diverged",
+      "ahead": 2,
+      "behind": 96,
+      "merge_base": "3bf7ac2d3643e44c4213d0e2ecd75a1b0d25d0f5"
+    },
+    {
+      "fix": "d4743b6092d513321c23c6f7fe5cff87cde043c1",
+      "status": "ahead",
+      "ahead": 262,
+      "behind": 0,
+      "merge_base": "d4743b6092d513321c23c6f7fe5cff87cde043c1"
+    }
+  ],
+  "limitations": "Ancestry is checked for these five vendor fixes only. Not a full native submodule or APK audit. Missing fixes were also confirmed against the affected source."
+}

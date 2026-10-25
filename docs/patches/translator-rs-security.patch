@@ -1,0 +1,138 @@
+diff --git a/Cargo.toml b/Cargo.toml
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -132,7 +132,7 @@
+ translator-transliterate = { path = "crates/translator-transliterate", optional = true }
+ translator-tts = { path = "crates/translator-tts", optional = true }
+ piper-rs = { git = "https://github.com/DavidVentura/piper-rs", optional = true, features = ["japanese", "fst-normalization", "mnn"] }
+-lopdf = { version = "0.40", optional = true, default-features = false }
++lopdf = { version = "0.42", optional = true, default-features = false }
+ ttf-parser = { version = "0.25", optional = true, default-features = false, features = ["std", "opentype-layout", "variable-fonts"] }
+ subsetter = { version = "0.2", optional = true, default-features = false }
+ rustybuzz = { version = "0.20", optional = true, default-features = false, features = ["std"] }
+diff --git a/Cargo.lock b/Cargo.lock
+--- a/Cargo.lock
++++ b/Cargo.lock
+@@ -114,9 +114,9 @@
+ 
+ [[package]]
+ name = "anyhow"
+-version = "1.0.102"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "7f202df86484c868dbad7eaa557ef785d5c66295e41b460ef922eca0723b842c"
++version = "1.0.104"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "330a5ed07fa54e4702c9d6c4174f74427fc0ef6e214bbd677ae50a5099946470"
+ 
+ [[package]]
+ name = "approx"
+@@ -248,12 +248,6 @@
+ checksum = "5d20789868f4b01b2f2caec9f5c4e0213b41e3e5702a50157d699ae31ced2fcb"
+ 
+ [[package]]
+-name = "bytecount"
+-version = "0.6.9"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "175812e0be2bccb6abe50bb8d566126198344f707e304f45c648fd8f2cc0365e"
+-
+-[[package]]
+ name = "bytemuck"
+ version = "1.25.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+@@ -503,9 +497,9 @@
+ 
+ [[package]]
+ name = "crossbeam-epoch"
+-version = "0.9.18"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "5b82ac4a3c2ca9c3460964f020e1402edd5753411d7737aa39c3714ad1b5420e"
++version = "0.9.20"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "2d6914041f254d6e9176c01941b21115dcfb7089e55135a35411081bd106ef3f"
+ dependencies = [
+  "crossbeam-utils",
+ ]
+@@ -1659,9 +1653,9 @@
+ 
+ [[package]]
+ name = "lopdf"
+-version = "0.40.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "73fdcbab5b237a03984f83b1394dc534e0b1960675c7f3ec4d04dccc9032b56d"
++version = "0.42.0"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "25aab26d99567469098e64a02f42679f8965c6401263eefa31d8f2dcc37a221c"
+ dependencies = [
+  "aes",
+  "bitflags 2.11.1",
+@@ -1675,7 +1669,6 @@
+  "log",
+  "md-5",
+  "nom 8.0.0",
+- "nom_locate",
+  "rand 0.10.1",
+  "rangemap",
+  "sha2",
+@@ -1964,17 +1957,6 @@
+ checksum = "df9761775871bdef83bee530e60050f7e54b1105350d6884eb0fb4f46c2f9405"
+ dependencies = [
+  "memchr 2.8.0",
+-]
+-
+-[[package]]
+-name = "nom_locate"
+-version = "5.0.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "0b577e2d69827c4740cba2b52efaad1c4cc7c73042860b199710b3575c68438d"
+-dependencies = [
+- "bytecount",
+- "memchr 2.8.0",
+- "nom 8.0.0",
+ ]
+ 
+ [[package]]
+diff --git a/crates/translator-pdf/Cargo.toml b/crates/translator-pdf/Cargo.toml
+--- a/crates/translator-pdf/Cargo.toml
++++ b/crates/translator-pdf/Cargo.toml
+@@ -19,7 +19,7 @@
+ translator-core = { path = "../translator-core", features = ["script-from-unicode"] }
+ translator-render = { path = "../translator-render" }
+ translator-translate = { path = "../translator-translate" }
+-lopdf = { version = "0.40", default-features = false }
++lopdf = { version = "0.42", default-features = false }
+ subsetter = { version = "0.2", default-features = false }
+ rustybuzz = { version = "0.20", default-features = false, features = ["std"] }
+ log = "0.4"
+diff --git a/crates/translator-pdf/src/pdf.rs b/crates/translator-pdf/src/pdf.rs
+--- a/crates/translator-pdf/src/pdf.rs
++++ b/crates/translator-pdf/src/pdf.rs
+@@ -207,6 +207,29 @@
+         );
+         assert!(t.pad_x.abs() < 0.5);
+         assert!(t.pad_y > 0.0);
++    }
++
++    #[test]
++    fn deeply_nested_catalog_does_not_overflow_the_parser_stack() {
++        // RUSTSEC-2026-0187: lopdf 0.40 aborts while parsing this small,
++        // deeply nested array. Keep it in memory; no untrusted file is opened.
++        let mut bytes = b"%PDF-1.4\n".to_vec();
++        let catalog_offset = bytes.len();
++        bytes.extend_from_slice(b"1 0 obj\n<< /Type /Catalog /Pages 2 0 R /X ");
++        bytes.extend(std::iter::repeat_n(b'[', 10_380));
++        bytes.push(b'0');
++        bytes.extend(std::iter::repeat_n(b']', 10_380));
++        bytes.extend_from_slice(b" >>\nendobj\n");
++        let pages_offset = bytes.len();
++        bytes.extend_from_slice(b"2 0 obj\n<< /Type /Pages /Kids [] /Count 0 >>\nendobj\n");
++        let xref_offset = bytes.len();
++        bytes.extend_from_slice(
++            format!(
++                "xref\n0 3\n0000000000 65535 f \n{catalog_offset:010} 00000 n \n{pages_offset:010} 00000 n \ntrailer\n<< /Size 3 /Root 1 0 R >>\nstartxref\n{xref_offset}\n%%EOF\n"
++            )
++            .as_bytes(),
++        );
++        assert!(lopdf::Document::load_mem(&bytes).is_ok());
+     }
+ 
+     fn one_page_pdf(text: &str) -> Vec<u8> {

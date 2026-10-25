@@ -1,11 +1,22 @@
 # Native PDF remediation checkpoint
 
-Prepared against DavidVentura/translator-rs `bd32a4f272e239efb6867795c8b7d0c47c619b49` on 2026-10-25. The accompanying patch updates both lopdf manifests, the tracked root Cargo.lock and a parser regression test. `cargo update -p lopdf --precise 0.42.0` succeeded; git revisions stayed pinned.
+Updated 2026-10-25. See [the expanded review](native-security-2026-10-25/README.md)
+for exact sources, patches, remaining findings and reproducible regression evidence.
 
-The standalone host probe in `pdf-probe/` compares exact 0.40.0 and 0.42.0 packages with default features disabled. Both parse the shallow control. A 21,000-byte, 10,380-level synthetic PDF aborts the old version with stack overflow (exit -6); the new version succeeds. Runs used a 30-second timeout, 1 GiB address-space bound and disabled core dumps. See `pdf-probe-results.json`.
+The local candidate upgrades lopdf to 0.42.0, backports two missing MuPDF vendor
+security fixes, modernizes CLD2 build dependencies and updates anyhow/crossbeam
+in the engine development lock. The corrected combined host build passes 72
+translator-pdf tests with image translation enabled; isolated CLD2 tests pass 26.
+CFF ASan/UBSan and image-stream probes compare the old and patched native code.
+Compiled MuPDF source hashes were checked; an earlier failed staging copy's
+results were discarded.
 
-This is not a complete translator-pdf/native workspace build, Android build, or real-document regression pass. No app native pin has changed. The app remains affected until patched native source is published and the app bindings lock is updated and built/tested on both ARM targets.
+**Not integrated into the app.** The app native pin and test6 APK remain unchanged.
+Publishing the dependency forks, repinning/relocking, both Android ARM builds,
+packaged-source verification and real PDF device workflows remain required.
+ZIP advisories and broader native coverage remain open; do not claim all CVEs fixed.
 
-The available connector cannot create the required RioPlay/translator-rs fork; the browser fork route currently requires sign-in. The patch is preserved here for review, not applied to any upstream repository. Do not claim it ships in the app candidate.
-
-Reference: https://rustsec.org/advisories/RUSTSEC-2026-0187.html
+The connector cannot create repositories. Native source publication needs
+accessible user-owned translator-rs, mupdf-rs, mupdf and rust-cld2 repositories.
+No upstream repository was modified. Do not merge this older app branch; app
+consolidation remains in PR #12.

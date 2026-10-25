@@ -1,0 +1,98 @@
+[
+  {
+    "source": "baseline",
+    "source_sha256": {
+      "source/fitz/subset-cff.c": "1dcd6e5fa83186602c8333854aeb70b43ee5ed0cc055211df707b260bb794b73",
+      "source/fitz/draw-unpack.c": "a8c93aace64b1dc4e260227481a16f20f4cc8c589126b689f7b2477354866811",
+      "source/pdf/pdf-image.c": "fdcdb97dbc7714a8701e0595566d1205611883e0856189738b110ead2c8b4b76"
+    },
+    "case": "valid",
+    "exit_code": 0,
+    "stdout": "accepted\n",
+    "stderr": ""
+  },
+  {
+    "source": "baseline",
+    "source_sha256": {
+      "source/fitz/subset-cff.c": "1dcd6e5fa83186602c8333854aeb70b43ee5ed0cc055211df707b260bb794b73",
+      "source/fitz/draw-unpack.c": "a8c93aace64b1dc4e260227481a16f20f4cc8c589126b689f7b2477354866811",
+      "source/pdf/pdf-image.c": "fdcdb97dbc7714a8701e0595566d1205611883e0856189738b110ead2c8b4b76"
+    },
+    "case": "height",
+    "exit_code": 3,
+    "stdout": "accepted\n",
+    "stderr": ""
+  },
+  {
+    "source": "baseline",
+    "source_sha256": {
+      "source/fitz/subset-cff.c": "1dcd6e5fa83186602c8333854aeb70b43ee5ed0cc055211df707b260bb794b73",
+      "source/fitz/draw-unpack.c": "a8c93aace64b1dc4e260227481a16f20f4cc8c589126b689f7b2477354866811",
+      "source/pdf/pdf-image.c": "fdcdb97dbc7714a8701e0595566d1205611883e0856189738b110ead2c8b4b76"
+    },
+    "case": "pad",
+    "exit_code": 3,
+    "stdout": "accepted\n",
+    "stderr": ""
+  },
+  {
+    "source": "baseline",
+    "source_sha256": {
+      "source/fitz/subset-cff.c": "1dcd6e5fa83186602c8333854aeb70b43ee5ed0cc055211df707b260bb794b73",
+      "source/fitz/draw-unpack.c": "a8c93aace64b1dc4e260227481a16f20f4cc8c589126b689f7b2477354866811",
+      "source/pdf/pdf-image.c": "fdcdb97dbc7714a8701e0595566d1205611883e0856189738b110ead2c8b4b76"
+    },
+    "case": "skip",
+    "exit_code": 3,
+    "stdout": "accepted\n",
+    "stderr": ""
+  },
+  {
+    "source": "patched",
+    "source_sha256": {
+      "source/fitz/subset-cff.c": "5180092ccbe0b6b421d2f1a7cd4dcd53795bc37a6ae2d0eb549cc56fe8dd7474",
+      "source/fitz/draw-unpack.c": "a1f28592ce0415a882401bbd7cb6d18589badb2721057e859bb9da6dd0a35dbe",
+      "source/pdf/pdf-image.c": "b08dbd9bb645bea54c17a71e6d21ae0df82a7cc6a24b908698a6f8999bc9c75f"
+    },
+    "case": "valid",
+    "exit_code": 0,
+    "stdout": "accepted\n",
+    "stderr": ""
+  },
+  {
+    "source": "patched",
+    "source_sha256": {
+      "source/fitz/subset-cff.c": "5180092ccbe0b6b421d2f1a7cd4dcd53795bc37a6ae2d0eb549cc56fe8dd7474",
+      "source/fitz/draw-unpack.c": "a1f28592ce0415a882401bbd7cb6d18589badb2721057e859bb9da6dd0a35dbe",
+      "source/pdf/pdf-image.c": "b08dbd9bb645bea54c17a71e6d21ae0df82a7cc6a24b908698a6f8999bc9c75f"
+    },
+    "case": "height",
+    "exit_code": 0,
+    "stdout": "rejected\n",
+    "stderr": "warning: UNHANDLED EXCEPTION!\nargument error: height cannot be negative\n"
+  },
+  {
+    "source": "patched",
+    "source_sha256": {
+      "source/fitz/subset-cff.c": "5180092ccbe0b6b421d2f1a7cd4dcd53795bc37a6ae2d0eb549cc56fe8dd7474",
+      "source/fitz/draw-unpack.c": "a1f28592ce0415a882401bbd7cb6d18589badb2721057e859bb9da6dd0a35dbe",
+      "source/pdf/pdf-image.c": "b08dbd9bb645bea54c17a71e6d21ae0df82a7cc6a24b908698a6f8999bc9c75f"
+    },
+    "case": "pad",
+    "exit_code": 0,
+    "stdout": "rejected\n",
+    "stderr": "warning: UNHANDLED EXCEPTION!\nargument error: pad can either be 0 or 1\n"
+  },
+  {
+    "source": "patched",
+    "source_sha256": {
+      "source/fitz/subset-cff.c": "5180092ccbe0b6b421d2f1a7cd4dcd53795bc37a6ae2d0eb549cc56fe8dd7474",
+      "source/fitz/draw-unpack.c": "a1f28592ce0415a882401bbd7cb6d18589badb2721057e859bb9da6dd0a35dbe",
+      "source/pdf/pdf-image.c": "b08dbd9bb645bea54c17a71e6d21ae0df82a7cc6a24b908698a6f8999bc9c75f"
+    },
+    "case": "skip",
+    "exit_code": 0,
+    "stdout": "rejected\n",
+    "stderr": "warning: UNHANDLED EXCEPTION!\nargument error: skip cannot be negative\n"
+  }
+]

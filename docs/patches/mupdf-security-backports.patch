@@ -1,0 +1,97 @@
+diff --git a/source/fitz/draw-unpack.c b/source/fitz/draw-unpack.c
+index 82c32aa0e..fcd964b59 100644
+--- a/source/fitz/draw-unpack.c
++++ b/source/fitz/draw-unpack.c
+@@ -447,10 +447,20 @@ fz_unpack_stream(fz_context *ctx, fz_stream *src, int depth, int w, int h, int n
+ 		fz_throw(ctx, FZ_ERROR_ARGUMENT, "n out of range in fz_unpack_stream");
+ 	if (depth < 1 || depth > 32)
+ 		fz_throw(ctx, FZ_ERROR_ARGUMENT, "depth out of range in fz_unpack_stream");
+-
+-	if (fz_ckd_mul_u64(&u64, w, depth*n))
++	if (w < 0)
++		fz_throw(ctx, FZ_ERROR_ARGUMENT, "width cannot be negative");
++	if (h < 0)
++		fz_throw(ctx, FZ_ERROR_ARGUMENT, "height cannot be negative");
++	if (pad < 0 || pad > 1)
++		fz_throw(ctx, FZ_ERROR_ARGUMENT, "pad can either be 0 or 1");
++	if (skip < 0)
++		fz_throw(ctx, FZ_ERROR_ARGUMENT, "skip cannot be negative");
++
++	if (fz_ckd_mul_u64(&u64, depth, n) ||
++		fz_ckd_mul_u64(&u64, u64, w) ||
++		fz_ckd_add_u64(&u64, u64, 7))
+ 		fz_throw(ctx, FZ_ERROR_ARGUMENT, "area out of range in fz_unpack_stream");
+-	u64 = (u64+7)>>3;
++	u64 >>= 3;
+ 	if (u64 > SIZE_MAX)
+ 		fz_throw(ctx, FZ_ERROR_ARGUMENT, "area out of range in fz_unpack_stream");
+ 	src_stride = (size_t)u64;
+@@ -466,7 +476,8 @@ fz_unpack_stream(fz_context *ctx, fz_stream *src, int depth, int w, int h, int n
+ 		case 4: scale = 17; break;
+ 		}
+ 
+-	if (fz_ckd_mul_size(&dst_stride, w, n + !!pad))
++	if (fz_ckd_add_size(&dst_stride, n, !!pad) ||
++		fz_ckd_mul_size(&dst_stride, dst_stride, w))
+ 		fz_throw(ctx, FZ_ERROR_ARGUMENT, "dst_stride out of range in fz_unpack_stream");
+ 
+ 	if (n == 1 && depth == 1 && scale == 1 && !pad && !skip)
+diff --git a/source/fitz/subset-cff.c b/source/fitz/subset-cff.c
+index d2868b8ec..a4fdeb06c 100644
+--- a/source/fitz/subset-cff.c
++++ b/source/fitz/subset-cff.c
+@@ -296,7 +296,7 @@ index_load(fz_context *ctx, index_t *index, const uint8_t *base, uint32_t len, u
+ 	data_offset = 3 + (index->count+1) * os - 1;
+ 	index->data_offset = data_offset + offset;
+ 
+-	if (data_offset > len)
++	if (index->data_offset > len)
+ 		fz_throw(ctx, FZ_ERROR_FORMAT, "Truncated index");
+ 
+ 	data += 3;
+@@ -312,7 +312,7 @@ index_load(fz_context *ctx, index_t *index, const uint8_t *base, uint32_t len, u
+ 			fz_throw(ctx, FZ_ERROR_FORMAT, "Index not monotonic");
+ 		prev = v;
+ 	}
+-	if (v > len)
++	if (index->data_offset + v > len)
+ 		fz_throw(ctx, FZ_ERROR_FORMAT, "Truncated index");
+ 
+ 	data += prev - 1;
+diff --git a/source/pdf/pdf-image.c b/source/pdf/pdf-image.c
+index fb5c804e6..0d36d81b0 100644
+--- a/source/pdf/pdf-image.c
++++ b/source/pdf/pdf-image.c
+@@ -45,6 +45,7 @@ pdf_load_image_imp(fz_context *ctx, pdf_document *doc, pdf_resource_stack *rdb,
+ 	int colorkey[FZ_MAX_COLORS * 2];
+ 	int stride;
+ 	pdf_obj *intent;
++	size_t z;
+ 
+ 	int i;
+ 	fz_compressed_buffer *buffer;
+@@ -82,9 +83,9 @@ pdf_load_image_imp(fz_context *ctx, pdf_document *doc, pdf_resource_stack *rdb,
+ 		fz_throw(ctx, FZ_ERROR_SYNTAX, "image depth is zero (or less)");
+ 	if (bpc > 16)
+ 		fz_throw(ctx, FZ_ERROR_SYNTAX, "image depth is too large: %d", bpc);
+-	if (SIZE_MAX / w < (size_t)(bpc+7)/8)
+-		fz_throw(ctx, FZ_ERROR_SYNTAX, "image is too large");
+-	if (SIZE_MAX / h < w * (size_t)((bpc+7)/8))
++	if (fz_ckd_add_size(&z, bpc, 7) ||
++		fz_ckd_mul_size(&z, z/8, w) ||
++		fz_ckd_mul_size(&z, z, h))
+ 		fz_throw(ctx, FZ_ERROR_SYNTAX, "image is too large");
+ 
+ 	fz_var(mask);
+@@ -114,7 +115,10 @@ pdf_load_image_imp(fz_context *ctx, pdf_document *doc, pdf_resource_stack *rdb,
+ 			n = 1;
+ 		}
+ 
+-		if (SIZE_MAX / n < h * ((size_t)w) * ((bpc+7)/8))
++		if (fz_ckd_add_size(&z, bpc, 7) ||
++			fz_ckd_mul_size(&z, z/8, w) ||
++			fz_ckd_mul_size(&z, z, h) ||
++			fz_ckd_mul_size(&z, z, n))
+ 			fz_throw(ctx, FZ_ERROR_SYNTAX, "image is too large");
+ 
+ 		obj = pdf_dict_geta(ctx, dict, PDF_NAME(Decode), PDF_NAME(D));

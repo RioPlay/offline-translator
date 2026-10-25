@@ -1,0 +1,17 @@
+{
+  "test_command": "cargo test -p translator-pdf --lib --features image-translate (local MuPDF and CLD2 source overrides)",
+  "rust": "1.88.0",
+  "cmake": "3.31.10",
+  "passed": 72,
+  "failed": 0,
+  "compiled_mupdf_source_sha256": {
+    "source/fitz/subset-cff.c": "5180092ccbe0b6b421d2f1a7cd4dcd53795bc37a6ae2d0eb549cc56fe8dd7474",
+    "source/fitz/draw-unpack.c": "a1f28592ce0415a882401bbd7cb6d18589badb2721057e859bb9da6dd0a35dbe",
+    "source/pdf/pdf-image.c": "b08dbd9bb645bea54c17a71e6d21ae0df82a7cc6a24b908698a6f8999bc9c75f"
+  },
+  "tested_lock_sha256": "ba68226efa2d8e71ff6d93a00d9da55943eed7b798967d2a505d6806d1526293",
+  "limitations": [
+    "Host x86_64, not an Android APK or full engine workspace suite.",
+    "Earlier staging copy failed; its 72-test result was discarded. These source hashes identify the corrected build."
+  ]
+}

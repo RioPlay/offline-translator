@@ -1,0 +1,438 @@
+{
+  "checked_at_utc": "2026-10-25T21:20:46.783752+00:00",
+  "inputs": [
+    {
+      "path": "cld2-security-repair/Cargo.lock",
+      "sha256": "7e3af86dfe81eb67b07a26379fb5cc01a02cb18a8a3b42e0d87140bc01beb824"
+    }
+  ],
+  "query_count": 20,
+  "results": [
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "cc"
+        },
+        "version": "1.10.0"
+      },
+      "packages": [
+        {
+          "name": "cc",
+          "version": "1.10.0",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    },
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "equivalent"
+        },
+        "version": "1.0.3"
+      },
+      "packages": [
+        {
+          "name": "equivalent",
+          "version": "1.0.3",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    },
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "find-msvc-tools"
+        },
+        "version": "0.1.15"
+      },
+      "packages": [
+        {
+          "name": "find-msvc-tools",
+          "version": "0.1.15",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    },
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "hashbrown"
+        },
+        "version": "0.17.1"
+      },
+      "packages": [
+        {
+          "name": "hashbrown",
+          "version": "0.17.1",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    },
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "indexmap"
+        },
+        "version": "2.14.2"
+      },
+      "packages": [
+        {
+          "name": "indexmap",
+          "version": "2.14.2",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    },
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "libc"
+        },
+        "version": "0.2.191"
+      },
+      "packages": [
+        {
+          "name": "libc",
+          "version": "0.2.191",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    },
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "proc-macro2"
+        },
+        "version": "1.0.107"
+      },
+      "packages": [
+        {
+          "name": "proc-macro2",
+          "version": "1.0.107",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    },
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "quote"
+        },
+        "version": "1.0.47"
+      },
+      "packages": [
+        {
+          "name": "quote",
+          "version": "1.0.47",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    },
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "serde_core"
+        },
+        "version": "1.0.229"
+      },
+      "packages": [
+        {
+          "name": "serde_core",
+          "version": "1.0.229",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    },
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "serde_derive"
+        },
+        "version": "1.0.229"
+      },
+      "packages": [
+        {
+          "name": "serde_derive",
+          "version": "1.0.229",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    },
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "serde_spanned"
+        },
+        "version": "1.1.2"
+      },
+      "packages": [
+        {
+          "name": "serde_spanned",
+          "version": "1.1.2",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    },
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "shlex"
+        },
+        "version": "2.0.1"
+      },
+      "packages": [
+        {
+          "name": "shlex",
+          "version": "2.0.1",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    },
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "syn"
+        },
+        "version": "3.0.9"
+      },
+      "packages": [
+        {
+          "name": "syn",
+          "version": "3.0.9",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    },
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "toml"
+        },
+        "version": "0.9.12+spec-1.1.0"
+      },
+      "packages": [
+        {
+          "name": "toml",
+          "version": "0.9.12+spec-1.1.0",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    },
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "toml_datetime"
+        },
+        "version": "0.7.5+spec-1.1.0"
+      },
+      "packages": [
+        {
+          "name": "toml_datetime",
+          "version": "0.7.5+spec-1.1.0",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    },
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "toml_parser"
+        },
+        "version": "1.1.5+spec-1.1.0"
+      },
+      "packages": [
+        {
+          "name": "toml_parser",
+          "version": "1.1.5+spec-1.1.0",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    },
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "toml_writer"
+        },
+        "version": "1.1.3+spec-1.1.0"
+      },
+      "packages": [
+        {
+          "name": "toml_writer",
+          "version": "1.1.3+spec-1.1.0",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    },
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "unicode-ident"
+        },
+        "version": "1.0.27"
+      },
+      "packages": [
+        {
+          "name": "unicode-ident",
+          "version": "1.0.27",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    },
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "winnow"
+        },
+        "version": "0.7.15"
+      },
+      "packages": [
+        {
+          "name": "winnow",
+          "version": "0.7.15",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    },
+    {
+      "query": {
+        "package": {
+          "ecosystem": "crates.io",
+          "name": "winnow"
+        },
+        "version": "1.0.4"
+      },
+      "packages": [
+        {
+          "name": "winnow",
+          "version": "1.0.4",
+          "source": "registry+https://github.com/rust-lang/crates.io-index"
+        }
+      ],
+      "inputs": [
+        "cld2-security-repair/Cargo.lock"
+      ],
+      "advisories": [],
+      "next_page_token": null
+    }
+  ],
+  "limitations": [
+    "Lockfile inventory, not a selected feature or packaged APK inventory.",
+    "No fresh Maven resolution or Gradle distribution scan in this run.",
+    "Git no-match is not evidence that nested C/C++ submodules are safe.",
+    "Unknown vulnerabilities and actual runtime reachability are outside OSV matching."
+  ]
+}

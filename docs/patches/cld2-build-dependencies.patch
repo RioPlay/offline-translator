@@ -1,0 +1,62 @@
+diff --git a/cld2-sys/Cargo.toml b/cld2-sys/Cargo.toml
+--- a/cld2-sys/Cargo.toml
++++ b/cld2-sys/Cargo.toml
+@@ -67,6 +67,5 @@
+ libc = "0.2.2"
+ 
+ [build-dependencies]
+-toml = "0.1.23"
+-regex = "0.1.41"
++toml = { version = "0.9", default-features = false, features = ["parse", "serde", "std"] }
+ cc = "1.2.40"
+diff --git a/cld2-sys/build.rs b/cld2-sys/build.rs
+--- a/cld2-sys/build.rs
++++ b/cld2-sys/build.rs
+@@ -1,8 +1,6 @@
+ extern crate cc;
+-extern crate regex;
+ extern crate toml;
+ 
+-use regex::Regex;
+ use std::borrow::ToOwned;
+ use std::collections::HashSet;
+ use std::env;
+@@ -18,9 +16,9 @@
+         .unwrap()
+         .read_to_string(&mut text)
+         .unwrap();
+-    let toml = toml::Parser::new(&text).parse().unwrap();
++    let toml = text.parse::<toml::Table>().unwrap();
+     let package = toml.get("package").unwrap().as_table().unwrap();
+-    let exclude = package.get("exclude").unwrap().as_slice().unwrap();
++    let exclude = package.get("exclude").unwrap().as_array().unwrap();
+     exclude
+         .iter()
+         .map(|e| {
+@@ -37,13 +35,12 @@
+ 
+ // Get all the *.cc files in path that aren't excluded.
+ fn get_cc_files(dir: &Path, excluded: &HashSet<String>) -> Vec<PathBuf> {
+-    let cc_file = Regex::new(r"\.cc\z").unwrap();
+     let mut files: Vec<PathBuf> = read_dir(dir)
+         .unwrap()
+         .map(|entry| entry.unwrap().path())
+         .filter(|p| {
+             let filename = p.file_name().unwrap().to_str().unwrap();
+-            cc_file.is_match(filename) && !excluded.contains(filename)
++            filename.ends_with(".cc") && !excluded.contains(filename)
+         })
+         .map(|p| p.to_owned())
+         .collect();
+diff --git a/cld2-sys/src/lib.rs b/cld2-sys/src/lib.rs
+--- a/cld2-sys/src/lib.rs
++++ b/cld2-sys/src/lib.rs
+@@ -60,7 +60,7 @@
+ // This particular API has extra wrapper code, so we want to test it.
+ #[test]
+ fn test_result_chunks() {
+-    use libc::{c_double, c_int};
++    use libc::{c_char, c_double, c_int};
+     use std::iter::repeat;
+     use std::slice::from_raw_parts;
+ 
