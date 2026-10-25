@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "review_date": "2026-10-25",
+  "engine_commit": "904c8661f1bb9ffa4a5ef93623aa20707af4f50e",
+  "tracked_files_match_published_commit": true,
+  "dependency_path_overrides": false,
+  "command": "cargo test --locked -p translator-core -p translator-translate -p translator-doc -p translator-render --lib --features translator-doc/epub,translator-doc/odt,translator-translate/html",
+  "exit_code": 0,
+  "tests": {
+    "translator_core": 144,
+    "translator_doc": 20,
+    "translator_render": 25,
+    "translator_translate": 55
+  },
+  "total_passed": 244,
+  "failed": 0,
+  "ignored": 0,
+  "engine_lock_sha256": "66efa76adfaebcbc353733e285203914d87429cce2832304564e5b5297cfb062",
+  "raw_log_sha256": "a706b1ec5fdba213be4dbff53a46bd17d25d3328bf48fa801a86e8c2533ae956",
+  "toolchain": {
+    "rust": "1.88.0",
+    "cmake": "3.31.10",
+    "platform": "Linux x86_64 host"
+  },
+  "scope": "Library tests; not Android runtime, real-model translation, retained-data upgrade, or all-device proof. Additional to the previously recorded 72 locked host PDF tests."
+}

@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "review_date": "2026-10-25",
+  "source_commit": "d77b0062a440e7abc1036ef8b5e7ac39f76afa79",
+  "run_id": 40240420210,
+  "run_url": "https://github.com/RioPlay/offline-translator/actions/runs/40240420210",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 121310830323,
+      "abi": "armeabi-v7a",
+      "conclusion": "success"
+    },
+    {
+      "id": 121310830552,
+      "abi": "arm64-v8a",
+      "conclusion": "success"
+    }
+  ],
+  "verified_steps": [
+    "Python guard tests",
+    "reviewed native dependency pins",
+    "JVM unit tests",
+    "ktlint",
+    "release native compilation and minified packaging",
+    "packaged ABI and alignment checks",
+    "patched MuPDF build-source hashes"
+  ],
+  "artifacts": [
+    {
+      "name": "apk-armv7",
+      "id": 12617526276,
+      "url": "https://github.com/RioPlay/offline-translator/actions/runs/40240420210/artifacts/12617526276",
+      "archive_sha256": "82b3764ca4c446dcc52cacafacb5d55a513785ccae268c1ab6463b1572765c4b",
+      "size_in_bytes": 20714089,
+      "expires_at": "2026-11-24T22:57:17Z"
+    },
+    {
+      "name": "apk-arm64",
+      "id": 12616244995,
+      "url": "https://github.com/RioPlay/offline-translator/actions/runs/40240420210/artifacts/12616244995",
+      "archive_sha256": "3784e930198a6c4af17a928d6490dbde07abad63de6070a636a0499ac6102a3e",
+      "size_in_bytes": 22627107,
+      "expires_at": "2026-11-24T22:59:13Z"
+    }
+  ],
+  "artifact_limit": "Unsigned build outputs. Archive digests are not APK digests. Per-APK SHA-256 and source checks are in the uploaded native-*.json report. Job success and logs were checked through GitHub; artifact bytes were not independently downloaded in this pass.",
+  "prior_failure": {
+    "run_id": 40237898969,
+    "abi": "arm64-v8a",
+    "task": ":app:packageRelease",
+    "cause": "Undetermined; original log omitted the underlying exception. Subsequent clean build with only stack-trace/disk diagnostics added passed; do not claim a diagnosed application fix."
+  },
+  "runtime_status": "Device launch, real-model PDF workflow and retained-data update not verified for this candidate."
+}
