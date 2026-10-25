@@ -10,7 +10,7 @@ path = "src/lib.rs"
 
 [dependencies]
 jni = { version = "0.21", default-features = false }
-translator-convert = { git = "https://github.com/DavidVentura/translator-rs.git" }
+translator-convert = { git = "https://github.com/RioPlay/translator-rs.git", rev = "904c8661f1bb9ffa4a5ef93623aa20707af4f50e" }
 # translator-convert = { path = "/home/david/git/translator-rs/crates/translator-convert" }
 
 # [patch."https://github.com/DavidVentura/mnn-sys"]

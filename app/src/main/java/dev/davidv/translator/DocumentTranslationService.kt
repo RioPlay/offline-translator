@@ -222,7 +222,7 @@ class DocumentTranslationService : Service() {
         }
       Log.i(
         "DocumentTranslationService",
-        "${if (cancelRequested.get()) "Cancelled" else "Translated"} ${request.fileName} from ${from.code} to ${to.code} in ${elapsedMs}ms",
+        "Document operation finished in ${elapsedMs}ms; cancelled=${cancelRequested.get()}",
       )
 
       if (cancelRequested.get()) return
@@ -254,10 +254,10 @@ class DocumentTranslationService : Service() {
         }
     } catch (e: Exception) {
       if (cancelRequested.get()) {
-        Log.i("DocumentTranslationService", "Cancelled ${request.fileName}")
+        Log.i("DocumentTranslationService", "Document translation cancelled")
         return
       }
-      Log.e("DocumentTranslationService", "Document translation failed", e)
+      Log.e("DocumentTranslationService", "Document translation failed", redactedException(e))
       updateState(request.taskId) {
         it.copy(errorMessage = e.message ?: getString(R.string.doc_translation_failed))
       }

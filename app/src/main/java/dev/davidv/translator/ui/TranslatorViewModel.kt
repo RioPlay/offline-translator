@@ -70,7 +70,7 @@ class TranslatorViewModel(
       initialText = initialText,
     )
 
-  val dictionary = DictionarySession(languageStateManager.catalog, eventSink)
+  val dictionary = DictionarySession(languageStateManager.catalog, eventSink, viewModelScope)
 
   val documents =
     DocumentSession(
@@ -111,7 +111,7 @@ class TranslatorViewModel(
         when (event) {
           is FileEvent.Error -> {
             eventSink.send(UiEvent.ShowToast(event.message))
-            Log.w("TranslatorViewModel", "Error event: ${event.message}")
+            Log.w("TranslatorViewModel", "File operation failed")
           }
         }
       }
@@ -120,7 +120,7 @@ class TranslatorViewModel(
 
   fun handleMessage(message: TranslatorMessage) {
     if (message !is TranslatorMessage.TextInput) {
-      Log.d("HandleMessage", "Handle: $message")
+      Log.d("HandleMessage", "Handling ${message.javaClass.simpleName}")
     }
 
     when (message) {

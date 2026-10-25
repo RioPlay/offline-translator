@@ -87,6 +87,7 @@ import dev.davidv.translator.ReadonlyPopupSize
 import dev.davidv.translator.SupportKind
 import dev.davidv.translator.encodeVoiceOverride
 import dev.davidv.translator.parseVoiceOverride
+import dev.davidv.translator.redactedException
 import dev.davidv.translator.ui.DocumentTranslationUiState
 import dev.davidv.translator.ui.MainInput
 import dev.davidv.translator.ui.SpeechTarget
@@ -209,7 +210,7 @@ suspend fun saveImage(
       stream.close()
       uri = FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", file)
     } catch (e: IOException) {
-      Log.e("Share", "IOException while trying to write file for sharing: " + e.message)
+      Log.e("Share", "Failed to write shared file", redactedException(e))
     }
     uri
   }
@@ -373,7 +374,7 @@ fun TranslatorApp(
             saveDocumentPathToUri(pending.path, uri, context)
             Toast.makeText(context, context.getString(R.string.translator_document_saved), Toast.LENGTH_SHORT).show()
           } catch (e: Exception) {
-            Log.e("DocumentSave", "Failed to save translated document", e)
+            Log.e("DocumentSave", "Failed to save translated document", redactedException(e))
             Toast.makeText(context, context.getString(R.string.translator_document_save_failed), Toast.LENGTH_SHORT).show()
           }
         }

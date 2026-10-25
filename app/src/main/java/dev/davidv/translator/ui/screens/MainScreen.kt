@@ -29,9 +29,12 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.ime
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -44,6 +47,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -101,6 +105,7 @@ import dev.davidv.translator.ui.components.InputSection
 import dev.davidv.translator.ui.components.JapaneseOcrModeToggle
 import dev.davidv.translator.ui.components.LanguageEvent
 import dev.davidv.translator.ui.components.LanguageSelectionRow
+import dev.davidv.translator.ui.components.LanguageSwapButton
 import dev.davidv.translator.ui.components.OutputTapMode
 import dev.davidv.translator.ui.components.ShareImage
 import dev.davidv.translator.ui.components.SplitHandle
@@ -210,6 +215,13 @@ fun MainScreen(
   val mainScreenDescription = stringResource(R.string.a11y_main_screen)
   val layoutDensity = AppLayout.density
   val dimens = layoutDensity.dimens
+  val imeInsets = WindowInsets.ime
+  val density = LocalDensity.current
+  val keyboardVisible by remember(imeInsets, density) {
+    derivedStateOf { imeInsets.getBottom(density) > 0 }
+  }
+  val isNormalTextScreen = launchMode == LaunchMode.Normal && displayImage == null
+  val showKeyboardSwap = keyboardVisible && isNormalTextScreen
 
   // Handle back button when dictionary is open
   BackHandler(enabled = dictionary is DictionaryState.Open) {
@@ -217,8 +229,26 @@ fun MainScreen(
   }
 
   Scaffold(
-    modifier = Modifier.semantics { contentDescription = mainScreenDescription },
+    modifier =
+      Modifier
+        .then(if (isNormalTextScreen) Modifier.imePadding() else Modifier)
+        .semantics { contentDescription = mainScreenDescription },
     containerColor = MaterialTheme.colorScheme.surfaceContainer,
+    bottomBar = {
+      if (showKeyboardSwap) {
+        Row(
+          modifier = Modifier.fillMaxWidth(),
+          horizontalArrangement = Arrangement.Center,
+          verticalAlignment = Alignment.CenterVertically,
+        ) {
+          LanguageSwapButton(
+            onClick = { onMessage(TranslatorMessage.SwapLanguages) },
+            enabled = canSwapLanguages && !(isAutoSource && detectedInstalled == null),
+            modifier = Modifier.size(48.dp).testTag("keyboard-language-swap"),
+          )
+        }
+      }
+    },
     floatingActionButton = {
       when (launchMode) {
         LaunchMode.Normal -> {
@@ -252,7 +282,10 @@ fun MainScreen(
         Modifier
           .fillMaxSize()
           .navigationBarsPadding()
-          .padding(top = paddingValues.calculateTopPadding() + extraTopPadding, bottom = dimens.screenBottomPadding),
+          .padding(
+            top = paddingValues.calculateTopPadding() + extraTopPadding,
+            bottom = dimens.screenBottomPadding + if (showKeyboardSwap) paddingValues.calculateBottomPadding() else 0.dp,
+          ),
     ) {
       Column(
         modifier =
@@ -335,7 +368,7 @@ fun MainScreen(
                         when (event) {
                           is LanguageEvent.Download -> onDownload(DownloadRequest.Core(event.language))
                           is LanguageEvent.Cancel -> onCancelDownload(DownloadId.Core(event.language))
-                          else -> Log.e("MainScreen", "Got unexpected event: $event")
+                          else -> Log.e("MainScreen", "Unexpected language event")
                         }
                       },
                     )

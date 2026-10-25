@@ -348,4 +348,34 @@
     <string name="http_server_notif_text">Listening on %1$s:%2$d</string>
     <string name="http_server_notif_error">Failed to start on port %1$d</string>
     <string name="http_server_notif_disable">Disable</string>
+
+    <!-- Processing routes: new keys deliberately fall back to English until translated. -->
+    <string name="settings_backup_title">Backups and device transfers</string>
+    <string name="settings_backup_body">This app excludes its data from Android cloud backup. Android 12 or later can still transfer app data when you move to another device; older Android backup and restore are disabled. Ordinary app updates keep your data. Exported files and shared storage follow their own backup settings. Existing remote backups are not deleted by this change.</string>
+    <string name="settings_network_title">Processing and internet use</string>
+    <string name="settings_network_local_title">Translation: on this device</string>
+    <string name="settings_network_local_body">Text, images and documents use downloaded models on this device. Dictionary lookup and downloaded voices are local too.</string>
+    <string name="settings_network_internet_title">Features that use the internet</string>
+    <string name="settings_network_internet_body">Model and catalog downloads contact download servers. Websites contact their own servers; page translation stays local. This build has no cloud translation engine. These settings do not block internet access.</string>
+    <string name="settings_network_speech_title">Microphone input: another app</string>
+    <string name="settings_network_speech_body">Microphone input uses another app, which may send audio online. Offline recognition is not enforced. Keyboard dictation follows your keyboard’s settings.</string>
+    <string name="settings_network_api_enable">Allow requests to this phone’s HTTP translation API</string>
+    <string name="settings_network_api_description">This phone translates requests using local models. LibreTranslate compatibility means a matching API format, not use of a cloud translation service.</string>
+    <string name="settings_network_api_enabled">HTTP API: enabled in settings</string>
+    <string name="settings_network_api_disabled">HTTP API: disabled in settings</string>
+    <string name="settings_network_api_notification">Check the Translation API notification to confirm that the server started.</string>
+    <string name="settings_network_api_title">HTTP API access</string>
+    <string name="settings_network_api_access">Who can connect to this phone?</string>
+    <string name="settings_network_api_device">This device only</string>
+    <string name="settings_network_api_lan">Devices that can reach this phone</string>
+    <string name="settings_network_api_device_body">Listens on 127.0.0.1 (localhost). Software on this device can connect; other devices cannot connect directly through the network.</string>
+    <string name="settings_network_api_lan_body">Listens on all network interfaces (0.0.0.0). Devices that can reach this phone may request translations. Use this option only on networks you trust. Translation still runs on this phone.</string>
+    <string name="settings_network_catalog_title">Language catalog download address</string>
+    <string name="settings_network_catalog_body">This address supplies the catalog of available models and download locations. It is not a server that translates your text.</string>
+    <string name="settings_network_browser_body">Web pages and their resources are fetched over the internet. Translation uses the models on this device. Ad-blocking support files also require a download.</string>
+    <string name="settings_network_browser_registration_body">Offer this app when opening web links. Opening a link loads the website over the internet; this switch does not change the translation engine or block network access.</string>
+    <string name="settings_network_browsing_cleanup_body">Clear browser data when closing the web translator. This does not prevent websites from receiving requests while you browse, or remove data they already received.</string>
+    <string name="settings_network_browser_registration_title">Offer this app for web links</string>
+    <string name="settings_network_packs_body">Downloads contact model servers. Installed models translate on this device.</string>
+    <string name="settings_network_tts_body">Downloaded voices speak on this device. Getting a new voice requires a download. The microphone uses a separate speech recognition provider.</string>
 </resources>

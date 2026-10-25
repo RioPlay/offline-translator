@@ -278,7 +278,7 @@ class ScreenCaptureGlWorker(
         }
       }
       publishSourceSurface(Surface(st))
-      Log.i(TAG, "screen-translate GL ready, canonical ${cw}x$ch, pipelinePtr=$pipelinePtr")
+      Log.i(TAG, "Screen translation GL ready")
 
       // Auto change detection (SCREEN_CHANGE_DETECTION.md): per captured frame the
       // native monitor computes a coarse-gray diff (pill regions masked out) and
@@ -408,12 +408,10 @@ class ScreenCaptureGlWorker(
         val version = state and 0xFFFFFFFFL
         val busy = (state ushr 32) != 0L
         if (version != lastVersion) {
-          val tPresent = System.nanoTime()
           // An emptied overlay (last pill dropped) draws nothing — clear the window
           // so the stale pill leaves the screen.
           val drawn = presentOverlay(pipeline)
           if (!drawn) clearOutput()
-          Log.i(TAG, "present v=$version drawn=$drawn (${(System.nanoTime() - tPresent) / 1_000_000}ms)")
           lastVersion = version
         }
         if (acquiring && !busy) acquiring = false

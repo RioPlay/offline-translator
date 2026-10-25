@@ -30,11 +30,8 @@ import uniffi.translator_core.InstallMarker
 import uniffi.translator_core.TaskInstall
 import java.io.File
 import java.io.IOException
-import java.io.InputStream
-import java.net.URL
 import java.util.UUID
 import java.util.concurrent.ConcurrentLinkedQueue
-import java.util.zip.GZIPInputStream
 import java.util.zip.ZipFile
 import java.util.zip.ZipInputStream
 import kotlin.math.max
@@ -80,16 +77,22 @@ class StagedInstall(
 
   // Markers go last: an archive only reads as installed once every extracted file is in place.
   fun moveIntoPlace() {
-    replacedPaths.forEach { filePathManager.resolveInstallPath(it).deleteRecursively() }
-    directories.forEach { ensureDirectory(filePathManager.resolveInstallPath(it)) }
-    files.forEach { path ->
+    for (path in replacedPaths) {
+      filePathManager.resolveInstallPath(path).deleteRecursively()
+    }
+    for (path in directories) {
+      ensureDirectory(filePathManager.resolveInstallPath(path))
+    }
+    for (path in files) {
       val target = filePathManager.resolveInstallPath(path)
       target.parentFile?.let(::ensureDirectory)
       if (!stagedFile(path).renameTo(target)) {
         throw IOException("Failed to move staged $path to $target")
       }
     }
-    markers.forEach { filePathManager.writeInstallMarker(it.path, it.version) }
+    for (marker in markers) {
+      filePathManager.writeInstallMarker(marker.path, marker.version)
+    }
   }
 
   fun discard() {
@@ -156,7 +159,7 @@ class PackInstaller(
   ) {
     val expected = task.sizeBytes.toLong()
     if (catalogRepository.catalog.value.downloadTaskInstalled(task)) {
-      Log.i(TAG, "Reusing installed ${task.packId}:${task.installPath}")
+      Log.i(TAG, "Reusing installed download task")
       onProgress(expected)
       return
     }
@@ -176,7 +179,7 @@ class PackInstaller(
       staging.keepFile(task.installPath)
     }
     onProgress(max(0L, expected - reported))
-    Log.i(TAG, "Staged ${task.packId}:${task.installPath} from ${task.url}")
+    Log.i(TAG, "Download task staged")
   }
 
   suspend fun downloadFile(
@@ -196,33 +199,16 @@ class PackInstaller(
   ): Long =
     withContext(Dispatchers.IO) {
       target.parentFile?.let(::ensureDirectory)
-      val tempFile = File(target.parentFile, "${target.name}.tmp")
-      try {
-        val connection = URL(url).openConnection()
-        val progress = ProgressReporter(expectedBytes, onProgress)
-        connection.getInputStream().use { raw ->
-          val counted = CountingInputStream(raw, progress::advance)
-          val decoded = if (encoding == Encoding.GZIP) GZIPInputStream(counted) else counted
-          decoded.use { input ->
-            tempFile.outputStream().use { output ->
-              val buffer = ByteArray(COPY_BUFFER_BYTES)
-              while (true) {
-                ensureActive()
-                val read = input.read(buffer)
-                if (read == -1) break
-                output.write(buffer, 0, read)
-              }
-            }
-          }
-        }
-        progress.flush()
-        if (!tempFile.renameTo(target)) {
-          throw IOException("Failed to move $tempFile to $target")
-        }
-        progress.reported
-      } finally {
-        tempFile.delete()
-      }
+      val progress = ProgressReporter(expectedBytes, onProgress)
+      downloadPackFile(
+        url = url,
+        target = target,
+        gunzip = encoding == Encoding.GZIP,
+        checkActive = { ensureActive() },
+        onRead = progress::advance,
+      )
+      progress.flush()
+      progress.reported
     }
 
   private suspend fun extractZip(
@@ -276,27 +262,4 @@ private class ProgressReporter(
     onProgress(target - reported)
     reported = target
   }
-}
-
-private class CountingInputStream(
-  private val inputStream: InputStream,
-  private val onRead: (Int) -> Unit,
-) : InputStream() {
-  override fun read(): Int {
-    val byte = inputStream.read()
-    if (byte != -1) onRead(1)
-    return byte
-  }
-
-  override fun read(
-    b: ByteArray,
-    off: Int,
-    len: Int,
-  ): Int {
-    val bytesRead = inputStream.read(b, off, len)
-    if (bytesRead > 0) onRead(bytesRead)
-    return bytesRead
-  }
-
-  override fun close() = inputStream.close()
 }

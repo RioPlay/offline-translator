@@ -30,6 +30,7 @@ import dev.davidv.translator.R
 import dev.davidv.translator.TxtLayoutChoice
 import dev.davidv.translator.copyDocumentUriToCache
 import dev.davidv.translator.displayNameForUri
+import dev.davidv.translator.redactedException
 import dev.davidv.translator.sizeBytesForUri
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -94,7 +95,7 @@ class DocumentSession(
     sizeBytes: Long,
     deleteAfterLoad: Boolean,
   ) {
-    Log.d("SetDocumentPath", "Selected document for translation: $displayName ($path)")
+    Log.d("SetDocumentPath", "Document selected for translation")
     _pendingDocument.value =
       PendingDocument(
         path = path,
@@ -119,7 +120,7 @@ class DocumentSession(
           deleteAfterLoad = true,
         )
       } catch (e: Exception) {
-        Log.e("SharedDocument", "Failed to import shared document: $uri", e)
+        Log.e("SharedDocument", "Shared document import failed", redactedException(e))
       }
     }
   }

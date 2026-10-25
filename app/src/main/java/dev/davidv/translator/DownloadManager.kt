@@ -79,7 +79,7 @@ class DownloadManager(
       runs.remove(id)?.cancel()
       published.value -= id
     }
-    Log.i(TAG, "Cancelled $id")
+    Log.i(TAG, "Download cancelled")
   }
 
   private suspend fun execute(request: DownloadRequest) {
@@ -91,11 +91,11 @@ class DownloadManager(
         DownloadRequest.Catalog -> fetchCatalog(run)
         else -> install(request, run)
       }
-      Log.i(TAG, "Completed ${request.id}")
+      Log.i(TAG, "Download completed")
     } catch (e: CancellationException) {
       throw e
     } catch (e: Exception) {
-      Log.e(TAG, "Failed ${request.id}", e)
+      Log.e(TAG, "Download failed", redactedException(e))
       fail(request.id, run, failureMessage(request, e))
     } finally {
       synchronized(lock) {
@@ -143,7 +143,7 @@ class DownloadManager(
     publish(DownloadId.Catalog, run, DownloadStatus.Running(0, 0))
     val url = settingsManager.settings.value.catalogIndexUrl
     installer.downloadFile(url, filePathManager.getCatalogFile())
-    Log.i(TAG, "Downloaded catalog from $url")
+    Log.i(TAG, "Catalog downloaded")
     catalogRepository.reloadIndex()
   }
 

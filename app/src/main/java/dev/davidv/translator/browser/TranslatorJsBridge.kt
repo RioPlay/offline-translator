@@ -27,6 +27,7 @@ import dev.davidv.translator.Language
 import dev.davidv.translator.OverlaySource
 import dev.davidv.translator.TranslationCoordinator
 import dev.davidv.translator.TranslationService
+import dev.davidv.translator.redactedException
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -107,7 +108,7 @@ class TranslatorJsBridge(
           val from = pageSource()
           if (from == null) fragments else translationService.translateHtmlFragments(from, targetLanguage, fragments)
         } catch (t: Throwable) {
-          Log.w("TranslatorJsBridge", "translateHtmlFragments failed", t)
+          Log.w("TranslatorJsBridge", "translateHtmlFragments failed", redactedException(t))
           fragments
         }
       resolveOnJs(requestId, translated, nonce)
@@ -138,7 +139,7 @@ class TranslatorJsBridge(
             mapMixedTextsToInputOrder(texts, result)
           }
         } catch (t: Throwable) {
-          Log.w("TranslatorJsBridge", "translateTexts failed", t)
+          Log.w("TranslatorJsBridge", "translateTexts failed", redactedException(t))
           texts
         }
       resolveOnJs(requestId, translated, nonce)
@@ -153,7 +154,6 @@ class TranslatorJsBridge(
     nonce: String,
   ) {
     if (token != bridgeToken) return
-    Log.d("TranslatorJsBridge", "translateImage requestId=$requestId payload=${dataUri.length}B")
     scope.launch {
       val output =
         if (dataUri.isEmpty()) {
@@ -162,11 +162,10 @@ class TranslatorJsBridge(
           try {
             translateImageDataUri(dataUri)
           } catch (t: Throwable) {
-            Log.w("TranslatorJsBridge", "translateImage failed", t)
+            Log.w("TranslatorJsBridge", "translateImage failed", redactedException(t))
             ""
           }
         }
-      Log.d("TranslatorJsBridge", "translateImage requestId=$requestId result=${output.length}B")
       resolveRawOnJs(requestId, output, nonce)
     }
   }

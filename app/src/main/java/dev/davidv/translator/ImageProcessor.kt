@@ -45,7 +45,7 @@ class ImageProcessor(
         else -> false
       }
     } catch (e: Exception) {
-      Log.w("ImageProcessor", "Failed to delete temporary image URI: $uri", e)
+      Log.w("ImageProcessor", "Temporary image cleanup failed", redactedException(e))
       false
     }
 
@@ -83,7 +83,7 @@ class ImageProcessor(
         Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
       } ?: bitmap
     } catch (e: Exception) {
-      Log.e("ImageProcessor", "Error correcting image orientation", e)
+      Log.e("ImageProcessor", "Error correcting image orientation", redactedException(e))
       bitmap
     }
   }

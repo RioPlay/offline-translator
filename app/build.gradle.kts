@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.android)
@@ -9,12 +11,13 @@ plugins {
 
 val abiCodes = mapOf("armeabi-v7a" to 1, "arm64-v8a" to 2, "x86" to 3, "x86_64" to 4)
 val defaultDevAbis = listOf("arm64-v8a", "x86_64")
+val deviceTestKeystore = providers.environmentVariable("TRANSLATOR_TEST_KEYSTORE")
 
 android {
   namespace = "dev.davidv.translator"
   compileSdk = 34
   ndkVersion = "28.0.13004108"
-  buildToolsVersion = "34.0.0"
+  buildToolsVersion = "35.0.0"
 
   sourceSets {
     getByName("main") {
@@ -51,6 +54,15 @@ android {
     }
   }
 
+  signingConfigs {
+    create("deviceTest") {
+      storeFile = deviceTestKeystore.orNull?.let { file(it) }
+      storePassword = providers.environmentVariable("TRANSLATOR_TEST_STORE_PASSWORD").orNull
+      keyAlias = providers.environmentVariable("TRANSLATOR_TEST_KEY_ALIAS").orNull
+      keyPassword = providers.environmentVariable("TRANSLATOR_TEST_KEY_PASSWORD").orNull
+    }
+  }
+
   buildTypes {
     release {
       isMinifyEnabled = true
@@ -71,13 +83,18 @@ android {
         "proguard-rules.pro",
       )
     }
+    create("deviceTest") {
+      initWith(getByName("release"))
+      applicationIdSuffix = ".devicetest"
+      versionNameSuffix = "-test6"
+      signingConfig = signingConfigs.getByName("deviceTest")
+      matchingFallbacks += listOf("release")
+    }
   }
   compileOptions {
+    isCoreLibraryDesugaringEnabled = true
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
-  }
-  kotlinOptions {
-    jvmTarget = "11"
   }
   buildFeatures {
     aidl = true
@@ -108,10 +125,36 @@ android {
       val output = this as com.android.build.gradle.internal.api.ApkVariantOutputImpl
       val abi = output.getFilter(com.android.build.OutputFile.ABI)
       if (abi != null) {
-        output.versionCodeOverride = defaultConfig.versionCode!! * 10 + (abiCodes[abi] ?: 0)
+        val baseVersionCode = defaultConfig.versionCode!! + if (buildType.name == "deviceTest") 5 else 0
+        output.versionCodeOverride = baseVersionCode * 10 + (abiCodes[abi] ?: 0)
       }
     }
   }
+}
+
+kotlin {
+  compilerOptions {
+    jvmTarget.set(JvmTarget.JVM_11)
+  }
+}
+
+val validateDeviceTestSigner =
+  tasks.register("validateDeviceTestSigner") {
+    group = "verification"
+    description = "Require an existing, explicitly supplied device-test signer"
+    doLast {
+      val signing = android.signingConfigs.getByName("deviceTest")
+      check(signing.storeFile?.isFile == true) {
+        "Set TRANSLATOR_TEST_KEYSTORE to your existing test keystore; a new key cannot update an installed test app"
+      }
+      check(!signing.storePassword.isNullOrEmpty() && !signing.keyAlias.isNullOrEmpty() && !signing.keyPassword.isNullOrEmpty()) {
+        "Set TRANSLATOR_TEST_STORE_PASSWORD, TRANSLATOR_TEST_KEY_ALIAS and TRANSLATOR_TEST_KEY_PASSWORD"
+      }
+    }
+  }
+
+tasks.matching { it.name == "preDeviceTestBuild" }.configureEach {
+  dependsOn(validateDeviceTestSigner)
 }
 
 val bindingsRootDir = file("src/main/bindings")
@@ -180,7 +223,7 @@ val abiToCargoTarget =
     "x86" to "x86",
   )
 
-val cargoProfileArgs = listOf("--release")
+val cargoProfileArgs = listOf("--release", "--locked")
 
 val abiToBindingsTask =
   abiToCargoTarget.mapValues { (abi, cargoTarget) ->
@@ -283,6 +326,7 @@ val abiToConverterTask =
       group = "build"
       description = "Build the ONNX->MNN converter library for $abi"
       inputs.file(converterRootDir.resolve("Cargo.toml"))
+      inputs.file(converterRootDir.resolve("Cargo.lock"))
       inputs.file(converterRootDir.resolve(".cargo/config.toml"))
       inputs.dir(converterRootDir.resolve("src"))
 
@@ -372,9 +416,10 @@ val buildUniffiBindgen =
     description = "Build the host uniffi-bindgen binary"
     workingDir = bindingsBindgenRootDir
     inputs.file(bindingsBindgenRootDir.resolve("Cargo.toml"))
+    inputs.file(bindingsBindgenRootDir.resolve("Cargo.lock"))
     inputs.dir(bindingsBindgenRootDir.resolve("src"))
     outputs.file(bindgenHostBinary)
-    commandLine("cargo", "build", "--release")
+    commandLine("cargo", "build", "--release", "--locked")
   }
 
 val generatedBindingsDir = layout.buildDirectory.dir("generated/source/uniffi/kotlin")
@@ -411,13 +456,53 @@ val generateUniffiBindings =
     )
   }
 
+val validateNativeBindings =
+  tasks.register("validateNativeBindings") {
+    group = "verification"
+    description = "Check that generated UniFFI loaders reference packaged native libraries"
+    dependsOn(generateUniffiBindings)
+    dependsOn(bindingsTasks)
+    inputs.dir(generatedBindingsDir)
+    doLast {
+      val generatedFiles = generatedBindingsDir.get().asFile.walkTopDown().filter { it.extension == "kt" }.toList()
+      check(generatedFiles.isNotEmpty()) { "No generated UniFFI bindings found" }
+      val loader = Regex("""(?s)private fun findLibraryName\([^)]*\): String \{(.*?)\n}""")
+      val fallback = Regex("""(?m)^\s*return "([^"]+)"\s*$""")
+      var checked = 0
+      generatedFiles.forEach { source ->
+        loader.findAll(source.readText()).forEach { function ->
+          val names = fallback.findAll(function.groupValues[1]).map { it.groupValues[1] }.toList()
+          check(names.size == 1) { "Cannot identify native loader fallback in ${source.name}" }
+          val name = names.single()
+          selectedAbis.forEach { abi ->
+            check(File(jniLibAbiDir(abi), "lib$name.so").isFile) {
+              "${source.name} loads '$name', but lib$name.so is missing for $abi"
+            }
+          }
+          checked++
+        }
+      }
+      check(checked == generatedFiles.size) { "Not every generated UniFFI file has a checked native loader" }
+      logger.lifecycle("Validated $checked UniFFI loaders for ${selectedAbis.joinToString()}")
+    }
+  }
+
 tasks.named("preBuild") {
   dependsOn(bindingsTasks)
   dependsOn(converterTasks)
   dependsOn(generateUniffiBindings)
+  dependsOn(validateNativeBindings)
+}
+
+// Generated sources are excluded from style checks. If a check is requested in
+// the same invocation as compilation, still declare the shared directory order.
+tasks.matching { it.name.startsWith("runKtlint") }.configureEach {
+  mustRunAfter(generateUniffiBindings)
 }
 
 dependencies {
+
+  coreLibraryDesugaring(libs.desugar.jdk.libs)
 
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.appcompat)

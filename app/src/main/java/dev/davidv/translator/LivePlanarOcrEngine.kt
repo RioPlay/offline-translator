@@ -75,7 +75,7 @@ class LivePlanarOcrEngine(
    *  `0` if the tracker pointer couldn't be fetched. */
   val pipelinePtr: Long =
     runCatching { tracker.rawAddressForJni().toLong() }
-      .onFailure { Log.w(TAG_PLANAR, "tracker.rawAddressForJni failed", it) }
+      .onFailure { Log.w(TAG_PLANAR, "tracker.rawAddressForJni failed", redactedException(it)) }
       .getOrDefault(0L)
 
   private val _trackerStatus =
@@ -106,7 +106,7 @@ class LivePlanarOcrEngine(
     isAutoSource: Boolean,
   ) {
     runCatching { tracker.setLanguages(from.code, to.code, isAutoSource) }
-      .onFailure { Log.w(TAG_PLANAR, "setLanguages failed", it) }
+      .onFailure { Log.w(TAG_PLANAR, "setLanguages failed", redactedException(it)) }
   }
 
   /** Tap-to-focus = fresh-start intent. Resetting the tracker bumps the
@@ -114,7 +114,7 @@ class LivePlanarOcrEngine(
    *  gen-check. */
   fun resetTracker() {
     runCatching { tracker.reset() }
-      .onFailure { Log.w(TAG_PLANAR, "tracker.reset failed", it) }
+      .onFailure { Log.w(TAG_PLANAR, "tracker.reset failed", redactedException(it)) }
   }
 
   /** Receives the packed per-frame result from the GL thread. Updates
@@ -176,7 +176,7 @@ class LivePlanarOcrEngine(
     val mode =
       if (overlayEnabled && !afScanning) PipelineTargetMode.ACTIVE else PipelineTargetMode.SUPPRESSED
     runCatching { tracker.setTargetMode(mode) }
-      .onFailure { Log.w(TAG_PLANAR, "setTargetMode failed", it) }
+      .onFailure { Log.w(TAG_PLANAR, "setTargetMode failed", redactedException(it)) }
   }
 
   fun clear() {

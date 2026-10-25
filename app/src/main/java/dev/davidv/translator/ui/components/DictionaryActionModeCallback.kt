@@ -118,7 +118,6 @@ class DictionaryActionModeCallback(
     mode: ActionMode?,
     item: MenuItem?,
   ): Boolean {
-    Log.d("DictionaryActionMode", "Clicked '${item?.itemId}' == '${item?.title}'")
     return when (item?.itemId) {
       DICTIONARY_ID -> {
         val selected = selectedText().orEmpty()

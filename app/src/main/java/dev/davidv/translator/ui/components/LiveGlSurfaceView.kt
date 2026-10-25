@@ -31,6 +31,7 @@ import android.view.SurfaceView
 import androidx.camera.core.SurfaceRequest
 import dev.davidv.translator.GlEgl
 import dev.davidv.translator.LivePipelineJni
+import dev.davidv.translator.redactedException
 import java.util.concurrent.Executor
 import kotlin.math.max
 
@@ -166,7 +167,7 @@ class LiveGlSurfaceView(context: Context) :
         // The Surface is released by the GL thread on teardown
         // (surfaceDestroyed); CameraX's release callback is a no-op.
       }
-    }.onFailure { Log.w(TAG, "provideSurface failed", it) }
+    }.onFailure { Log.w(TAG, "provideSurface failed", redactedException(it)) }
     providedRequest = request
     pendingRequest = null
   }
@@ -201,7 +202,7 @@ class LiveGlSurfaceView(context: Context) :
       // when the camera reopens, instead of rebuilding the capture session
       // around the released surface (issue #248).
       runCatching { providedRequest?.invalidate() }
-        .onFailure { Log.w(TAG, "surfaceRequest invalidate failed", it) }
+        .onFailure { Log.w(TAG, "surfaceRequest invalidate failed", redactedException(it)) }
       providedRequest = null
       pendingRequest = null
     }

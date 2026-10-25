@@ -219,7 +219,7 @@ class ScreenTranslateService : Service() {
     }
     val source = sourceCode?.let { catalog.languageByCode(it) }
     if (source == null) {
-      Log.e(TAG, "fixed source requested with unknown language '$sourceCode'; stopping")
+      Log.e(TAG, "Unknown fixed source language; stopping")
       return null
     }
     return defaults.withTarget(target).withSource(source)
@@ -233,7 +233,7 @@ class ScreenTranslateService : Service() {
     // placeholder the tracker ignores.
     val from = next.sourceLanguage ?: next.target
     tracker.setLanguages(from.code, next.target.code, next.isAutoSource)
-    Log.i(TAG, "languages: from=${from.code} to=${next.target.code} auto=${next.isAutoSource}")
+    Log.i(TAG, "Screen translation languages updated")
     OverlayChromeFactory.showSelection(sourceLabelView, targetLabelView, null, null, next)
   }
 
@@ -304,7 +304,7 @@ class ScreenTranslateService : Service() {
     // surface it presents into; hand each lifecycle edge straight to it.
     view.onSurfaceTexture = { st -> captureWorker.setOutputSurfaceTexture(st) }
     captureWorker.start()
-    Log.i(TAG, "setup: ${w}x$h @${dpi}dpi, pipelinePtr=$pipelinePtr")
+    Log.i(TAG, "Screen capture configured")
 
     scope.launch {
       val surface = withContext(Dispatchers.IO) { captureWorker.awaitSourceSurface() }
@@ -328,7 +328,7 @@ class ScreenTranslateService : Service() {
           null,
           null,
         )
-      Log.i(TAG, "VirtualDisplay created ${w}x$h, surface=$surface")
+      Log.i(TAG, "Virtual display created")
     }
   }
 
