@@ -19,7 +19,7 @@ class FilePathManager(
           ext ?: context.filesDir
         } else {
           val documentsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
-          File(documentsDir, "dev.davidv.translator").also { dir ->
+          File(documentsDir, context.packageName).also { dir ->
             if (!dir.exists()) {
               dir.mkdirs()
             }

@@ -1,4 +1,15 @@
 pluginManagement {
+    // Kotlin 2.4 metadata requires a newer shrinker than AGP 8.x bundles.
+    // Use Google's documented override while retaining the existing AGP 8 DSL.
+    buildscript {
+        repositories {
+            google()
+            mavenCentral()
+        }
+        dependencies {
+            classpath("com.android.tools:r8:9.1.57")
+        }
+    }
     repositories {
         google {
             content {

@@ -163,7 +163,6 @@ class BrowserActivity : ComponentActivity() {
       val shared = intent.getStringExtra(Intent.EXTRA_TEXT)?.trim()
       if (!shared.isNullOrBlank()) {
         if (isWebUrl(shared)) return shared
-        Log.d(TAG, "ACTION_SEND had no URL; using full text as query target: $shared")
         return shared
       }
     }
@@ -411,10 +410,8 @@ private fun BrowserWebView(
           webView.webChromeClient =
             object : WebChromeClient() {
               override fun onConsoleMessage(message: ConsoleMessage): Boolean {
-                Log.i(
-                  "BrowserConsole",
-                  "[${message.messageLevel()}] ${message.message()} (${message.sourceId()}:${message.lineNumber()})",
-                )
+                // Page console messages can contain private page text or URLs.
+                // Consume them without copying their payloads into app diagnostics.
                 return true
               }
             }
@@ -467,7 +464,7 @@ private fun BrowserWebView(
                 url: String?,
                 favicon: Bitmap?,
               ) {
-                Log.i("AdblockManager", "onPageStarted view=$view url=$url")
+                Log.i("AdblockManager", "Page navigation started")
                 readerController.onPageStarted()
                 bridgeRef[0]?.onPageStarted()
                 currentPageUrlRef.set(url)
@@ -614,19 +611,19 @@ private fun applyCosmeticFiltersAsync(
   bridgeToken: String,
   adblockCosmeticScript: String,
 ) {
-  Log.i("AdblockManager", "url=$url scheduling cosmetic lookup")
+  Log.i("AdblockManager", "Scheduling cosmetic lookup")
   scope.launch {
     val tFetch = System.currentTimeMillis()
     val cosmetic = withContext(Dispatchers.IO) { adblockManager.cosmeticResources(url) }
     val fetchMs = System.currentTimeMillis() - tFetch
     if (cosmetic == null) {
-      Log.i("AdblockManager", "url=$url cosmetic=null (engine not loaded?) fetch=${fetchMs}ms")
+      Log.i("AdblockManager", "Cosmetic rules unavailable; fetch=${fetchMs}ms")
       return@launch
     }
     val sdaPresent = cosmetic.hideSelectors.any { it == ".sdaContainer" }
     Log.i(
       "AdblockManager",
-      "url=$url hide=${cosmetic.hideSelectors.size} style=${cosmetic.styleRules.size} " +
+      "Cosmetic rules: hide=${cosmetic.hideSelectors.size} style=${cosmetic.styleRules.size} " +
         "procedural=${cosmetic.proceduralFilters.size} script=${cosmetic.injectedScript.length}B " +
         "exc=${cosmetic.exceptions.size} generichide=${cosmetic.generichide} " +
         "hasSdaContainer=$sdaPresent fetch=${fetchMs}ms",
@@ -644,12 +641,12 @@ private fun applyCosmeticFiltersAsync(
         adblockCosmeticScript,
       )
     if (js.isEmpty()) {
-      Log.i("AdblockManager", "url=$url empty cosmetic, skipping")
+      Log.i("AdblockManager", "No cosmetic rules; skipping")
       return@launch
     }
     withContext(Dispatchers.Main) {
       if (currentPageSerialRef.get() != pageSerial) {
-        Log.i("AdblockManager", "url=$url stale cosmetic result, skipping")
+        Log.i("AdblockManager", "Stale cosmetic result; skipping")
         return@withContext
       }
       webView.evaluateJavascript(js, null)

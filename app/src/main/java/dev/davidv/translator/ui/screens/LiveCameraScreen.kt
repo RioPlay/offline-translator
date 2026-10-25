@@ -109,6 +109,7 @@ import dev.davidv.translator.LanguageMetadata
 import dev.davidv.translator.LivePlanarOcrEngine
 import dev.davidv.translator.R
 import dev.davidv.translator.TranslatorMessage
+import dev.davidv.translator.redactedException
 import dev.davidv.translator.ui.components.LanguageSelector
 import dev.davidv.translator.ui.components.LiveGlSurfaceView
 import java.io.File
@@ -534,7 +535,7 @@ private fun CameraSurface(
           heldFocusDiopters.set(d0)
           focusLockedRef.set(true)
           Log.i(TAG, "focus pinned d0=$d0 s0=$scale root=${status.rootAnchorId}")
-        }.onFailure { Log.w(TAG, "focus pin failed", it) }
+        }.onFailure { Log.w(TAG, "focus pin failed", redactedException(it)) }
         return@collect
       }
 
@@ -559,7 +560,7 @@ private fun CameraSurface(
           runCatching {
             applyFocus(target)
             heldFocusDiopters.set(target)
-          }.onFailure { Log.w(TAG, "focus steer failed", it) }
+          }.onFailure { Log.w(TAG, "focus steer failed", redactedException(it)) }
         }
       }
     }
@@ -637,7 +638,7 @@ private fun CameraSurface(
               runCatching {
                 Camera2CameraControl.from(cam.cameraControl).captureRequestOptions =
                   CaptureRequestOptions.Builder().build()
-              }.onFailure { Log.w(TAG, "clear interop options failed", it) }
+              }.onFailure { Log.w(TAG, "clear interop options failed", redactedException(it)) }
               latestFocusedDistance.value = null
               focusBaselineRef.set(null)
               heldFocusDiopters.set(null)
@@ -654,7 +655,7 @@ private fun CameraSurface(
                 .Builder(point, FocusMeteringAction.FLAG_AF or FocusMeteringAction.FLAG_AE)
                 .build()
             runCatching { cam.cameraControl.startFocusAndMetering(action) }
-              .onFailure { Log.w(TAG, "focus action failed", it) }
+              .onFailure { Log.w(TAG, "focus action failed", redactedException(it)) }
             return true
           }
         },
@@ -697,7 +698,7 @@ private fun CameraSurface(
         // of hard-coding the back-camera-on-portrait-phone case.
         liveSurfaceView.setCameraOrientationDegrees(boundCamera.cameraInfo.sensorRotationDegrees)
       } catch (e: Exception) {
-        Log.e(TAG, "Failed to bind camera", e)
+        Log.e(TAG, "Failed to bind camera", redactedException(e))
       }
     }, mainExecutor)
 
@@ -819,7 +820,7 @@ private fun CameraSurface(
             }
 
             override fun onError(exception: ImageCaptureException) {
-              Log.e(TAG, "Image capture failed", exception)
+              Log.e(TAG, "Image capture failed", redactedException(exception))
               outputFile.delete()
               isCapturing = false
             }

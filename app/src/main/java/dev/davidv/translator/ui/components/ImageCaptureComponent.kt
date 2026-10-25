@@ -43,6 +43,7 @@ import dev.davidv.translator.TranslatorMessage
 import dev.davidv.translator.copyDocumentUriToCache
 import dev.davidv.translator.displayNameForUri
 import dev.davidv.translator.isImageUri
+import dev.davidv.translator.redactedException
 import dev.davidv.translator.sizeBytesForUri
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharedFlow
@@ -83,7 +84,7 @@ private fun deleteTemporaryImageUri(
       else -> false
     }
   } catch (e: Exception) {
-    Log.w("ImageCapture", "Failed to delete temporary image URI: $uri", e)
+    Log.w("ImageCapture", "Temporary image cleanup failed", redactedException(e))
     false
   }
 
@@ -174,14 +175,14 @@ fun rememberImageSourceActions(
           activeSourceUri.value = null
           activeImport?.sourceUri?.let { deleteTemporaryImageUri(context, it) }
           pendingImport.value = null
-          Log.d("ImageCrop", "Image cropped (rect): $ucropOutput")
+          Log.d("ImageCrop", "Rectangular crop completed")
           onMessage(TranslatorMessage.SetImageUri(ucropOutput, deleteAfterLoad = true))
         }
         result.resultCode == android.app.Activity.RESULT_OK && docAlignOutput != null -> {
           activeSourceUri.value = null
           activeImport?.sourceUri?.let { deleteTemporaryImageUri(context, it) }
           pendingImport.value = null
-          Log.d("ImageCrop", "Image cropped (doc-align): $docAlignOutput")
+          Log.d("ImageCrop", "Document alignment completed")
           onMessage(TranslatorMessage.SetImageUri(docAlignOutput, deleteAfterLoad = true))
         }
         result.resultCode == AppCropActivity.RESULT_SWITCH_TO_DOC_ALIGN &&
@@ -199,7 +200,7 @@ fun rememberImageSourceActions(
           activeImport?.sourceUri?.let { deleteTemporaryImageUri(context, it) }
           activeImport?.cropOutputUri?.let { deleteTemporaryImageUri(context, it) }
           pendingImport.value = null
-          Log.d("ImageCrop", "Crop cancelled or failed: ${ucropError?.message}")
+          Log.d("ImageCrop", "Crop cancelled or failed", ucropError?.let(::redactedException))
         }
       }
     }
@@ -212,7 +213,7 @@ fun rememberImageSourceActions(
     if (isRemoteUri(sourceUri)) {
       deleteTemporaryImageUri(context, destUri)
       pendingImport.value = null
-      Log.w("ImageCrop", "Remote image crop is unsupported: $sourceUri")
+      Log.w("ImageCrop", "Remote image crop is unsupported")
       Toast.makeText(context, context.getString(R.string.image_no_crop_remote), Toast.LENGTH_SHORT).show()
       return
     }
@@ -232,7 +233,7 @@ fun rememberImageSourceActions(
       pendingSharedImage.collect { uri ->
         val cropOutputUri = createTemporaryImageUri(context, "cropped_image")
         pendingImport.value = PendingImageImport(sourceUri = null, cropOutputUri = cropOutputUri)
-        Log.d("SharedImage", "Launching crop for shared URI: $uri")
+        Log.d("SharedImage", "Launching shared image crop")
         launchCrop(uri, cropOutputUri)
       }
     }
@@ -243,7 +244,7 @@ fun rememberImageSourceActions(
       if (uri != null) {
         val cropOutputUri = createTemporaryImageUri(context, "cropped_image")
         pendingImport.value = PendingImageImport(sourceUri = null, cropOutputUri = cropOutputUri)
-        Log.d("PhotoPicker", "Selected URI: $uri")
+        Log.d("PhotoPicker", "Image selected")
         launchCrop(uri, cropOutputUri)
       } else {
         Log.d("PhotoPicker", "No media selected")
@@ -257,7 +258,7 @@ fun rememberImageSourceActions(
         if (imageUri != null) {
           val cropOutputUri = createTemporaryImageUri(context, "cropped_image")
           pendingImport.value = PendingImageImport(sourceUri = null, cropOutputUri = cropOutputUri)
-          Log.d("Gallery", "Selected URI: $imageUri")
+          Log.d("Gallery", "Image selected")
           launchCrop(imageUri, cropOutputUri)
         } else {
           Log.d("Gallery", "No image selected")
@@ -268,7 +269,7 @@ fun rememberImageSourceActions(
   val pickFromFiles =
     rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri: Uri? ->
       if (uri != null) {
-        Log.d("FilePicker", "Selected URI: $uri")
+        Log.d("FilePicker", "Image selected")
         if (isImageUri(context, uri)) {
           val cropOutputUri = createTemporaryImageUri(context, "cropped_image")
           pendingImport.value = PendingImageImport(sourceUri = null, cropOutputUri = cropOutputUri)
@@ -277,7 +278,7 @@ fun rememberImageSourceActions(
           scope.launch {
             try {
               val documentFile = withContext(Dispatchers.IO) { copyDocumentUriToCache(context, uri) }
-              Log.d("FilePicker", "Copied document to: ${documentFile.absolutePath}")
+              Log.d("FilePicker", "Document imported")
               onMessage(
                 TranslatorMessage.SetDocumentPath(
                   path = documentFile.absolutePath,
@@ -287,7 +288,7 @@ fun rememberImageSourceActions(
                 ),
               )
             } catch (e: Exception) {
-              Log.e("FilePicker", "Failed to import document: $uri", e)
+              Log.e("FilePicker", "Document import failed", redactedException(e))
               Toast.makeText(context, context.getString(R.string.image_open_failed), Toast.LENGTH_SHORT).show()
             }
           }

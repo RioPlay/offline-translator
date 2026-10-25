@@ -52,7 +52,7 @@ class TranslationService(
       try {
         catalog.translateHtmlFragments(from, to, fragments)
       } catch (e: CatalogException) {
-        Log.w("TranslationService", "translateHtmlFragments failed", e)
+        Log.w("TranslationService", "translateHtmlFragments failed", redactedException(e))
         fragments
       }
     }
@@ -94,7 +94,7 @@ class TranslationService(
         } catch (e: CatalogException.MissingAsset) {
           return@withContext TranslationResult.Error("Language pair ${from.code} -> ${to.code} not installed")
         } catch (e: CatalogException.Other) {
-          Log.e("TranslationService", "Translation failed", e)
+          Log.e("TranslationService", "Translation failed", redactedException(e))
           return@withContext TranslationResult.Error("Translation failed: ${e.message}")
         }
       val result = withAlternatives.translatedText
@@ -129,7 +129,7 @@ class TranslationService(
         } catch (e: CatalogException.MissingAsset) {
           return@withContext TranslationResult.Error("Language pair ${from.code} -> ${to.code} not installed")
         } catch (e: CatalogException.Other) {
-          Log.e("TranslationService", "Steer failed", e)
+          Log.e("TranslationService", "Steer failed", redactedException(e))
           return@withContext TranslationResult.Error("Steer failed: ${e.message}")
         }
       val result = steered.translatedText
@@ -175,7 +175,7 @@ class TranslationService(
         // User-initiated cancel — not an error, no stack trace logged.
         Result.failure(kotlinx.coroutines.CancellationException("translation cancelled"))
       } catch (e: CatalogException.Other) {
-        Log.e("TranslationService", "Document translation failed", e)
+        Log.e("TranslationService", "Document translation failed", redactedException(e))
         Result.failure(IllegalStateException("Document translation failed: ${e.message}", e))
       }
     }
@@ -195,7 +195,7 @@ class TranslationService(
         japaneseSpaced = settings.addSpacesForJapaneseTransliteration,
       )
     } catch (e: Exception) {
-      Log.w("TranslationService", "Failed to transliterate text for $from", e)
+      Log.w("TranslationService", "Transliteration failed", redactedException(e))
       null
     }
   }

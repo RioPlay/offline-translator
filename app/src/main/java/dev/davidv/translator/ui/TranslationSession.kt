@@ -372,7 +372,7 @@ class TranslationSession(
     replaceJob {
       when (val r = translationCoordinator.steer(selection.source, selection.target, source, forcedPrefix)) {
         is TranslationResult.Success -> _output.value = r.result
-        is TranslationResult.Error -> Log.e("Steer", r.message)
+        is TranslationResult.Error -> Log.e("Steer", "Steered translation failed")
       }
     }
   }

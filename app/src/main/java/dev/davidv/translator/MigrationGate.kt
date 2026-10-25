@@ -95,7 +95,7 @@ private fun convertGroup(
     if (error == null) {
       onJobDone(job)
     } else {
-      Log.e(TAG, "convert failed for ${job.onnxPath}: $error")
+      Log.e(TAG, "Model conversion failed")
     }
   }
 }

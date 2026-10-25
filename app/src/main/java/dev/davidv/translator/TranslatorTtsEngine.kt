@@ -46,8 +46,7 @@ class TranslatorTtsService : TextToSpeechService() {
     val ttsVoices = TranslatorTtsEngine.systemTtsVoices(catalog())
     Log.i(
       "TranslatorTtsService",
-      "onGetVoices: returning ${ttsVoices.size} voices: " +
-        ttsVoices.joinToString { "${it.androidName}@${it.locale}" },
+      "onGetVoices: returning ${ttsVoices.size} voices",
     )
     return ttsVoices.map { ttsVoice ->
       Voice(
@@ -128,7 +127,7 @@ class TranslatorTtsService : TextToSpeechService() {
     if (voice == null) {
       Log.w(
         "TranslatorTtsService",
-        "No installed voice for voice=${request.voiceName} locale=${request.language}-${request.country}",
+        "No installed voice for request",
       )
       callback.error(TextToSpeech.ERROR_NOT_INSTALLED_YET)
       callback.done()
@@ -147,7 +146,7 @@ class TranslatorTtsService : TextToSpeechService() {
         callback = callback,
       )
     } catch (error: Exception) {
-      Log.e("TranslatorTtsService", "System TTS synthesis failed", error)
+      Log.e("TranslatorTtsService", "System TTS synthesis failed", redactedException(error))
       callback.error()
     } finally {
       callback.done()

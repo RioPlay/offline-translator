@@ -78,7 +78,7 @@ class CatalogRepository private constructor(
         try {
           filePathManager.getCatalogFile().takeIf(File::exists)?.readText()
         } catch (e: Exception) {
-          Log.w("CatalogRepository", "Error reading cached catalog index", e)
+          Log.w("CatalogRepository", "Error reading cached catalog index", redactedException(e))
           null
         }
       return CatalogIndex(bundledJson, diskJson, baseDir.absolutePath)

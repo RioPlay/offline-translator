@@ -81,7 +81,6 @@ class ProcessTextActivity : ComponentActivity() {
 
   private fun handleIntent(intent: Intent?) {
     val replyModalIntent = { text: String ->
-      Log.i("IntentMessage", "sending response '$text' to intent")
       val respIntent = Intent()
       respIntent.putExtra(Intent.EXTRA_PROCESS_TEXT, text)
       setResult(RESULT_OK, respIntent)
