@@ -1,0 +1,3091 @@
+{
+  "source_commit": "8f879f99f604e73bfc3f3faa44642b7cec1ed2fa",
+  "source_tree": "5d5515aadedf6893121d419a5826906236052bae",
+  "jvm": {
+    "tests": 103,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "jvm_suites": [
+    {
+      "name": "dev.davidv.translator.InputSplitTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.004"
+    },
+    {
+      "name": "dev.davidv.translator.MainSelectionRulesTest",
+      "tests": "28",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.072"
+    },
+    {
+      "name": "dev.davidv.translator.ui.DictionarySessionTest",
+      "tests": "4",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.093"
+    },
+    {
+      "name": "dev.davidv.translator.ExampleUnitTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.002"
+    },
+    {
+      "name": "dev.davidv.translator.ui.SessionTransitionsTest",
+      "tests": "8",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.013"
+    },
+    {
+      "name": "dev.davidv.translator.TargetTabsTest",
+      "tests": "10",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.002"
+    },
+    {
+      "name": "dev.davidv.translator.ui.theme.LayoutDensityTest",
+      "tests": "4",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.007"
+    },
+    {
+      "name": "dev.davidv.translator.OverlayLanguageSelectionTest",
+      "tests": "22",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.079"
+    },
+    {
+      "name": "dev.davidv.translator.PackDownloadTest",
+      "tests": "13",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.508"
+    },
+    {
+      "name": "dev.davidv.translator.ReadonlyPopupSizeTest",
+      "tests": "6",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.005"
+    },
+    {
+      "name": "dev.davidv.translator.SharedTextTest",
+      "tests": "5",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.004"
+    }
+  ],
+  "detekt_findings": [
+    {
+      "file": "app/src/main/java/dev/davidv/translator/browser/BrowserActivity.kt",
+      "line": "668",
+      "column": "7",
+      "severity": "warning",
+      "message": "This condition is too complex (5). Defined complexity threshold for conditions is set to '4'",
+      "source": "detekt.ComplexCondition"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/browser/BrowserActivity.kt",
+      "line": "158",
+      "column": "15",
+      "severity": "warning",
+      "message": "Function extractUrl has 6 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/browser/BrowserActivity.kt",
+      "line": "514",
+      "column": "28",
+      "severity": "warning",
+      "message": "Function shouldInterceptRequest has 5 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/browser/BrowserActivity.kt",
+      "line": "101",
+      "column": "23",
+      "severity": "warning",
+      "message": "Private property `TAG` is unused.",
+      "source": "detekt.UnusedPrivateProperty"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/PackDownload.kt",
+      "line": "33",
+      "column": "14",
+      "severity": "warning",
+      "message": "Function downloadPackFile is nested too deeply.",
+      "source": "detekt.NestedBlockDepth"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/TranslatorApp.kt",
+      "line": "600",
+      "column": "15",
+      "severity": "warning",
+      "message": "This condition is too complex (4). Defined complexity threshold for conditions is set to '4'",
+      "source": "detekt.ComplexCondition"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/TranslatorApp.kt",
+      "line": "473",
+      "column": "18",
+      "severity": "warning",
+      "message": "The caught exception is swallowed. The original exception could be lost.",
+      "source": "detekt.SwallowedException"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/AppCropActivity.kt",
+      "line": "201",
+      "column": "9",
+      "severity": "warning",
+      "message": "This condition is too complex (4). Defined complexity threshold for conditions is set to '4'",
+      "source": "detekt.ComplexCondition"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/AppCropActivity.kt",
+      "line": "177",
+      "column": "15",
+      "severity": "warning",
+      "message": "Function zoomCropToViewport has 4 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/AppCropActivity.kt",
+      "line": "294",
+      "column": "5",
+      "severity": "warning",
+      "message": "Function parameter `overlay` is unused.",
+      "source": "detekt.UnusedParameter"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/DocAlignActivity.kt",
+      "line": "261",
+      "column": "20",
+      "severity": "warning",
+      "message": "This condition is too complex (4). Defined complexity threshold for conditions is set to '4'",
+      "source": "detekt.ComplexCondition"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/DocAlignActivity.kt",
+      "line": "412",
+      "column": "15",
+      "severity": "warning",
+      "message": "Function redetectVisible has 4 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/DocAlignActivity.kt",
+      "line": "666",
+      "column": "13",
+      "severity": "warning",
+      "message": "Function decodeOrientedBitmap has 4 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/DocAlignActivity.kt",
+      "line": "475",
+      "column": "13",
+      "severity": "warning",
+      "message": "The loop contains more than one break or continue statement. The code should be refactored to increase readability.",
+      "source": "detekt.LoopWithTooManyJumpStatements"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/LiveGlSurfaceView.kt",
+      "line": "350",
+      "column": "13",
+      "severity": "warning",
+      "message": "This condition is too complex (5). Defined complexity threshold for conditions is set to '4'",
+      "source": "detekt.ComplexCondition"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/LiveGlSurfaceView.kt",
+      "line": "331",
+      "column": "7",
+      "severity": "warning",
+      "message": "The loop contains more than one break or continue statement. The code should be refactored to increase readability.",
+      "source": "detekt.LoopWithTooManyJumpStatements"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/assistantOverlay/TranslatorVoiceInteractionSession.kt",
+      "line": "350",
+      "column": "11",
+      "severity": "warning",
+      "message": "This condition is too complex (4). Defined complexity threshold for conditions is set to '4'",
+      "source": "detekt.ComplexCondition"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/assistantOverlay/TranslatorVoiceInteractionSession.kt",
+      "line": "498",
+      "column": "11",
+      "severity": "warning",
+      "message": "This condition is too complex (4). Defined complexity threshold for conditions is set to '4'",
+      "source": "detekt.ComplexCondition"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/DocumentTranslationService.kt",
+      "line": "476",
+      "column": "9",
+      "severity": "warning",
+      "message": "This condition is too complex (6). Defined complexity threshold for conditions is set to '4'",
+      "source": "detekt.ComplexCondition"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/DocumentTranslationService.kt",
+      "line": "163",
+      "column": "16",
+      "severity": "warning",
+      "message": "Function onStartCommand has 4 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/DocumentTranslationService.kt",
+      "line": "411",
+      "column": "15",
+      "severity": "warning",
+      "message": "Function notificationText has 5 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/DocumentTranslationService.kt",
+      "line": "199",
+      "column": "62",
+      "severity": "warning",
+      "message": "Use check() or error() instead of throwing an IllegalStateException.",
+      "source": "detekt.UseCheckOrError"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/DocumentTranslationService.kt",
+      "line": "200",
+      "column": "58",
+      "severity": "warning",
+      "message": "Use check() or error() instead of throwing an IllegalStateException.",
+      "source": "detekt.UseCheckOrError"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/screenTranslate/ScreenTranslateService.kt",
+      "line": "110",
+      "column": "51",
+      "severity": "warning",
+      "message": "This empty block of code can be removed.",
+      "source": "detekt.EmptyFunctionBlock"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/screenTranslate/ScreenTranslateService.kt",
+      "line": "112",
+      "column": "53",
+      "severity": "warning",
+      "message": "This empty block of code can be removed.",
+      "source": "detekt.EmptyFunctionBlock"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/screenTranslate/ScreenTranslateService.kt",
+      "line": "138",
+      "column": "16",
+      "severity": "warning",
+      "message": "Function onStartCommand has 6 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/screenTranslate/GpuOverlayTextureView.kt",
+      "line": "68",
+      "column": "65",
+      "severity": "warning",
+      "message": "This empty block of code can be removed.",
+      "source": "detekt.EmptyFunctionBlock"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/AppCropImageView.kt",
+      "line": "36",
+      "column": "45",
+      "severity": "warning",
+      "message": "This empty block of code can be removed.",
+      "source": "detekt.EmptyFunctionBlock"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/AppCropImageView.kt",
+      "line": "38",
+      "column": "61",
+      "severity": "warning",
+      "message": "This empty block of code can be removed.",
+      "source": "detekt.EmptyFunctionBlock"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/StyledTextField.kt",
+      "line": "145",
+      "column": "17",
+      "severity": "warning",
+      "message": "This empty block of code can be removed.",
+      "source": "detekt.EmptyFunctionBlock"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/StyledTextField.kt",
+      "line": "152",
+      "column": "17",
+      "severity": "warning",
+      "message": "This empty block of code can be removed.",
+      "source": "detekt.EmptyFunctionBlock"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/StyledTextField.kt",
+      "line": "55",
+      "column": "7",
+      "severity": "warning",
+      "message": "The file name 'StyledTextField' does not match the name of the single top-level declaration 'StyledTextFieldFocusController'.",
+      "source": "detekt.MatchingDeclarationName"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/DictionaryActionModeCallback.kt",
+      "line": "162",
+      "column": "55",
+      "severity": "warning",
+      "message": "This empty block of code can be removed.",
+      "source": "detekt.EmptyFunctionBlock"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/assistantOverlay/TranslatorRecognitionService.kt",
+      "line": "19",
+      "column": "45",
+      "severity": "warning",
+      "message": "This empty block of code can be removed.",
+      "source": "detekt.EmptyFunctionBlock"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/TranslationService.kt",
+      "line": "94",
+      "column": "18",
+      "severity": "warning",
+      "message": "The caught exception is swallowed. The original exception could be lost.",
+      "source": "detekt.SwallowedException"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/TranslationService.kt",
+      "line": "129",
+      "column": "18",
+      "severity": "warning",
+      "message": "The caught exception is swallowed. The original exception could be lost.",
+      "source": "detekt.SwallowedException"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/TranslationService.kt",
+      "line": "174",
+      "column": "16",
+      "severity": "warning",
+      "message": "The caught exception is swallowed. The original exception could be lost.",
+      "source": "detekt.SwallowedException"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/BatchTextTranslator.kt",
+      "line": "3",
+      "column": "14",
+      "severity": "warning",
+      "message": "The file name 'BatchTextTranslator' does not match the name of the single top-level declaration 'BatchTextTranslationOutput'.",
+      "source": "detekt.MatchingDeclarationName"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/PcmAudioPlayer.kt",
+      "line": "256",
+      "column": "5",
+      "severity": "warning",
+      "message": "A member is named after the class. This might result in confusion. Either rename the member or change it to a constructor.",
+      "source": "detekt.MemberNameEqualsClassName"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/PcmAudioPlayer.kt",
+      "line": "49",
+      "column": "7",
+      "severity": "warning",
+      "message": "Too many throw statements in the function play. The maximum number of allowed throw statements is 2.",
+      "source": "detekt.ThrowsCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/PcmAudioPlayer.kt",
+      "line": "78",
+      "column": "19",
+      "severity": "warning",
+      "message": "Use check() or error() instead of throwing an IllegalStateException.",
+      "source": "detekt.UseCheckOrError"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/PcmAudioPlayer.kt",
+      "line": "103",
+      "column": "15",
+      "severity": "warning",
+      "message": "Use check() or error() instead of throwing an IllegalStateException.",
+      "source": "detekt.UseCheckOrError"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/PcmAudioPlayer.kt",
+      "line": "163",
+      "column": "7",
+      "severity": "warning",
+      "message": "Use check() or error() instead of throwing an IllegalStateException.",
+      "source": "detekt.UseCheckOrError"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/TranslationRuntime.kt",
+      "line": "23",
+      "column": "16",
+      "severity": "warning",
+      "message": "The file name 'TranslationRuntime' does not match the name of the single top-level declaration 'NativeLanguageRuntime'.",
+      "source": "detekt.MatchingDeclarationName"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/OverlayGeometry.kt",
+      "line": "30",
+      "column": "21",
+      "severity": "warning",
+      "message": "The file name 'OverlayGeometry' does not match the name of the single top-level declaration 'FitTransform'.",
+      "source": "detekt.MatchingDeclarationName"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/PopupAttachment.kt",
+      "line": "26",
+      "column": "12",
+      "severity": "warning",
+      "message": "The file name 'PopupAttachment' does not match the name of the single top-level declaration 'AttachmentSide'.",
+      "source": "detekt.MatchingDeclarationName"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/ScanAnimationOverlay.kt",
+      "line": "42",
+      "column": "12",
+      "severity": "warning",
+      "message": "The file name 'ScanAnimationOverlay' does not match the name of the single top-level declaration 'DetectedRegions'.",
+      "source": "detekt.MatchingDeclarationName"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/SelectionSurface.kt",
+      "line": "34",
+      "column": "7",
+      "severity": "warning",
+      "message": "The file name 'SelectionSurface' does not match the name of the single top-level declaration 'SelectionSurfaceState'.",
+      "source": "detekt.MatchingDeclarationName"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/WordSelectionOverlay.kt",
+      "line": "70",
+      "column": "12",
+      "severity": "warning",
+      "message": "The file name 'WordSelectionOverlay' does not match the name of the single top-level declaration 'ImageWordSelection'.",
+      "source": "detekt.MatchingDeclarationName"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/WordSelectionOverlay.kt",
+      "line": "273",
+      "column": "15",
+      "severity": "warning",
+      "message": "Function recomputeRect has 4 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/WordSelectionOverlay.kt",
+      "line": "332",
+      "column": "15",
+      "severity": "warning",
+      "message": "The loop contains more than one break or continue statement. The code should be refactored to increase readability.",
+      "source": "detekt.LoopWithTooManyJumpStatements"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/WordSelectionOverlay.kt",
+      "line": "359",
+      "column": "15",
+      "severity": "warning",
+      "message": "The loop contains more than one break or continue statement. The code should be refactored to increase readability.",
+      "source": "detekt.LoopWithTooManyJumpStatements"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/Geometry.kt",
+      "line": "20",
+      "column": "12",
+      "severity": "warning",
+      "message": "The file name 'Geometry' does not match the name of the single top-level declaration 'Rect'.",
+      "source": "detekt.MatchingDeclarationName"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/DictionaryIndex.kt",
+      "line": "20",
+      "column": "12",
+      "severity": "warning",
+      "message": "The file name 'DictionaryIndex' does not match the name of the single top-level declaration 'DictionaryInfo'.",
+      "source": "detekt.MatchingDeclarationName"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/browser/AdblockJsBridge.kt",
+      "line": "34",
+      "column": "7",
+      "severity": "warning",
+      "message": "Function lookupGenericSelectors has 5 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/browser/AdblockJsBridge.kt",
+      "line": "50",
+      "column": "15",
+      "severity": "warning",
+      "message": "Function decodeWire has 8 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/browser/TranslatorJsBridge.kt",
+      "line": "174",
+      "column": "23",
+      "severity": "warning",
+      "message": "Function translateImageDataUri has 6 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/browser/TranslatorJsBridge.kt",
+      "line": "251",
+      "column": "15",
+      "severity": "warning",
+      "message": "Function decodeWire has 8 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/OverlayLanguageSelection.kt",
+      "line": "87",
+      "column": "9",
+      "severity": "warning",
+      "message": "Function initial has 4 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/screenTranslate/ScreenCaptureGlWorker.kt",
+      "line": "294",
+      "column": "7",
+      "severity": "warning",
+      "message": "The loop contains more than one break or continue statement. The code should be refactored to increase readability.",
+      "source": "detekt.LoopWithTooManyJumpStatements"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/TranslationApiService.kt",
+      "line": "90",
+      "column": "16",
+      "severity": "warning",
+      "message": "Function onStartCommand has 5 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/SettingsScreen.kt",
+      "line": "1548",
+      "column": "13",
+      "severity": "warning",
+      "message": "Function assistantRoleRequest has 5 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/DetectedLanguageSection.kt",
+      "line": "41",
+      "column": "5",
+      "severity": "warning",
+      "message": "Function DetectedLanguageSection has 4 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/ActionButtons.kt",
+      "line": "109",
+      "column": "5",
+      "severity": "warning",
+      "message": "Function pasteFromClipboard has 4 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/adblock/RequestTypeMapper.kt",
+      "line": "27",
+      "column": "5",
+      "severity": "warning",
+      "message": "Function mapRequestType has 18 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/MainActivity.kt",
+      "line": "193",
+      "column": "14",
+      "severity": "warning",
+      "message": "Function isSupportedDocumentUrl has 4 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/main/java/dev/davidv/translator/GlEgl.kt",
+      "line": "51",
+      "column": "7",
+      "severity": "warning",
+      "message": "Function initContext has 6 return statements which exceeds the limit of 3.",
+      "source": "detekt.ReturnCount"
+    },
+    {
+      "file": "app/src/test/java/dev/davidv/translator/PackDownloadTest.kt",
+      "line": "52",
+      "column": "13",
+      "severity": "warning",
+      "message": "The loop contains more than one break or continue statement. The code should be refactored to increase readability.",
+      "source": "detekt.LoopWithTooManyJumpStatements"
+    }
+  ],
+  "missing_instrumentation_fixtures": [
+    "model.enes.intgemm.alphas.bin",
+    "vocab.enes.spm",
+    "lex.50.50.enes.s2t.bin"
+  ],
+  "session_date": "2026-10-24",
+  "upstream_base": "bd675fecea875d4e5b3c0f62e24b2a9c3c84f6da",
+  "stress": {
+    "unique_tests": 17,
+    "repetitions": 20,
+    "executions": 340,
+    "failures": 0,
+    "seconds": 12.025
+  },
+  "full_android_lint": {
+    "status": "failed",
+    "severity_counts": {
+      "Error": 25,
+      "Warning": 148,
+      "Hint": 7
+    },
+    "new_api_findings": 0,
+    "issues": [
+      {
+        "id": "MissingPermission",
+        "severity": "Error",
+        "message": "Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/DocumentTranslationService.kt",
+            "line": "432",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "MissingPermission",
+        "severity": "Error",
+        "message": "Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/DownloadService.kt",
+            "line": "99",
+            "column": "17"
+          }
+        ]
+      },
+      {
+        "id": "MissingPermission",
+        "severity": "Error",
+        "message": "Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/TapToTranslateNotification.kt",
+            "line": "72",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "MissingPermission",
+        "severity": "Error",
+        "message": "Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/TranslationApiService.kt",
+            "line": "144",
+            "column": "7"
+          }
+        ]
+      },
+      {
+        "id": "ScopedStorage",
+        "severity": "Warning",
+        "message": "The Google Play store has a policy that limits usage of MANAGE_EXTERNAL_STORAGE",
+        "locations": [
+          {
+            "file": "app/src/main/AndroidManifest.xml",
+            "line": "24",
+            "column": "36"
+          }
+        ]
+      },
+      {
+        "id": "InlinedApi",
+        "severity": "Warning",
+        "message": "Field requires API level 30 (current min is 28): `android.view.WindowManager.LayoutParams#LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/overlayChrome/OverlayInsets.kt",
+            "line": "67",
+            "column": "33"
+          }
+        ]
+      },
+      {
+        "id": "InlinedApi",
+        "severity": "Warning",
+        "message": "Field requires API level 30 (current min is 28): `android.view.WindowManager.LayoutParams#LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/screenTranslate/ScreenTranslateService.kt",
+            "line": "283",
+            "column": "9"
+          }
+        ]
+      },
+      {
+        "id": "InlinedApi",
+        "severity": "Warning",
+        "message": "Field requires API level 30 (current min is 28): `android.view.WindowManager.LayoutParams#LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/screenTranslate/ScreenTranslateService.kt",
+            "line": "548",
+            "column": "9"
+          }
+        ]
+      },
+      {
+        "id": "InlinedApi",
+        "severity": "Warning",
+        "message": "Field requires API level 24 (current min is 23): `android.provider.Settings#ACTION_MANAGE_DEFAULT_APPS_SETTINGS`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/SettingsScreen.kt",
+            "line": "1565",
+            "column": "14"
+          }
+        ]
+      },
+      {
+        "id": "InlinedApi",
+        "severity": "Warning",
+        "message": "Field requires API level 24 (current min is 23): `android.content.Intent#ACTION_USER_UNLOCKED`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/TranslatorApplication.kt",
+            "line": "87",
+            "column": "45"
+          }
+        ]
+      },
+      {
+        "id": "InternalInsetResource",
+        "severity": "Warning",
+        "message": "Using internal inset dimension resource `status_bar_height` is not supported",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/overlayChrome/OverlayInsets.kt",
+            "line": "56",
+            "column": "14"
+          }
+        ]
+      },
+      {
+        "id": "OldTargetApi",
+        "severity": "Warning",
+        "message": "Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details.",
+        "locations": [
+          {
+            "file": "app/build.gradle.kts",
+            "line": "35",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "SimpleDateFormat",
+        "severity": "Warning",
+        "message": "To get local formatting use `getDateInstance()`, `getDateTimeInstance()`, or `getTimeInstance()`, or use `new SimpleDateFormat(String template, Locale locale)` with for example `Locale.US` for ASCII dates.",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/TranslatorApp.kt",
+            "line": "201",
+            "column": "17"
+          }
+        ]
+      },
+      {
+        "id": "StartActivityAndCollapseDeprecated",
+        "severity": "Error",
+        "message": "TileService#startActivityAndCollapse(Intent) is deprecated. Use TileService#startActivityAndCollapse(PendingIntent) instead.",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/screenTranslate/LiveScreenTileService.kt",
+            "line": "65",
+            "column": "32"
+          }
+        ]
+      },
+      {
+        "id": "UnusedAttribute",
+        "severity": "Warning",
+        "message": "Attribute `shell` is only used in API level 29 and higher (current min is 23)",
+        "locations": [
+          {
+            "file": "app/src/deviceTest/AndroidManifest.xml",
+            "line": "4",
+            "column": "22"
+          }
+        ]
+      },
+      {
+        "id": "UnusedAttribute",
+        "severity": "Warning",
+        "message": "Attribute `canTakeScreenshot` is only used in API level 30 and higher (current min is 23)",
+        "locations": [
+          {
+            "file": "app/src/main/res/xml/accessibility_service_config.xml",
+            "line": "6",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "UnusedAttribute",
+        "severity": "Warning",
+        "message": "Attribute `shortcutId` is only used in API level 25 and higher (current min is 23)",
+        "locations": [
+          {
+            "file": "app/src/deviceTest/res/xml/shortcuts.xml",
+            "line": "4",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "UnusedAttribute",
+        "severity": "Warning",
+        "message": "Attribute `shortcutId` is only used in API level 25 and higher (current min is 23)",
+        "locations": [
+          {
+            "file": "app/src/main/res/xml/shortcuts.xml",
+            "line": "4",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "UnusedAttribute",
+        "severity": "Warning",
+        "message": "Attribute `shortcutShortLabel` is only used in API level 25 and higher (current min is 23)",
+        "locations": [
+          {
+            "file": "app/src/deviceTest/res/xml/shortcuts.xml",
+            "line": "7",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "UnusedAttribute",
+        "severity": "Warning",
+        "message": "Attribute `shortcutShortLabel` is only used in API level 25 and higher (current min is 23)",
+        "locations": [
+          {
+            "file": "app/src/main/res/xml/shortcuts.xml",
+            "line": "7",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "UnusedAttribute",
+        "severity": "Warning",
+        "message": "Attribute `shortcutLongLabel` is only used in API level 25 and higher (current min is 23)",
+        "locations": [
+          {
+            "file": "app/src/deviceTest/res/xml/shortcuts.xml",
+            "line": "8",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "UnusedAttribute",
+        "severity": "Warning",
+        "message": "Attribute `shortcutLongLabel` is only used in API level 25 and higher (current min is 23)",
+        "locations": [
+          {
+            "file": "app/src/main/res/xml/shortcuts.xml",
+            "line": "8",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "RedundantLabel",
+        "severity": "Warning",
+        "message": "Redundant label can be removed",
+        "locations": [
+          {
+            "file": "app/src/main/AndroidManifest.xml",
+            "line": "142",
+            "column": "9"
+          }
+        ]
+      },
+      {
+        "id": "AndroidGradlePluginVersion",
+        "severity": "Warning",
+        "message": "A newer version of com.android.application than 8.13.2 is available: 9.4.1",
+        "locations": [
+          {
+            "file": "gradle/libs.versions.toml",
+            "line": "2",
+            "column": "7"
+          }
+        ]
+      },
+      {
+        "id": "AppCompatCustomView",
+        "severity": "Error",
+        "message": "This custom view should extend `androidx.appcompat.widget.AppCompatTextView` instead",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/components/DottedUnderlineTextView.kt",
+            "line": "44",
+            "column": "7"
+          }
+        ]
+      },
+      {
+        "id": "AppCompatCustomView",
+        "severity": "Error",
+        "message": "This custom view should extend `androidx.appcompat.widget.AppCompatEditText` instead",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/components/TapWordEditText.kt",
+            "line": "39",
+            "column": "7"
+          }
+        ]
+      },
+      {
+        "id": "GradleDependency",
+        "severity": "Warning",
+        "message": "A newer version of `compileSdkVersion` than 34 is available: 36",
+        "locations": [
+          {
+            "file": "app/build.gradle.kts",
+            "line": "17",
+            "column": "3"
+          }
+        ]
+      },
+      {
+        "id": "GradleDependency",
+        "severity": "Warning",
+        "message": "A newer version of androidx.core:core-ktx than 1.10.1 is available: 1.13.1",
+        "locations": [
+          {
+            "file": "gradle/libs.versions.toml",
+            "line": "5",
+            "column": "11"
+          }
+        ]
+      },
+      {
+        "id": "GradleDependency",
+        "severity": "Warning",
+        "message": "A newer version of org.jetbrains.kotlinx:kotlinx-coroutines-core than 1.7.3 is available: 1.9.0",
+        "locations": [
+          {
+            "file": "gradle/libs.versions.toml",
+            "line": "10",
+            "column": "25"
+          }
+        ]
+      },
+      {
+        "id": "GradleDependency",
+        "severity": "Warning",
+        "message": "A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.6.1 is available: 2.8.3",
+        "locations": [
+          {
+            "file": "gradle/libs.versions.toml",
+            "line": "12",
+            "column": "23"
+          }
+        ]
+      },
+      {
+        "id": "GradleDependency",
+        "severity": "Warning",
+        "message": "A newer version of androidx.lifecycle:lifecycle-viewmodel-compose than 2.6.1 is available: 2.8.3",
+        "locations": [
+          {
+            "file": "gradle/libs.versions.toml",
+            "line": "13",
+            "column": "29"
+          }
+        ]
+      },
+      {
+        "id": "GradleDependency",
+        "severity": "Warning",
+        "message": "A newer version of androidx.activity:activity-compose than 1.8.0 is available: 1.8.2",
+        "locations": [
+          {
+            "file": "gradle/libs.versions.toml",
+            "line": "14",
+            "column": "19"
+          }
+        ]
+      },
+      {
+        "id": "GradleDependency",
+        "severity": "Warning",
+        "message": "A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.8.0",
+        "locations": [
+          {
+            "file": "gradle/libs.versions.toml",
+            "line": "16",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "LockedOrientationActivity",
+        "severity": "Warning",
+        "message": "Expecting `android:screenOrientation=\"unspecified\"` or `\"fullSensor\"` for this activity so the user can use the application in any orientation and provide a great experience on Chrome OS devices",
+        "locations": [
+          {
+            "file": "app/src/main/AndroidManifest.xml",
+            "line": "146",
+            "column": "9"
+          }
+        ]
+      },
+      {
+        "id": "LockedOrientationActivity",
+        "severity": "Warning",
+        "message": "Expecting `android:screenOrientation=\"unspecified\"` or `\"fullSensor\"` for this activity so the user can use the application in any orientation and provide a great experience on Chrome OS devices",
+        "locations": [
+          {
+            "file": "app/src/main/AndroidManifest.xml",
+            "line": "151",
+            "column": "9"
+          }
+        ]
+      },
+      {
+        "id": "NewerVersionAvailable",
+        "severity": "Warning",
+        "message": "A newer version of net.java.dev.jna:jna than 5.14.0 is available: 5.19.1",
+        "locations": [
+          {
+            "file": "app/build.gradle.kts",
+            "line": "473",
+            "column": "18"
+          }
+        ]
+      },
+      {
+        "id": "NewerVersionAvailable",
+        "severity": "Warning",
+        "message": "A newer version of org.jetbrains.kotlinx:kotlinx-coroutines-android than 1.7.3 is available: 1.11.0",
+        "locations": [
+          {
+            "file": "gradle/libs.versions.toml",
+            "line": "9",
+            "column": "28"
+          }
+        ]
+      },
+      {
+        "id": "NewerVersionAvailable",
+        "severity": "Warning",
+        "message": "A newer version of org.jetbrains.kotlinx:kotlinx-serialization-json than 1.6.2 is available: 1.12.0",
+        "locations": [
+          {
+            "file": "gradle/libs.versions.toml",
+            "line": "11",
+            "column": "35"
+          }
+        ]
+      },
+      {
+        "id": "NewerVersionAvailable",
+        "severity": "Warning",
+        "message": "A newer version of org.jlleitschuh.gradle.ktlint than 12.1.0 is available: 14.2.0",
+        "locations": [
+          {
+            "file": "gradle/libs.versions.toml",
+            "line": "20",
+            "column": "10"
+          }
+        ]
+      },
+      {
+        "id": "NewerVersionAvailable",
+        "severity": "Warning",
+        "message": "A newer version of io.gitlab.arturbosch.detekt than 1.23.4 is available: 1.23.8",
+        "locations": [
+          {
+            "file": "gradle/libs.versions.toml",
+            "line": "21",
+            "column": "10"
+          }
+        ]
+      },
+      {
+        "id": "NewerVersionAvailable",
+        "severity": "Warning",
+        "message": "A newer version of org.jetbrains.kotlinx:kotlinx-serialization-json than 1.6.0 is available: 1.12.0",
+        "locations": [
+          {
+            "file": "gradle/libs.versions.toml",
+            "line": "24",
+            "column": "28"
+          }
+        ]
+      },
+      {
+        "id": "SimilarGradleDependency",
+        "severity": "Hint",
+        "message": "There are multiple dependencies org.jetbrains.kotlinx:kotlinx-serialization-json but with different version",
+        "locations": [
+          {
+            "file": "gradle/libs.versions.toml",
+            "line": "47",
+            "column": "36"
+          }
+        ]
+      },
+      {
+        "id": "SimilarGradleDependency",
+        "severity": "Hint",
+        "message": "There are multiple dependencies org.jetbrains.kotlinx:kotlinx-serialization-json but with different version",
+        "locations": [
+          {
+            "file": "gradle/libs.versions.toml",
+            "line": "53",
+            "column": "31"
+          }
+        ]
+      },
+      {
+        "id": "SourceLockedOrientationActivity",
+        "severity": "Warning",
+        "message": "You should not lock orientation of your activities, so that you can support a good user experience for any device or orientation",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+            "line": "197",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "UnsafeOptInUsageError",
+        "severity": "Error",
+        "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+            "line": "398",
+            "column": "22"
+          }
+        ]
+      },
+      {
+        "id": "UnsafeOptInUsageError",
+        "severity": "Error",
+        "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+            "line": "398",
+            "column": "40"
+          }
+        ]
+      },
+      {
+        "id": "UnsafeOptInUsageError",
+        "severity": "Error",
+        "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+            "line": "478",
+            "column": "12"
+          }
+        ]
+      },
+      {
+        "id": "UnsafeOptInUsageError",
+        "severity": "Error",
+        "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+            "line": "479",
+            "column": "12"
+          }
+        ]
+      },
+      {
+        "id": "UnsafeOptInUsageError",
+        "severity": "Error",
+        "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+            "line": "492",
+            "column": "11"
+          }
+        ]
+      },
+      {
+        "id": "UnsafeOptInUsageError",
+        "severity": "Error",
+        "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+            "line": "493",
+            "column": "31"
+          }
+        ]
+      },
+      {
+        "id": "UnsafeOptInUsageError",
+        "severity": "Error",
+        "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+            "line": "494",
+            "column": "12"
+          }
+        ]
+      },
+      {
+        "id": "UnsafeOptInUsageError",
+        "severity": "Error",
+        "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+            "line": "498",
+            "column": "12"
+          }
+        ]
+      },
+      {
+        "id": "UnsafeOptInUsageError",
+        "severity": "Error",
+        "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+            "line": "499",
+            "column": "12"
+          }
+        ]
+      },
+      {
+        "id": "UnsafeOptInUsageError",
+        "severity": "Error",
+        "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+            "line": "503",
+            "column": "12"
+          }
+        ]
+      },
+      {
+        "id": "UnsafeOptInUsageError",
+        "severity": "Error",
+        "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+            "line": "504",
+            "column": "28"
+          }
+        ]
+      },
+      {
+        "id": "UnsafeOptInUsageError",
+        "severity": "Error",
+        "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+            "line": "504",
+            "column": "52"
+          }
+        ]
+      },
+      {
+        "id": "UnsafeOptInUsageError",
+        "severity": "Error",
+        "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+            "line": "638",
+            "column": "17"
+          }
+        ]
+      },
+      {
+        "id": "UnsafeOptInUsageError",
+        "severity": "Error",
+        "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+            "line": "638",
+            "column": "38"
+          }
+        ]
+      },
+      {
+        "id": "UnsafeOptInUsageError",
+        "severity": "Error",
+        "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+            "line": "638",
+            "column": "62"
+          }
+        ]
+      },
+      {
+        "id": "UnsafeOptInUsageError",
+        "severity": "Error",
+        "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+            "line": "639",
+            "column": "41"
+          }
+        ]
+      },
+      {
+        "id": "UnsafeOptInUsageError",
+        "severity": "Error",
+        "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+            "line": "639",
+            "column": "51"
+          }
+        ]
+      },
+      {
+        "id": "ModifierParameter",
+        "severity": "Warning",
+        "message": "Modifier parameter should be the first optional parameter",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/components/ActionButtons.kt",
+            "line": "221",
+            "column": "3"
+          }
+        ]
+      },
+      {
+        "id": "ModifierParameter",
+        "severity": "Warning",
+        "message": "Modifier parameter should be the first optional parameter",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/components/InputSection.kt",
+            "line": "76",
+            "column": "3"
+          }
+        ]
+      },
+      {
+        "id": "ModifierParameter",
+        "severity": "Warning",
+        "message": "Modifier parameter should be the first optional parameter",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/components/LanguageSelectionRow.kt",
+            "line": "130",
+            "column": "3"
+          }
+        ]
+      },
+      {
+        "id": "ModifierParameter",
+        "severity": "Warning",
+        "message": "Modifier parameter should be the first optional parameter",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/components/WordSelectionOverlay.kt",
+            "line": "204",
+            "column": "3"
+          }
+        ]
+      },
+      {
+        "id": "PrivateResource",
+        "severity": "Warning",
+        "message": "The resource `@color/ucrop_color_toolbar` is marked as private in com.github.yalantis:ucrop:2.2.11",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/components/AppCropActivity.kt",
+            "line": "77",
+            "column": "26"
+          }
+        ]
+      },
+      {
+        "id": "PrivateResource",
+        "severity": "Warning",
+        "message": "The resource `@color/ucrop_color_toolbar_widget` is marked as private in com.github.yalantis:ucrop:2.2.11",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/components/AppCropActivity.kt",
+            "line": "82",
+            "column": "26"
+          }
+        ]
+      },
+      {
+        "id": "PrivateResource",
+        "severity": "Warning",
+        "message": "Overriding `@layout/ucrop_view` which is marked as private in com.github.yalantis:ucrop:2.2.11. If deliberate, use tools:override=\"true\", otherwise pick a different name.",
+        "locations": [
+          {
+            "file": "app/src/main/res/layout/ucrop_view.xml"
+          }
+        ]
+      },
+      {
+        "id": "PrivateResource",
+        "severity": "Warning",
+        "message": "The resource `@dimen/ucrop_padding_crop_frame` is marked as private in com.github.yalantis:ucrop:2.2.11",
+        "locations": [
+          {
+            "file": "app/src/main/res/layout/ucrop_view.xml",
+            "line": "10",
+            "column": "26"
+          }
+        ]
+      },
+      {
+        "id": "PrivateResource",
+        "severity": "Warning",
+        "message": "The resource `@dimen/ucrop_padding_crop_frame` is marked as private in com.github.yalantis:ucrop:2.2.11",
+        "locations": [
+          {
+            "file": "app/src/main/res/layout/ucrop_view.xml",
+            "line": "16",
+            "column": "26"
+          }
+        ]
+      },
+      {
+        "id": "StateFlowValueCalledInComposition",
+        "severity": "Error",
+        "message": "StateFlow.value should not be called within composition",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/components/DocAlignActivity.kt",
+            "line": "181",
+            "column": "97"
+          }
+        ]
+      },
+      {
+        "id": "SwitchIntDef",
+        "severity": "Warning",
+        "message": "Switch statement on an `int` with known associated constant missing case `AccessibilityEvent.TYPE_ANNOUNCEMENT`, `AccessibilityEvent.TYPE_ASSIST_READING_CONTEXT`, `AccessibilityEvent.TYPE_GESTURE_DETECTION_END`, `AccessibilityEvent.TYPE_GESTURE_DETECTION_START`, `AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED`, `AccessibilityEvent.TYPE_SPEECH_STATE_CHANGE`, `AccessibilityEvent.TYPE_TOUCH_EXPLORATION_GESTURE_END`, `AccessibilityEvent.TYPE_TOUCH_EXPLORATION_GESTURE_START`, `AccessibilityEvent.TYPE_TOUCH_INTERACTION_END`, `AccessibilityEvent.TYPE_TOUCH_INTERACTION_START`, `AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUSED`, `AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUS_CLEARED`, `AccessibilityEvent.TYPE_VIEW_CONTEXT_CLICKED`, `AccessibilityEvent.TYPE_VIEW_FOCUSED`, `AccessibilityEvent.TYPE_VIEW_HOVER_ENTER`, `AccessibilityEvent.TYPE_VIEW_HOVER_EXIT`, `AccessibilityEvent.TYPE_VIEW_LONG_CLICKED`, `AccessibilityEvent.TYPE_VIEW_SELECTED`, `AccessibilityEvent.TYPE_VIEW_TARGETED_BY_SCROLL`, `AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED`, `AccessibilityEvent.TYPE_VIEW_TEXT_SELECTION_CHANGED`, `AccessibilityEvent.TYPE_VIEW_TEXT_TRAVERSED_AT_MOVEMENT_GRANULARITY`, `AccessibilityEvent.TYPE_WINDOWS_CHANGED`, `AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED`, `AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/accessibilityOverlay/TranslatorAccessibilityService.kt",
+            "line": "152",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "Aligned16KB",
+        "severity": "Warning",
+        "message": "The native library `x86_64/libjnidispatch.so` (from `net.java.dev.jna:jna:5.14.0`) is not 16 KB aligned",
+        "locations": [
+          {
+            "file": "app/build.gradle.kts",
+            "line": "473",
+            "column": "18"
+          }
+        ]
+      },
+      {
+        "id": "Aligned16KB",
+        "severity": "Warning",
+        "message": "The native library `x86_64/libjnidispatch.so` (from `net.java.dev.jna:jna:5.14.0`) is not 16 KB aligned",
+        "locations": [
+          {
+            "file": "/workspace/scratch/ca969df7cbfa/android-toolchain/gradle-gauntlet-cache/caches/8.14.6/transforms/d4cd54bb284329342bd439cd9bcd2562/transformed/jna-5.14.0/jni/x86_64/libjnidispatch.so"
+          }
+        ]
+      },
+      {
+        "id": "DiscouragedApi",
+        "severity": "Warning",
+        "message": "Fixed screen orientations will be ignored in most cases, starting from Android 16. Android is moving toward a model where apps are expected to adapt to various orientations, display sizes, and aspect ratios.",
+        "locations": [
+          {
+            "file": "app/src/main/AndroidManifest.xml",
+            "line": "146",
+            "column": "9"
+          }
+        ]
+      },
+      {
+        "id": "DiscouragedApi",
+        "severity": "Warning",
+        "message": "Fixed screen orientations will be ignored in most cases, starting from Android 16. Android is moving toward a model where apps are expected to adapt to various orientations, display sizes, and aspect ratios.",
+        "locations": [
+          {
+            "file": "app/src/main/AndroidManifest.xml",
+            "line": "151",
+            "column": "9"
+          }
+        ]
+      },
+      {
+        "id": "DiscouragedApi",
+        "severity": "Warning",
+        "message": "Use of this function is discouraged because resource reflection makes it harder to perform build optimizations and compile-time verification of code. It is much more efficient to retrieve resources by identifier (e.g. `R.foo.bar`) than by name (e.g. `getIdentifier(\"bar\", \"foo\", null)`).",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/overlayChrome/OverlayInsets.kt",
+            "line": "56",
+            "column": "24"
+          }
+        ]
+      },
+      {
+        "id": "MissingQuantity",
+        "severity": "Warning",
+        "message": "For locale \"pt\" (Portuguese) the following quantity should also be defined: `many`",
+        "locations": [
+          {
+            "file": "app/src/main/res/values-pt-rPT/strings.xml",
+            "line": "16",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "MissingQuantity",
+        "severity": "Warning",
+        "message": "For locale \"it\" (Italian) the following quantity should also be defined: `many`",
+        "locations": [
+          {
+            "file": "app/src/main/res/values-it/strings.xml",
+            "line": "162",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "MissingQuantity",
+        "severity": "Warning",
+        "message": "For locale \"es\" (Spanish) the following quantity should also be defined: `many`",
+        "locations": [
+          {
+            "file": "app/src/main/res/values-es/strings.xml",
+            "line": "169",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "MissingQuantity",
+        "severity": "Warning",
+        "message": "For locale \"fr\" (French) the following quantity should also be defined: `many` (e.g. \"1000000 de jours\")",
+        "locations": [
+          {
+            "file": "app/src/main/res/values-fr/strings.xml",
+            "line": "169",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "MissingQuantity",
+        "severity": "Warning",
+        "message": "For locale \"pt\" (Portuguese) the following quantity should also be defined: `many`",
+        "locations": [
+          {
+            "file": "app/src/main/res/values-pt/strings.xml",
+            "line": "169",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "PluralsCandidate",
+        "severity": "Warning",
+        "message": "Formatting %d followed by words (\"columns\"): This should probably be a plural rather than a string",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "212",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "UnsafeProtectedBroadcastReceiver",
+        "severity": "Warning",
+        "message": "This broadcast receiver declares an intent-filter for a protected broadcast action string, which can only be sent by the system, not third-party applications. However, the receiver's `onReceive` method does not appear to call `getAction` to ensure that the received Intent's action string matches the expected value, potentially making it possible for another actor to send a spoofed intent with no action string or a different action string and cause undesired behavior.",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/TapToTranslateNotification.kt",
+            "line": "109",
+            "column": "16"
+          }
+        ]
+      },
+      {
+        "id": "ExportedService",
+        "severity": "Warning",
+        "message": "Exported service does not require permission",
+        "locations": [
+          {
+            "file": "app/src/main/AndroidManifest.xml",
+            "line": "251",
+            "column": "10"
+          }
+        ]
+      },
+      {
+        "id": "ExportedService",
+        "severity": "Warning",
+        "message": "Exported service does not require permission",
+        "locations": [
+          {
+            "file": "app/src/main/AndroidManifest.xml",
+            "line": "259",
+            "column": "10"
+          }
+        ]
+      },
+      {
+        "id": "ExportedService",
+        "severity": "Warning",
+        "message": "Exported service does not require permission",
+        "locations": [
+          {
+            "file": "app/src/main/AndroidManifest.xml",
+            "line": "299",
+            "column": "10"
+          }
+        ]
+      },
+      {
+        "id": "DrawAllocation",
+        "severity": "Warning",
+        "message": "Avoid object allocations during draw/layout operations (preallocate and reuse instead)",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/overlayChrome/RegionSelectView.kt",
+            "line": "168",
+            "column": "9"
+          }
+        ]
+      },
+      {
+        "id": "Recycle",
+        "severity": "Warning",
+        "message": "This animation should be started with `#start()`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/components/AppCropActivity.kt",
+            "line": "254",
+            "column": "19"
+          }
+        ]
+      },
+      {
+        "id": "Recycle",
+        "severity": "Warning",
+        "message": "This `Cursor` should be freed up after use with `#close()`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/DocumentImport.kt",
+            "line": "35",
+            "column": "6"
+          }
+        ]
+      },
+      {
+        "id": "Recycle",
+        "severity": "Warning",
+        "message": "This `Cursor` should be freed up after use with `#close()`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/DocumentImport.kt",
+            "line": "50",
+            "column": "6"
+          }
+        ]
+      },
+      {
+        "id": "Recycle",
+        "severity": "Warning",
+        "message": "This `InputStream` should be freed up after use with `#close()`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/DocumentImport.kt",
+            "line": "85",
+            "column": "27"
+          }
+        ]
+      },
+      {
+        "id": "ObsoleteSdkInt",
+        "severity": "Warning",
+        "message": "Unnecessary; `Build.VERSION.SDK_INT >= Build.VERSION_CODES.M` is always true here (`SDK_INT` \u2265 23 and < 30)",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/PermissionHelper.kt",
+            "line": "34",
+            "column": "16"
+          }
+        ]
+      },
+      {
+        "id": "ObsoleteSdkInt",
+        "severity": "Warning",
+        "message": "Unnecessary; `SDK_INT` is never < 23",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/screenTranslate/ScreenCaptureRequestActivity.kt",
+            "line": "50",
+            "column": "44"
+          }
+        ]
+      },
+      {
+        "id": "AutoboxingStateCreation",
+        "severity": "Hint",
+        "message": "Prefer `mutableIntStateOf` instead of `mutableStateOf`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/browser/BrowserActivity.kt",
+            "line": "216",
+            "column": "45"
+          }
+        ]
+      },
+      {
+        "id": "AutoboxingStateCreation",
+        "severity": "Hint",
+        "message": "Prefer `mutableFloatStateOf` instead of `mutableStateOf`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/components/DocAlignActivity.kt",
+            "line": "385",
+            "column": "42"
+          }
+        ]
+      },
+      {
+        "id": "AutoboxingStateCreation",
+        "severity": "Hint",
+        "message": "Prefer `mutableIntStateOf` instead of `mutableStateOf`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/components/DocumentConfigureSheet.kt",
+            "line": "96",
+            "column": "33"
+          }
+        ]
+      },
+      {
+        "id": "AutoboxingStateCreation",
+        "severity": "Hint",
+        "message": "Prefer `mutableFloatStateOf` instead of `mutableStateOf`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/components/ImageDisplaySection.kt",
+            "line": "79",
+            "column": "43"
+          }
+        ]
+      },
+      {
+        "id": "AutoboxingStateCreation",
+        "severity": "Hint",
+        "message": "Prefer `mutableFloatStateOf` instead of `mutableStateOf`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/components/ZoomableImageViewer.kt",
+            "line": "77",
+            "column": "29"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.drawable.add_photo` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/drawable/add_photo.xml",
+            "line": "1",
+            "column": "1"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.drawable.attach_file_add` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/drawable/attach_file_add.xml",
+            "line": "1",
+            "column": "1"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.drawable.chevron_right` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/drawable/chevron_right.xml",
+            "line": "1",
+            "column": "1"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.color.purple_200` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/colors.xml",
+            "line": "3",
+            "column": "12"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.color.purple_500` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/colors.xml",
+            "line": "4",
+            "column": "12"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.color.purple_700` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/colors.xml",
+            "line": "5",
+            "column": "12"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.color.teal_200` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/colors.xml",
+            "line": "6",
+            "column": "12"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.color.teal_700` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/colors.xml",
+            "line": "7",
+            "column": "12"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.color.black` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/colors.xml",
+            "line": "8",
+            "column": "12"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.color.white` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/colors.xml",
+            "line": "9",
+            "column": "12"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.color.ucrop_color_progress_wheel_line` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/colors_ucrop_overrides.xml",
+            "line": "3",
+            "column": "12"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.color.ucrop_color_widget_rotate_angle` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/colors_ucrop_overrides.xml",
+            "line": "4",
+            "column": "12"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.dimen.ucrop_padding_crop_frame` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/dimens.xml",
+            "line": "3",
+            "column": "12"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.drawable.expand` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/drawable/expand.xml",
+            "line": "1",
+            "column": "1"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.drawable.folder` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/drawable/folder.xml",
+            "line": "1",
+            "column": "1"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.drawable.ic_launcher_background` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/drawable/ic_launcher_background.xml",
+            "line": "2",
+            "column": "1"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.drawable.list` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/drawable/list.xml",
+            "line": "1",
+            "column": "1"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.drawable.settings_dot` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/drawable/settings_dot.xml",
+            "line": "1",
+            "column": "1"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.stop` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "3",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.pause` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "4",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.resume` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "5",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.region_select_menu` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "6",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.settings_clear_browsing_desc` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "36",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.settings_catalog_url` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "59",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.settings_register_browser` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "73",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.settings_register_browser_desc` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "74",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.image_source_screen` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "109",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.image_source_document` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "110",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.image_source_photos` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "111",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.image_source_gallery` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "112",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.image_source_camera` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "113",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.tts_catalog_unavailable` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "141",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.download_failed_ocr` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "152",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.download_catalog_unavailable` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "160",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.download_catalog_save_failed` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "161",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.assistant_set_source_ocr` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "174",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.assistant_langs_not_ready` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "175",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.a11y_source_gallery` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "299",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.a11y_translate_image_or_file` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "311",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.settings_http_server` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "338",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.settings_http_server_desc` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "339",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.settings_http_server_bind` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "341",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.string.settings_http_server_title` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/values/strings.xml",
+            "line": "344",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.drawable.swipe_vert` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/drawable/swipe_vert.xml",
+            "line": "1",
+            "column": "1"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.drawable.transparent_dialog_background` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/drawable/transparent_dialog_background.xml",
+            "line": "2",
+            "column": "1"
+          }
+        ]
+      },
+      {
+        "id": "UnusedResources",
+        "severity": "Warning",
+        "message": "The resource `R.layout.ucrop_view` appears to be unused",
+        "locations": [
+          {
+            "file": "app/src/main/res/layout/ucrop_view.xml",
+            "line": "2",
+            "column": "1"
+          }
+        ]
+      },
+      {
+        "id": "IconXmlAndPng",
+        "severity": "Warning",
+        "message": "The following images appear both as density independent `.xml` files and as bitmap files: src/main/res/drawable-anydpi/add.xml, src/main/res/drawable-hdpi/add.png",
+        "locations": [
+          {
+            "file": "app/src/main/res/drawable-xxhdpi/add.png"
+          },
+          {
+            "file": "app/src/main/res/drawable-xhdpi/add.png"
+          },
+          {
+            "file": "app/src/main/res/drawable-mdpi/add.png"
+          },
+          {
+            "file": "app/src/main/res/drawable-hdpi/add.png"
+          },
+          {
+            "file": "app/src/main/res/drawable-anydpi/add.xml"
+          }
+        ]
+      },
+      {
+        "id": "IconXmlAndPng",
+        "severity": "Warning",
+        "message": "The following images appear both as density independent `.xml` files and as bitmap files: src/main/res/drawable-anydpi/camera.xml, src/main/res/drawable-hdpi/camera.png",
+        "locations": [
+          {
+            "file": "app/src/main/res/drawable-xxhdpi/camera.png"
+          },
+          {
+            "file": "app/src/main/res/drawable-xhdpi/camera.png"
+          },
+          {
+            "file": "app/src/main/res/drawable-mdpi/camera.png"
+          },
+          {
+            "file": "app/src/main/res/drawable-hdpi/camera.png"
+          },
+          {
+            "file": "app/src/main/res/drawable-anydpi/camera.xml"
+          }
+        ]
+      },
+      {
+        "id": "IconXmlAndPng",
+        "severity": "Warning",
+        "message": "The following images appear both as density independent `.xml` files and as bitmap files: src/main/res/drawable-anydpi/gallery.xml, src/main/res/drawable-hdpi/gallery.png",
+        "locations": [
+          {
+            "file": "app/src/main/res/drawable-xxhdpi/gallery.png"
+          },
+          {
+            "file": "app/src/main/res/drawable-xhdpi/gallery.png"
+          },
+          {
+            "file": "app/src/main/res/drawable-mdpi/gallery.png"
+          },
+          {
+            "file": "app/src/main/res/drawable-hdpi/gallery.png"
+          },
+          {
+            "file": "app/src/main/res/drawable-anydpi/gallery.xml"
+          }
+        ]
+      },
+      {
+        "id": "IconLocation",
+        "severity": "Warning",
+        "message": "Found bitmap drawable `res/drawable/example.png` in densityless folder",
+        "locations": [
+          {
+            "file": "app/src/main/res/drawable/example.png"
+          }
+        ]
+      },
+      {
+        "id": "ViewConstructor",
+        "severity": "Warning",
+        "message": "Custom view `BorderWaveView` is missing constructor used by tools: `(Context)` or `(Context,AttributeSet)` or `(Context,AttributeSet,int)`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/assistantOverlay/BorderWaveView.kt",
+            "line": "10",
+            "column": "7"
+          }
+        ]
+      },
+      {
+        "id": "ViewConstructor",
+        "severity": "Warning",
+        "message": "Custom view `RegionSelectView` is missing constructor used by tools: `(Context)` or `(Context,AttributeSet)` or `(Context,AttributeSet,int)`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/overlayChrome/RegionSelectView.kt",
+            "line": "49",
+            "column": "7"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX extension function `String.toColorInt` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/assistantOverlay/BorderWaveView.kt",
+            "line": "21",
+            "column": "38"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX function `createBitmap` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/components/DocAlignActivity.kt",
+            "line": "140",
+            "column": "17"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX extension function `String.toColorInt` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/overlayChrome/FloatingBubble.kt",
+            "line": "70",
+            "column": "18"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX extension function `String.toColorInt` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/overlayChrome/OverlayChromeFactory.kt",
+            "line": "37",
+            "column": "31"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX extension function `String.toColorInt` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/overlayChrome/OverlayChromeFactory.kt",
+            "line": "335",
+            "column": "17"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX extension function `String.toColorInt` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/overlayChrome/OverlayChromeFactory.kt",
+            "line": "369",
+            "column": "17"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX extension function `String.toColorInt` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/overlayChrome/OverlayChromeFactory.kt",
+            "line": "384",
+            "column": "17"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX extension function `String.toColorInt` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/overlayChrome/OverlayChromeFactory.kt",
+            "line": "401",
+            "column": "53"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX extension function `String.toColorInt` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/overlayChrome/OverlayMenuManager.kt",
+            "line": "61",
+            "column": "28"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX extension function `String.toColorInt` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/accessibilityOverlay/OverlayUI.kt",
+            "line": "422",
+            "column": "17"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX extension function `String.toUri` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/PermissionHelper.kt",
+            "line": "67",
+            "column": "16"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX extension function `String.toColorInt` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/overlayChrome/RegionSelectView.kt",
+            "line": "117",
+            "column": "17"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX extension function `String.toColorInt` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/overlayChrome/RegionSelectView.kt",
+            "line": "122",
+            "column": "17"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX extension function `String.toColorInt` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/overlayChrome/RegionSelectView.kt",
+            "line": "134",
+            "column": "17"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX extension function `String.toUri` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/screenTranslate/ScreenCaptureRequestActivity.kt",
+            "line": "56",
+            "column": "9"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX extension function `SharedPreferences.edit` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/SettingsManager.kt",
+            "line": "37",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX extension function `SharedPreferences.edit` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/SettingsManager.kt",
+            "line": "213",
+            "column": "5"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX extension function `String.toUri` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/SettingsScreen.kt",
+            "line": "1309",
+            "column": "40"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX extension function `String.toUri` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/screens/SettingsScreen.kt",
+            "line": "1314",
+            "column": "40"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX function `createBitmap` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/TranslationCoordinator.kt",
+            "line": "220",
+            "column": "11"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX function `createBitmap` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/TranslationCoordinator.kt",
+            "line": "268",
+            "column": "13"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX function `createBitmap` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/TranslationCoordinator.kt",
+            "line": "368",
+            "column": "7"
+          }
+        ]
+      },
+      {
+        "id": "UseKtx",
+        "severity": "Warning",
+        "message": "Use the KTX extension function `String.toColorInt` instead?",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/assistantOverlay/TranslatorVoiceInteractionSession.kt",
+            "line": "236",
+            "column": "22"
+          }
+        ]
+      },
+      {
+        "id": "UseTomlInstead",
+        "severity": "Warning",
+        "message": "Use version catalog instead",
+        "locations": [
+          {
+            "file": "app/build.gradle.kts",
+            "line": "472",
+            "column": "18"
+          }
+        ]
+      },
+      {
+        "id": "UseTomlInstead",
+        "severity": "Warning",
+        "message": "Use version catalog instead",
+        "locations": [
+          {
+            "file": "app/build.gradle.kts",
+            "line": "473",
+            "column": "18"
+          }
+        ]
+      },
+      {
+        "id": "ClickableViewAccessibility",
+        "severity": "Warning",
+        "message": "Custom view `DottedUnderlineTextView` overrides `onTouchEvent` but not `performClick`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/components/DottedUnderlineTextView.kt",
+            "line": "93",
+            "column": "18"
+          }
+        ]
+      },
+      {
+        "id": "ClickableViewAccessibility",
+        "severity": "Warning",
+        "message": "Custom view `EditCanvas` overrides `onTouchEvent` but not `performClick`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/overlayChrome/RegionSelectView.kt",
+            "line": "196",
+            "column": "18"
+          }
+        ]
+      },
+      {
+        "id": "ClickableViewAccessibility",
+        "severity": "Warning",
+        "message": "`onTouch` lambda should call `View#performClick` when a click is detected",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/screenTranslate/ScreenTranslateService.kt",
+            "line": "438",
+            "column": "35"
+          }
+        ]
+      },
+      {
+        "id": "ClickableViewAccessibility",
+        "severity": "Warning",
+        "message": "Custom view `TapWordEditText` overrides `onTouchEvent` but not `performClick`",
+        "locations": [
+          {
+            "file": "app/src/main/java/dev/davidv/translator/ui/components/TapWordEditText.kt",
+            "line": "120",
+            "column": "18"
+          }
+        ]
+      }
+    ]
+  },
+  "lint_error_source_comparison": [
+    {
+      "id": "MissingPermission",
+      "file": "app/src/main/java/dev/davidv/translator/DocumentTranslationService.kt",
+      "line": 432,
+      "message": "Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "MissingPermission",
+      "file": "app/src/main/java/dev/davidv/translator/DownloadService.kt",
+      "line": 99,
+      "message": "Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "MissingPermission",
+      "file": "app/src/main/java/dev/davidv/translator/TapToTranslateNotification.kt",
+      "line": 72,
+      "message": "Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "MissingPermission",
+      "file": "app/src/main/java/dev/davidv/translator/TranslationApiService.kt",
+      "line": 144,
+      "message": "Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "StartActivityAndCollapseDeprecated",
+      "file": "app/src/main/java/dev/davidv/translator/screenTranslate/LiveScreenTileService.kt",
+      "line": 65,
+      "message": "TileService#startActivityAndCollapse(Intent) is deprecated. Use TileService#startActivityAndCollapse(PendingIntent) instead.",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "AppCompatCustomView",
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/DottedUnderlineTextView.kt",
+      "line": 44,
+      "message": "This custom view should extend `androidx.appcompat.widget.AppCompatTextView` instead",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "AppCompatCustomView",
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/TapWordEditText.kt",
+      "line": 39,
+      "message": "This custom view should extend `androidx.appcompat.widget.AppCompatEditText` instead",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "UnsafeOptInUsageError",
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+      "line": 398,
+      "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "UnsafeOptInUsageError",
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+      "line": 398,
+      "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "UnsafeOptInUsageError",
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+      "line": 478,
+      "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "UnsafeOptInUsageError",
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+      "line": 479,
+      "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "UnsafeOptInUsageError",
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+      "line": 492,
+      "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "UnsafeOptInUsageError",
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+      "line": 493,
+      "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "UnsafeOptInUsageError",
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+      "line": 494,
+      "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "UnsafeOptInUsageError",
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+      "line": 498,
+      "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "UnsafeOptInUsageError",
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+      "line": 499,
+      "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "UnsafeOptInUsageError",
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+      "line": 503,
+      "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "UnsafeOptInUsageError",
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+      "line": 504,
+      "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "UnsafeOptInUsageError",
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+      "line": 504,
+      "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "UnsafeOptInUsageError",
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+      "line": 638,
+      "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "UnsafeOptInUsageError",
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+      "line": 638,
+      "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "UnsafeOptInUsageError",
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+      "line": 638,
+      "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "UnsafeOptInUsageError",
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+      "line": 639,
+      "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "UnsafeOptInUsageError",
+      "file": "app/src/main/java/dev/davidv/translator/ui/screens/LiveCameraScreen.kt",
+      "line": 639,
+      "message": "This declaration is opt-in and its usage should be marked with `@androidx.camera.camera2.interop.ExperimentalCamera2Interop` or `@OptIn(markerClass = androidx.camera.camera2.interop.ExperimentalCamera2Interop.class)`",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    },
+    {
+      "id": "StateFlowValueCalledInComposition",
+      "file": "app/src/main/java/dev/davidv/translator/ui/components/DocAlignActivity.kt",
+      "line": 181,
+      "message": "StateFlow.value should not be called within composition",
+      "statement_present_upstream": true,
+      "file_identical_upstream": true
+    }
+  ],
+  "standalone_upstream_lint_run": false,
+  "packaging": {
+    "source_commit": "8f879f99f604e73bfc3f3faa44642b7cec1ed2fa",
+    "apk": "offline-translator-upstream-sync-8f879f9-arm64.apk",
+    "bytes": 45035005,
+    "sha256": "434cc7caa33763cfdc7affc0e28bfc2d6360f46c38c4a369e22c1d590e6f31b9",
+    "checks": [
+      "signature_valid",
+      "isolated_device_test_id",
+      "generic_label",
+      "arm64_only",
+      "min_sdk_23",
+      "target_sdk_34",
+      "not_debuggable",
+      "six_native_libraries",
+      "three_native_libraries_match_upstream",
+      "catalog_v7_matches_source",
+      "no_duplicate_zip_entries"
+    ]
+  },
+  "native_fresh_build": false,
+  "native_sources_and_locks_identical_upstream": true,
+  "native_artifact": {
+    "run_id": 40113838618,
+    "artifact_id": 12568147153,
+    "archive_sha256": "ab8c420ccdc2167960a7aea092d835ed8f034c7abb52c2fca4e7f29f03bd0336"
+  },
+  "android_device_tests": {
+    "status": "not_run",
+    "adb_devices": 0,
+    "missing_fixtures_also_absent_upstream": true
+  },
+  "operational_failure": "Initial combined invocation lost its Gradle daemon while lint and shrinking overlapped. Cgroup OOM kills were observed, consistent with memory pressure; individual kill attribution was not established. Heavy checks were subsequently separated with one worker.",
+  "signature_certificate_sha256": "62b6342f7528a42e8db321c8ee5c3339d944dea50bf2b739f20736bbdb0f52d7"
+}
