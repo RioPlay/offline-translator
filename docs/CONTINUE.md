@@ -1,78 +1,30 @@
 # Continue Offline Translator work
 
-Updated 2026-10-24. This document is the continuation entry point; the long chat is not required.
+The latest combined source is on `integration/upstream-sync` in RioPlay/offline-translator. It incorporates the prior combined candidate and upstream master `bd675fecea875d4e5b3c0f62e24b2a9c3c84f6da`. Start with `docs/reviews/upstream-sync.md` for overlap resolutions, validation provenance and remaining checks. Earlier validation records describe their recorded revisions, not this combined build.
 
-## Ownership and approval boundaries
+## Boundaries
 
-- Work only in RioPlay's forks. Never submit, comment, open issues/PRs, push, merge or otherwise write to an upstream-maintained repository without RioPlay's explicit approval. Upstream reading is allowed.
-- Keep the generic launcher name **Translator**. No personal branding.
-- Device-test builds use dev.davidv.translator.devicetest, separate from the regular app. Preserve that separation.
-- All PRs remain drafts. No merge, official release or upstream submission has been approved. Device testing precedes upstream decisions.
-- Prefer small, validated changes. Do not force unrelated dependency major upgrades simply to clear advisory matches.
-- No agent delegation unless explicitly requested.
+- Work only in RioPlay's forks. Upstream reading is allowed; upstream submissions or other writes require explicit approval.
+- Keep the generic launcher name Translator and the separate `dev.davidv.translator.devicetest` package for test builds.
+- Keep PRs as drafts. This sync does not authorize a master merge, upstream submission or official release.
+- Prefer small, validated changes. Do not delegate to agents unless explicitly requested.
 
-## Where to start
+## Current changes
 
-Clone https://github.com/RioPlay/offline-translator and check out **test/settings-clarity**.
-The tested APK's immutable source is **ff7ef7a5a6edd9c6f49515ca49225e9f44e97c8e** (tree 13515e19c89c310207a9bca9dfbb98ee873ed7ab). Later documentation commits on the branch do not change that APK's source.
-The default master branch is still 7a662629cb267483ddf3889c6fe42e8fb9462e0d; it does not contain these unmerged changes.
+The combined branch retains payload-log reductions, asynchronous dictionary lookup, cached catalog filtering, a keyboard-accessible language swap, clear processing/network Settings, API compatibility fixes and download reliability guards. Upstream contributes catalog v7, TTS upgrades, native engine updates and Android 8 image-selection compatibility. One voice-sorting merge conflict was resolved by retaining caching and using upstream's stable voice identity.
 
-## Published work
+The minimal `upstream/fix-pack-downloads` branch remains a separate contribution candidate based on the same upstream revision. Earlier fork PRs remain separate drafts; review their bases before merging them. The existing distributed test APK predates this sync.
 
-- PR #1: Remove explicit translation and dictionary payloads from logs — https://github.com/RioPlay/offline-translator/pull/1 (draft, unmerged; branch fix/private-payload-logging).
-- PR #2: Cache catalog row construction while filtering languages — https://github.com/RioPlay/offline-translator/pull/2 (draft, unmerged; branch perf/cache-language-filter-rows).
-- PR #3: Document privacy, dependency risks and performance/CI priorities — https://github.com/RioPlay/offline-translator/pull/3 (draft, unmerged; branch docs/privacy-performance-review).
-- PR #4: Keep dictionary lookup off the UI thread and reuse catalog search data — https://github.com/RioPlay/offline-translator/pull/4 (draft, unmerged; branch perf/dictionary-and-catalog).
-- PR #5: Make language swap reachable just above the keyboard — https://github.com/RioPlay/offline-translator/pull/5 (draft, unmerged; branch ui/keyboard-language-swap).
-- PR #6: Update affected build tools and document the pending native PDF fix — https://github.com/RioPlay/offline-translator/pull/6 (draft, unmerged; branch security/build-tools-and-pdf-review).
-- PR #7: Make local processing and network behavior explicit in Settings — https://github.com/RioPlay/offline-translator/pull/7 (draft, unmerged; branch ui/settings-processing-clarity).
+## Verified baseline
 
-PRs #1–3 target master; #4–6 target test/device-privacy-performance; #7 targets test/keyboard-performance-security. Do not assume all can be merged directly into master without review/rebasing.
-The combined test branch includes the logging, performance, keyboard, build-tool and Settings clarity implementations. PR #3 separately contains the broader audit/CI planning documents.
+The synchronized app compiles in debug and deviceTest modes. All 103 JVM tests and app-wide formatting pass. Fresh minSdk 23 NewApi lint, R8 minification, ARM64 assembly, package identity/ABI checks, native library contents and catalog asset checks pass. Native outputs come from the verified upstream build rather than a fresh local native build; the review record explains that boundary. The validation APK has not been published as a new device candidate.
 
-## Latest device candidate
+## Remaining work
 
-- Translator **0.8.6-test3**, version code **332**, ARM64, non-debuggable, development-signed.
-- SHA-256: **d6f755762ebef2fa01fb4473be79482b2e243020f23ddc2e3046acacc52429c7**.
-- Saved APK: https://chatgpt.com/library?file_id=libfile_47d7af16608481919a75f9ee58d57ebd&account_id=personal
-- Test3 uses test2's signing certificate and can update that copy in place. Test1's CI signing key differs; replacing test1 requires uninstalling only the test copy, removing its private app data. Keep the regular app installed.
-- Passed: compilation, all 90 JVM tests, app ktlint, fresh release NewApi lint at minSdk 23, minified ARM64 assembly, signature/identity/ABI checks.
-- Remaining: actual device visual, large-text, landscape and TalkBack checks, plus normal translation/download/TTS/dictionary regressions.
-- RioPlay reported that the initial performance candidate was much more responsive. This is qualitative feedback, not measured frame-time or battery evidence.
-- Verification record: https://github.com/RioPlay/offline-translator/blob/ui/settings-processing-clarity/docs/reviews/settings-test3-validation-2026-10-24.json
+Complete phone checks for translation, pack downloads and cancellation/retry, catalog refresh, voice upgrades/default selection, dictionary lookup, keyboard swap, and Settings accessibility/layout. Host compilation and tests do not establish device behavior.
 
-## Implemented behavior and limits
+There is still no enforced app-local networking policy. External speech recognition belongs to the chosen Android provider; the app cannot promise control over keyboard dictation. Distinct pane movement and explicit reverse translation remain proposed rather than implemented.
 
-Settings starts with Processing and internet use. It distinguishes local translation/dictionaries/downloaded voices, network downloads/websites, external microphone recognition, and the HTTP API served by this phone. HTTP configuration is not presented as proof of a running server. Server control is visible outside Advanced; scopes and browser/catalog/cleanup behavior are explained. New explanations use English fallback until translations are reviewed.
+The prepared native PDF parser update remains separate. The current native revision is `8266da0aafce3842808e5911314c16b52e65dc61`; its app lockfile still selects lopdf 0.40. The archived update patch applies at this revision, but applying it was not part of this sync. Do not describe it as shipped or claim the tree is vulnerability-free.
 
-There is **no enforced local-only/network-blocking mode yet**. Microphone input delegates to an Android provider and does not enforce offline recognition. Keyboard dictation belongs to the keyboard's own privacy settings. No cloud translation backend was found in the reviewed build; this does not mean every feature avoids the network.
-
-The existing language swap changes the language pair and retranslates the same input. A reachable duplicate of that action appears above the keyboard in normal text mode. The proposed separate focus/swap-sides/back-translation actions are **not implemented**.
-
-Dictionary lookups run off the UI thread, serialize native work, and suppress obsolete results. Catalog filtering reuses localized search data.
-
-## Security work still pending
-
-PR #6 records selected dependency scans and conditional exposure. Remaining build-classpath advisory matches are documented; the tree is not claimed CVE-free. ZIP extraction advisories have no established extraction call path in reviewed callers. Legacy CLD2 dependency findings are build-time scoped. Review the actual reports before further upgrades.
-
-The lopdf fix is **not in the APK**. App native dependency remains pinned to DavidVentura/translator-rs at 94f47bff9d80bcd4e2779bceb037a5ed2c330fab.
-The complete prepared patch is preserved at docs/patches/translator-rs-lopdf-0.42.patch, with evidence at docs/reviews/pdf-security-validation-2026-10-24.json (both in the combined branch and PR #6).
-The old parser's stack-overflow abort was reproduced; the fixed parser and exact standalone regression passed. Full default app native bindings compiled/linked for ARM64/API23 using the isolated local patch. This is not the full native test suite or a device PDF pipeline test.
-The local native commit 4391b6c85bbfc021ff54c459e239394803c13eda was not pushed, but its full three-file patch is archived on GitHub.
-RioPlay/translator-rs was inaccessible at the last check. Enable/create that owned fork, publish a patch branch based on the pinned revision (not unrelated latest native API changes), repin app manifests/locks, and rebuild/device-test. The GitHub connector used here cannot create forks.
-
-## Suggested next work (proposed, not implemented)
-
-1. Collect test3 device feedback.
-2. Implement an enforceable app-local networking policy and explicit handling of external speech; do not promise control over a third-party keyboard.
-3. Add per-feature processing indicators grounded in real execution paths; avoid fake global offline status.
-4. Separate writing focus, pane movement and explicit reverse translation. Preserve drafts and Undo.
-5. Finish native PDF integration after owned-fork access is available.
-
-## Rebuilding / workspace-only items
-
-The repository Dockerfile, Gradle wrapper and device-test workflow are on GitHub. Build with assembleDeviceTest -PtargetAbi=arm64-v8a. Tooling used: JDK17, Gradle8.14.6, Kotlin2.4.21, AGP8.13.2 with R8 override9.1.57, Build Tools35, platform/target34, NDK28.0.13004108, Rust1.88, cargo-ndk4.1.2. Keep minSdk23; API desugaring and iterator-based install queues preserve compatibility.
-
-The previous chat's installed SDK/JDK/Rust, caches, local helper scripts, raw logs/probes and private debug keystore are temporary workspace items, not GitHub assets. Do not assume they exist in a new chat. The source, prepared native patch and meaningful validation evidence are recoverable from GitHub; APK bytes are saved separately above. Never upload the private signing key to a public repository. Losing that key means future test builds may require replacing the test app with a new key.
-
-One local lint intermediate reused removed calls and stale line positions. Fresh analysis after clearing the generated lint partial results passed; compiled queue bytecode used iterators. Do not paper over NewApi errors with a blanket suppression or baseline.
+Use the repository Dockerfile and Gradle wrapper for a fresh native build. The local sync validation reuses verified upstream native outputs and records that limitation explicitly. Preserve minSdk 23 and the existing NewApi lint gate. Keep source changes and meaningful validation evidence in the fork; keep private credentials and machine-specific tooling out of it.
