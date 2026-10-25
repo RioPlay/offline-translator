@@ -1,5 +1,7 @@
 # Host validation and Pixel follow-up
 
+> **Candidate withdrawn — 2026-10-25:** Do not install the APK with SHA-256 `434cc7caa33763cfdc7affc0e28bfc2d6360f46c38c4a369e22c1d590e6f31b9`. The user reported a startup failure. Bytecode inspection confirmed that all six generated UniFFI loaders default to `bindings-metadata`, while the APK only packages `libbindings.so`. The metadata-only extraction filename leaked into the generated library name. The host checks below did not cover Android startup. The correction is being validated on branch [fix/native-library-startup-contract](https://github.com/RioPlay/offline-translator/tree/fix/native-library-startup-contract). No working-device verdict is implied by these historical checks.
+
 Session date: 2026-10-24. Tested source: `8f879f99f604e73bfc3f3faa44642b7cec1ed2fa`, tree `5d5515aadedf6893121d419a5826906236052bae`, from `integration/upstream-sync`. This report does not change application code. Structured findings and provenance are in [the accompanying JSON](host-gauntlet-2026-10-24.json).
 
 ## Result
