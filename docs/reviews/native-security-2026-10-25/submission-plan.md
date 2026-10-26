@@ -2,6 +2,10 @@
 
 Status: automated fork integration passed on ARM64 and ARMv7; signed-device acceptance remains pending; upstream submission requires RioPlay's explicit approval. No default-branch merge or production release is requested.
 
+## Scope agreement comes first
+
+This dependency plan follows maintainer agreement on which focused fixes are wanted; it does not require acceptance of the whole integration branch. [AI disclosure and change rationale](ai-transparency-and-scope.md) names Sol 6.1 and Astra, explains the scope expansion and proposes smaller contributions. The Android draft has not yet been split. UI/backup policy and fork-specific testing choices remain separable proposals.
+
 ## Review order and exact proposed targets
 
 | Order | Proposed target | Fork draft | Scope |

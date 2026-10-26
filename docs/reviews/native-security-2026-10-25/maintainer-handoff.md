@@ -1,5 +1,7 @@
 # Maintainer handoff: native PDF security and Android integration
 
+**AI disclosure and scope:** This candidate was developed with substantial OpenAI ChatGPT/Codex assistance using **Sol 6.1 and Astra**. See [what changed, why, how it was researched/tested, and the proposed smaller contribution scope](ai-transparency-and-scope.md). The combined build demonstrates integration; it is not a request to adopt every change. Optional UI/backup policy and fork-specific testing choices can be reviewed separately. No independent security audit or complete human code review is claimed.
+
 **Start here.** The patches are published in RioPlay's forks and the integrated ARM64/ARMv7 builds pass. They are ready for source review. Phone runtime and signed-update validation are still pending; this is not a release or an all-CVEs-cleared claim.
 
 [Coordinated review order and exact commits](submission-plan.md) · [Android draft PR](https://github.com/RioPlay/offline-translator/pull/12) · [Passing CI](https://github.com/RioPlay/offline-translator/actions/runs/40240420210)

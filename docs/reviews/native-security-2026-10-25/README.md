@@ -6,6 +6,10 @@ The reviewed fixes are published in four RioPlay native forks and integrated int
 
 No upstream write, default-branch merge or release has occurred. This evidence branch is an archive, not an app merge candidate.
 
+## AI disclosure and rationale
+
+Substantial AI assistance used **Sol 6.1 and Astra** through OpenAI ChatGPT/Codex. [Read the change-by-change rationale, research/testing provenance, limitations and proposed smaller contribution scope](ai-transparency-and-scope.md). The broad integration draft is not an all-or-nothing upstream proposal.
+
 ## Current implementation
 
 | Component | Implemented change | Review |
