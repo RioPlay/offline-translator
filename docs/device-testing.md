@@ -5,10 +5,14 @@ before building; separate PRs are not automatically included. Record the exact
 commit and artifact hashes with each distributed APK. Keep deferred native
 dependency updates separate until their source, bindings and runtime are tested.
 
+Test7 starts a new isolated installation because the test6 private signer is
+unavailable. It does not update test6 and does not copy its settings/models.
+See [test7-candidate.md](test7-candidate.md) for the exact cumulative baseline.
+
 ## Signing and versioning
 
 The `deviceTest` variant retains the Translator label and release minification,
-with a separate `dev.davidv.translator.devicetest` identity and storage. It requires
+with a separate `dev.davidv.translator.devicetest7` identity and storage. It requires
 an existing keystore explicitly supplied through these environment variables:
 
 - `TRANSLATOR_TEST_KEYSTORE`: absolute path to the test keystore
@@ -21,7 +25,7 @@ updates. Do not commit the key, passwords, or environment files. The build does
 not create a replacement key when one is missing. Supply secrets through the
 build environment, avoiding command-line arguments or verbose shell tracing.
 Increase the deviceTest version code for each distributed candidate; the current
-test6 ARM64 code is 362. Keep ordinary release versioning/signing under the
+test7 ARM64 code is 372. Keep ordinary release versioning/signing under the
 maintainer's control.
 
 This test identity cannot update the official app. An official in-place release

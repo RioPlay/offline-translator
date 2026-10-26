@@ -1,4 +1,4 @@
-name: Build Android App
+name: Build isolated cumulative test7
 
 on:
   push:
@@ -57,26 +57,39 @@ jobs:
           docker push "$TAG"
         fi
 
+    - name: Create disposable CI packaging signer
+      run: |
+        keytool -genkeypair -noprompt -storetype PKCS12 \
+          -keystore "$RUNNER_TEMP/translator-ci.p12" \
+          -storepass temporary-build -keypass temporary-build \
+          -alias packaging -keyalg RSA -keysize 2048 -validity 2 \
+          -dname "CN=Disposable CI packaging signer"
+
     - name: Build ${{ matrix.label }}
       run: |
         df -h .
         trap 'df -h .' EXIT
         docker run --rm \
+          -v "$RUNNER_TEMP/translator-ci.p12:/tmp/translator-ci.p12:ro" \
+          -e TRANSLATOR_TEST_KEYSTORE=/tmp/translator-ci.p12 \
+          -e TRANSLATOR_TEST_STORE_PASSWORD=temporary-build \
+          -e TRANSLATOR_TEST_KEY_ALIAS=packaging \
+          -e TRANSLATOR_TEST_KEY_PASSWORD=temporary-build \
           -v ${{ github.workspace }}:/build/build/dev.davidv.translator/ \
           --user $(id -u):$(id -g) \
           ${{ steps.img.outputs.tag }} \
-          ./gradlew --stacktrace :app:testDebugUnitTest :app:ktlintCheck :app:assembleRelease -PtargetAbi=${{ matrix.abi }}
+          ./gradlew --stacktrace :app:testDebugUnitTest :app:ktlintCheck :app:assembleDeviceTest -PtargetAbi=${{ matrix.abi }}
 
     - name: Check packaged native compatibility
-      run: python3 tools/check_apk_native.py app/build/outputs/apk/release/app-${{ matrix.abi }}-release-unsigned.apk --abi ${{ matrix.abi }}
+      run: python3 tools/check_apk_native.py app/build/outputs/apk/deviceTest/app-${{ matrix.abi }}-deviceTest.apk --abi ${{ matrix.abi }}
 
     - name: Verify native PDF sources and record build evidence
-      run: python3 tools/check_native_security.py --abi ${{ matrix.abi }} --apk app/build/outputs/apk/release/app-${{ matrix.abi }}-release-unsigned.apk --report app/build/reports/security/native-${{ matrix.abi }}.json
+      run: python3 tools/check_native_security.py --abi ${{ matrix.abi }} --apk app/build/outputs/apk/deviceTest/app-${{ matrix.abi }}-deviceTest.apk --report app/build/reports/security/native-${{ matrix.abi }}.json
 
     - name: Upload APK artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: apk-${{ matrix.label }}
+        name: intermediate-test7-${{ matrix.label }}
         path: |
           app/build/outputs/apk/**/*.apk
           app/build/reports/security/native-*.json
