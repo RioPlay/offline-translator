@@ -64,7 +64,7 @@ def main():
         return identity(badging, signature), badging
 
     candidate, badging = inspect(args.apk)
-    if candidate["package"] != "dev.davidv.translator.devicetest":
+    if candidate["package"] != "dev.davidv.translator.devicetest7":
         raise ValueError("Expected the isolated device-test package")
     if "application-label:'Translator'" not in badging or "application-debuggable" in badging:
         raise ValueError("Expected generic Translator label and non-debuggable APK")
