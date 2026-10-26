@@ -1,0 +1,88 @@
+{
+  "source_commit": "43f9de3255df1f6ce82bfc3c4230b3ee76bea56c",
+  "source_tree": "e851996c5fbd42da7f3f0d0c2480942e6d43f2a0",
+  "cumulative_baseline": "d77b0062a440e7abc1036ef8b5e7ac39f76afa79",
+  "workflow_run": 40254214351,
+  "ci_archive_sha256": "43688d3d14c1990d256ff9d5fa36ec387c3c2d901850797310f69c0254b5a4f6",
+  "ci_intermediate_apk_sha256": "ba1f54563d18b7373ebb1dffe1963c6e57b5f7313d63371529f0c90620d7095c",
+  "apk_sha256": "044ab0450823aed453785823f695ab62da000e9428132cc1f907665985c61d56",
+  "apk_bytes": 34640685,
+  "identity": {
+    "package": "dev.davidv.translator.devicetest7",
+    "version_code": 371,
+    "version_name": "0.8.6-test7",
+    "signer_sha256": [
+      "abed57535cf0804794e0c1712128b0aebf6fec316a36d448331f95593cdf7f7d"
+    ]
+  },
+  "application_label": "Translator",
+  "debuggable": false,
+  "minimum_sdk": 23,
+  "abi": "armeabi-v7a",
+  "signature_schemes_verified": [
+    "v1",
+    "v2"
+  ],
+  "zip_alignment_page_kib": 4,
+  "signing_payload_unchanged": true,
+  "payload_entries_verified": 758,
+  "native_libraries": {
+    "lib/armeabi-v7a/libandroidx.graphics.path.so": "41399eba6fc2a60f6f14642375c1824f3cf25eb8fec7397d753730a3ceda3e2b",
+    "lib/armeabi-v7a/libbindings.so": "6ef580061b8d4054272f46be5beb928ec34dae1abc5006287a0abbbf7b80ab3b",
+    "lib/armeabi-v7a/libc++_shared.so": "4c8188135d5927f49a2eb5fff96714c5c5ea12e1f09ebbabe3d04aab25b0bd6a",
+    "lib/armeabi-v7a/libimage_processing_util_jni.so": "e48e356bbe1902ae9a66178a4a0141c993b82ee9f70dde52ad83e4af3eca984f",
+    "lib/armeabi-v7a/libjnidispatch.so": "c5be6d55a8f0eaca7830348196a9d36203137f6334dc03aca1d58699b8eda045",
+    "lib/armeabi-v7a/libmodel_converter.so": "6ac2695be27736836cb7c9bc2163fce78f83bf900c962acf0194fc6a2f2a41b7"
+  },
+  "native_compatibility": "translator-test7-armv7.apk: 6 native libraries pass armeabi-v7a ABI/alignment checks",
+  "native_build_evidence": {
+    "pins": {
+      "engine": {
+        "repository": "RioPlay/translator-rs",
+        "revision": "904c8661f1bb9ffa4a5ef93623aa20707af4f50e"
+      },
+      "mupdf_wrapper": {
+        "repository": "RioPlay/mupdf-rs",
+        "revision": "285b012811563c412052df685d2b872c9a95c82c"
+      },
+      "cld2": {
+        "repository": "RioPlay/rust-cld2",
+        "revision": "7c9be0fcd97a77d65a47a14894078a6110b115ad"
+      },
+      "mupdf": {
+        "repository": "RioPlay/mupdf",
+        "revision": "ba2c748657a4a4c5bd418b684b077b142a61d433",
+        "source_sha256": {
+          "source/fitz/subset-cff.c": "5180092ccbe0b6b421d2f1a7cd4dcd53795bc37a6ae2d0eb549cc56fe8dd7474",
+          "source/fitz/draw-unpack.c": "a1f28592ce0415a882401bbd7cb6d18589badb2721057e859bb9da6dd0a35dbe",
+          "source/pdf/pdf-image.c": "b08dbd9bb645bea54c17a71e6d21ae0df82a7cc6a24b908698a6f8999bc9c75f"
+        }
+      }
+    },
+    "locks": {
+      "bindings": {
+        "sha256": "c1f3a2961217a8fc04e9164ce5997ac3ec5ae93c64ebfcd8a87cf43e559de15e",
+        "components": [
+          "cld2",
+          "engine",
+          "mupdf_wrapper"
+        ]
+      },
+      "model-converter": {
+        "sha256": "97c1247fd4fe1f67a363eaab15108aaef9435d5efb944830b40ad6513b4056a0",
+        "components": [
+          "engine"
+        ]
+      }
+    },
+    "verified_mupdf_builds": 1,
+    "abi": "armeabi-v7a",
+    "apk_sha256": "ba1f54563d18b7373ebb1dffe1963c6e57b5f7313d63371529f0c90620d7095c"
+  },
+  "static_upgrade_preflight": "not_applicable_first_install_new_identity",
+  "device_launch": "unverified",
+  "device_pdf_workflow": "unverified",
+  "runtime_upgrade_data_retention": "unverified",
+  "ci_merge_commit": "f791b480eca8a9a403782be84810a61a94c04c7a",
+  "ci_merge_tree_verified": true
+}

@@ -6,6 +6,8 @@
 
 [Coordinated review order and exact commits](submission-plan.md) · [Android draft PR](https://github.com/RioPlay/offline-translator/pull/12) · [Passing CI](https://github.com/RioPlay/offline-translator/actions/runs/40240420210)
 
+**Latest owner device candidate:** [Signed, isolated test7 builds and verification records](test7-device-candidate.md) now include the cumulative fixes. This separate test identity does not update test6 or the official app; phone results remain pending. Main release CI artifacts remain unsigned.
+
 ## What changes and why
 
 | Repository | Problem and resulting behavior | Files to review |
